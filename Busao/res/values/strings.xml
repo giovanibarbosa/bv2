@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, BusaoActivity!</string>
+    <string name="app_name">Busao</string>
+    <string name="description">Splash Screen</string>
+    
+	<string name="menu_localidade">localidade</string>
+	<string name="menu_buscar">buscar</string>
+	<string name="menu_turismo">turismo</string>
+	<string name="menu_ajuda">ajuda</string>
+	<string name="bem_vindo">bem vindo</string>
+	<string name="compartilhar">compartilhar</string> 
+    
+	<string name="localidade_desc">localidade</string>
+	<string name="buscar_desc">buscar</string>
+	<string name="turismo_desc">turismo</string>
+	<string name="ajuda_desc">ajuda</string>
+	<string name="bem_vindo_desc">bem vindo</string>
+	<string name="compartilhar_desc">compartilhar</string> 
+	<string name="progress_msg">loading</string>
+</resources>

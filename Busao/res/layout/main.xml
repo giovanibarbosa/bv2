@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+
+    <SlidingDrawer 
+        android:id="@+id/layout_menu_acesso"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.35"
+        android:orientation="vertical" 
+        android:handle="@+id/handle"
+        android:content="@+id/content">
+        
+            <LinearLayout
+		        android:id="@+id/layout_menu_botoes"
+		        android:layout_width="wrap_content"
+		        android:layout_height="match_parent"
+		        android:orientation="vertical" >
+		        
+                <!-- Criar os botoes -->
+		
+		    </LinearLayout>
+        
+    </SlidingDrawer>
+    
+    <LinearLayout
+        android:id="@+id/layout_menu_scrolling"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.65"
+        android:orientation="vertical" >
+
+			<!-- O conteudo dentro dessa estrutura de layout muda conforme o botao clicado -->
+    
+    </LinearLayout>
+
+</LinearLayout>
