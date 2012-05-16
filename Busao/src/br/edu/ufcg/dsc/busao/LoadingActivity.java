@@ -14,9 +14,9 @@ public class LoadingActivity extends Activity {
 		// checa as atualizações necessárias,
 		// depois passa para a tela de menu
 
-//		Intent menuPrincipal = new Intent(LoadingActivity.this,
-//				MenuActivity.class);
-//		LoadingActivity.this.startActivity(menuPrincipal);
-//		LoadingActivity.this.finish();
+		Intent menuPrincipal = new Intent(LoadingActivity.this,
+				MenuActivity.class);
+		LoadingActivity.this.startActivity(menuPrincipal);
+		LoadingActivity.this.finish();
 	}
 }

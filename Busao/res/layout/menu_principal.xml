@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	
+		
+	<it.sephiroth.demo.slider.widget.MultiDirectionSlidingDrawer
+		xmlns:my="http://schemas.android.com/apk/res/br.edu.ufcg.dsc"
+		android:id="@+id/drawer"
+		my:direction="leftToRight"
+		android:layout_width="145px"
+		android:layout_height="wrap_content"
+		my:handle="@+id/handle"
+		my:content="@+id/content">
+		<include
+			android:id="@id/content"
+			layout="@layout/menu" />
+		<ImageView
+			android:id="@id/handle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/botao_retrair" />
+	</it.sephiroth.demo.slider.widget.MultiDirectionSlidingDrawer>
+</RelativeLayout>
