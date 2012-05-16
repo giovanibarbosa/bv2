@@ -18,4 +18,5 @@
 	<string name="bem_vindo_desc">bem vindo</string>
 	<string name="compartilhar_desc">compartilhar</string> 
 	<string name="progress_msg">loading</string>
+	<string name="open">abrir</string>
 </resources>
