@@ -10,7 +10,7 @@
 		xmlns:my="http://schemas.android.com/apk/res/br.edu.ufcg.dsc"
 		android:id="@+id/drawer"
 		my:direction="leftToRight"
-		android:layout_width="145px"
+		android:layout_width="125px"
 		android:layout_height="wrap_content"
 		my:handle="@+id/handle"
 		my:content="@+id/content">
