@@ -2,23 +2,48 @@
 <resources>
     <string name="hello">Hello World, BusaoActivity!</string>
     <string name="app_name">Busao</string>
+    
+    <!-- Splash Screen -->
     <string name="description">Splash Screen</string>
     
+    <!-- Loading -->
+    <string name="progress_msg">loading</string>
+    
+    <!-- Menu principal -->
+    
+	<string name="bem_vindo">Bem vindo!</string>
 	<string name="menu_localidade">localidade</string>
 	<string name="menu_buscar">buscar</string>
 	<string name="menu_turismo">turismo</string>
-	<string name="menu_ajuda">ajuda</string>
-	<string name="bem_vindo">bem vindo</string>
+		<string name="menu_ajuda">ajuda</string>
 	<string name="compartilhar">compartilhar</string> 
     
-	<string name="localidade_desc">localidade</string>
-	<string name="buscar_desc">buscar</string>
-	<string name="turismo_desc">turismo</string>
-	<string name="ajuda_desc">ajuda</string>
-	<string name="bem_vindo_desc">bem vindo</string>
-	<string name="compartilhar_desc">compartilhar</string> 
-	<string name="progress_msg">loading</string>
+	<string name="bem_vindo_desc">O BUS�O � um aplicativo da uma perspectiva 
+	    ao usu�rio do empo para a passagem do pr�ximo �nibus. Al�m disso, informamos 
+	    as rotas que levam aos pontos turisticos, compartilhamento 
+	    de redes sociais e muito mais!!!! Aproveite !</string>
+	
+	<string name="localidade_desc">No menu localidade, voc� ter� acesso as melhores 
+	    informa��es sobre a cidade em uso, como por exemplo o pre�o da tarifa do �nibus.
+	    O BUS�O cobre v�rias cidades do Nordeste, o usu�rio poder� modificar a cidade atual
+	    a qualquer momento. </string>
+	
+	<string name="buscar_desc">A busca do aplicativo ajuda o usu�rio a encontrar um �nibus 
+	    ou procurar rotas que atendam as suas necessidades. A busca pode ser realizada por 
+	    linha espec�fica ou GPS</string>
+	    
+	<string name="turismo_desc">O BUS�O tamb�m informa as rotas de �nibus que levam aos 
+	    pontos tur�sticos de cada cidade. Assim, voc� ter� mais tempo para aproveitar 
+	    as belezas arquitet�nicas e culturais.</string>
+	
+	<string name="compartilhar_desc">Escolha rotas com pontos tur�sticos e 
+	    compartilhe com as redes sociais</string>
+	 
+	
 	<string name="open">abrir</string>
+
+
+
 	<string name="result_faltam">Faltam</string>
 	<string name="result_minutos">Minutos</string>
 	<string name="result_inicio">Início</string>
@@ -37,3 +62,4 @@
 	<string name="ajuda_texto_rotas">No menu buscar > rotas, marque no mapa os dois pontos desejados (podendo um destes ser sua localização atual) e se houver alguma linha de ônibus que passe por estes pontos, serão exibidos seus dados.</string>
 	<string name="ajuda_texto_mapas">Em buscar > mapas, poderão ser visualizadas as rotas marcadas como favoritas.</string>
 </resources>
+
