@@ -19,4 +19,21 @@
 	<string name="compartilhar_desc">compartilhar</string> 
 	<string name="progress_msg">loading</string>
 	<string name="open">abrir</string>
+	<string name="result_faltam">Faltam</string>
+	<string name="result_minutos">Minutos</string>
+	<string name="result_inicio">Início</string>
+	<string name="result_termino">Término</string>
+	<string name="result_empresa">Empresa</string>
+	<string name="result_ok">ok</string>
+	<string name="result_voltar">voltar</string>
+	<string name="result_onibus">ônibus encontrados</string>
+	<string name="result_result">Resultados da busca</string>
+	<string name="ajuda_pre">Pré-Requisitos</string>
+	<string name="ajuda_rotas">Buscar Rotas</string>
+	<string name="ajuda_onibus">Buscar Ônibus</string>
+	<string name="ajuda_mapas">Mapas</string>
+	<string name="ajuda_texto_pre_requisitos">É necessário que seu aparelho tenha acesso a Internet e GPS.</string>
+	<string name="ajuda_texto_onibus">Para pesquisar por uma linha de ônibus específica, no menu buscar > ônibus, selecione uma das linhas cadastrada no sistema e serão exibidos seus dados.</string>
+	<string name="ajuda_texto_rotas">No menu buscar > rotas, marque no mapa os dois pontos desejados (podendo um destes ser sua localização atual) e se houver alguma linha de ônibus que passe por estes pontos, serão exibidos seus dados.</string>
+	<string name="ajuda_texto_mapas">Em buscar > mapas, poderão ser visualizadas as rotas marcadas como favoritas.</string>
 </resources>
