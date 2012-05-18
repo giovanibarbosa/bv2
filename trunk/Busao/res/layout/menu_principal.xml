@@ -10,7 +10,7 @@
 		xmlns:my="http://schemas.android.com/apk/res/br.edu.ufcg.dsc"
 		android:id="@+id/drawer"
 		my:direction="leftToRight"
-		android:layout_width="125px"
+		android:layout_width="115px"
 		android:layout_height="wrap_content"
 		my:handle="@+id/handle"
 		my:content="@+id/content">
@@ -19,6 +19,7 @@
 			layout="@layout/menu" />
 		<ImageView
 			android:id="@id/handle"
+			android:gravity="left"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:src="@drawable/botao_retrair" />
