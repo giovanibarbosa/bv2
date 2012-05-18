@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/pre_requisitos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="53dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/ajuda_pre"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000000"
+        android:typeface="monospace" />
+
+    <TextView
+        android:id="@+id/texto_pre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_below="@+id/pre_requisitos"
+        android:layout_marginTop="14dp"
+        android:text="@string/ajuda_texto_pre_requisitos"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000000"
+        android:typeface="monospace" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/texto_pre"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="26dp"
+        android:src="@drawable/seta_titulo" />
+
+    <TextView
+        android:id="@+id/buscar_rotas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pre_requisitos"
+        android:layout_below="@+id/texto_pre"
+        android:layout_marginTop="15dp"
+        android:text="@string/ajuda_rotas"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000000"
+        android:typeface="monospace" />
+
+    <ImageView
+        android:id="@+id/ImageView03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/texto_pre"
+        android:layout_alignTop="@+id/buscar_rotas"
+        android:src="@drawable/seta_titulo" />
+
+    <TextView
+        android:id="@+id/texto_rotas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ImageView03"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/buscar_rotas"
+        android:layout_marginTop="16dp"
+        android:text="@string/ajuda_texto_rotas"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000000"
+        android:typeface="monospace" />
+
+    <TextView
+        android:id="@+id/buscar_onibus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buscar_rotas"
+        android:layout_below="@+id/texto_rotas"
+        android:layout_marginTop="14dp"
+        android:text="@string/ajuda_onibus"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000000"
+        android:typeface="monospace" />
+
+    <ImageView
+        android:id="@+id/ImageView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/texto_rotas"
+        android:layout_alignTop="@+id/buscar_onibus"
+        android:src="@drawable/seta_titulo" />
+
+    <TextView
+        android:id="@+id/texto_onibus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ImageView02"
+        android:layout_below="@+id/buscar_onibus"
+        android:layout_marginTop="15dp"
+        android:text="@string/ajuda_texto_onibus"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000000"
+        android:typeface="monospace" />
+
+    <TextView
+        android:id="@+id/mapas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buscar_onibus"
+        android:layout_below="@+id/texto_onibus"
+        android:layout_marginTop="14dp"
+        android:text="@string/ajuda_mapas"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000000"
+        android:typeface="monospace" />
+
+    <ImageView
+        android:id="@+id/ImageView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/mapas"
+        android:layout_alignLeft="@+id/texto_onibus"
+        android:src="@drawable/seta_titulo" />
+
+    <TextView
+        android:id="@+id/texto_mapas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ImageView01"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/ajuda_texto_mapas"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000000"
+        android:typeface="monospace" />
+
+</RelativeLayout>
