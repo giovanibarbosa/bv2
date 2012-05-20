@@ -10,40 +10,50 @@
     <string name="progress_msg">loading</string>
     
     <!-- Menu principal -->
-    
 	<string name="bem_vindo">Bem vindo!</string>
 	<string name="menu_localidade">localidade</string>
 	<string name="menu_buscar">buscar</string>
 	<string name="menu_turismo">turismo</string>
-		<string name="menu_ajuda">ajuda</string>
+	<string name="menu_ajuda">ajuda</string>
 	<string name="compartilhar">compartilhar</string> 
     
-	<string name="bem_vindo_desc">O BUS�O � um aplicativo da uma perspectiva 
-	    ao usu�rio do empo para a passagem do pr�ximo �nibus. Al�m disso, informamos 
+	<string name="bem_vindo_desc">O BUSAO e um aplicativo da uma perspectiva 
+	    ao usuario do empo para a passagem do proximo onibus. Alem disso, informamos 
 	    as rotas que levam aos pontos turisticos, compartilhamento 
 	    de redes sociais e muito mais!!!! Aproveite !</string>
 	
-	<string name="localidade_desc">No menu localidade, voc� ter� acesso as melhores 
-	    informa��es sobre a cidade em uso, como por exemplo o pre�o da tarifa do �nibus.
-	    O BUS�O cobre v�rias cidades do Nordeste, o usu�rio poder� modificar a cidade atual
+	<string name="localidade_desc">No menu localidade, voce tere acesso as melhores 
+	    informacoes sobre a cidade em uso, como por exemplo o preco da tarifa do onibus.
+	    O BUSAO cobre varias cidades do Nordeste, o usuario podera modificar a cidade atual
 	    a qualquer momento. </string>
 	
-	<string name="buscar_desc">A busca do aplicativo ajuda o usu�rio a encontrar um �nibus 
+	<string name="buscar_desc">A busca do aplicativo ajuda o usuario a encontrar um onibus 
 	    ou procurar rotas que atendam as suas necessidades. A busca pode ser realizada por 
-	    linha espec�fica ou GPS</string>
+	    linha especifica ou GPS</string>
 	    
-	<string name="turismo_desc">O BUS�O tamb�m informa as rotas de �nibus que levam aos 
-	    pontos tur�sticos de cada cidade. Assim, voc� ter� mais tempo para aproveitar 
-	    as belezas arquitet�nicas e culturais.</string>
+	<string name="turismo_desc">O BUSAO tambem informa as rotas de onibus que levam aos 
+	    pontos turisticos de cada cidade. Assim, voce tera mais tempo para aproveitar 
+	    as belezas arquitetonicas e culturais.</string>
 	
-	<string name="compartilhar_desc">Escolha rotas com pontos tur�sticos e 
+	<string name="compartilhar_desc">Escolha rotas com pontos turisticos e 
 	    compartilhe com as redes sociais</string>
 	 
 	
 	<string name="open">abrir</string>
 
+	
+	<!-- Menu Ajuda -->
+	<string name="ajuda_pre">Pré-Requisitos</string>
+	<string name="ajuda_rotas">Buscar Rotas</string>
+	<string name="ajuda_onibus">Buscar Ônibus</string>
+	<string name="ajuda_mapas">Mapas</string>
+	<string name="ajuda_texto_pre_requisitos">É necessário que seu aparelho tenha acesso a Internet e GPS.</string>
+	<string name="ajuda_texto_onibus">Para pesquisar por uma linha de ônibus específica (menu buscar > ônibus), selecione uma linha desejada e serao exibidos seus dados.</string>
+	<string name="ajuda_texto_rotas">No menu buscar > rotas, marque no mapa os dois pontos desejados (podendo um destes ser sua localização atual) e se houver alguma linha de ônibus que passe por estes pontos, serão exibidos seus dados.</string>
+	<string name="ajuda_texto_mapas">Em buscar > mapas, poderão ser visualizadas as rotas marcadas como favoritas.</string>
 
-
+	
+	<!-- Popup Resultado -->
 	<string name="result_faltam">Faltam</string>
 	<string name="result_minutos">Minutos</string>
 	<string name="result_inicio">Início</string>
@@ -53,13 +63,24 @@
 	<string name="result_voltar">voltar</string>
 	<string name="result_onibus">ônibus encontrados</string>
 	<string name="result_result">Resultados da busca</string>
-	<string name="ajuda_pre">Pré-Requisitos</string>
-	<string name="ajuda_rotas">Buscar Rotas</string>
-	<string name="ajuda_onibus">Buscar Ônibus</string>
-	<string name="ajuda_mapas">Mapas</string>
-	<string name="ajuda_texto_pre_requisitos">É necessário que seu aparelho tenha acesso a Internet e GPS.</string>
-	<string name="ajuda_texto_onibus">Para pesquisar por uma linha de ônibus específica, no menu buscar > ônibus, selecione uma das linhas cadastrada no sistema e serão exibidos seus dados.</string>
-	<string name="ajuda_texto_rotas">No menu buscar > rotas, marque no mapa os dois pontos desejados (podendo um destes ser sua localização atual) e se houver alguma linha de ônibus que passe por estes pontos, serão exibidos seus dados.</string>
-	<string name="ajuda_texto_mapas">Em buscar > mapas, poderão ser visualizadas as rotas marcadas como favoritas.</string>
+	
+	
+	<!-- Cidades -->
+	
+	<string name="cidade_titulo_inicial">voce esta em</string>
+	<string name="texto_tarifa">Sua tarifa de onibus custa: </string>
+	
+	<string name="titulo_campinagrande">Campina Grande, Paraiba</string>
+	<string name="titulo_joaopessoa">Joao Pessoa, Paraiba</string>
+	
+	<string name="cidade_campinagrande">Considerada um dos principais polos indrustriais da Regiao Nordeste e o maior polo tecnologico da America Latina, 
+	    Campina Grande foi elevada a categoria de cidade em 11 de outubro de 1864. A cidade possui uma agenda cultural variada, destancando-se os festejos de Sao Joao, 
+	    que acontecem durante todo mes de junho, o Encontro da Nova Consciencia, um encontro ecumenico realizado durante o carnaval, alem do Festival de Inverno.
+		De acordo com o senso de 2010, a populacao gira em torno de 400 mil habitantes. E considerada a cidade mais dinamica do nordeste e a 6a cidade mais dinamica do Brasil.</string>
+		
+	<string name="cidade_joaopessoa">Capital do Estado da Paraiba, Joao Pessoa e conhecida como "Portal do Sol", devido ao fato de no município estar localizada a 
+	    Ponta do Seixas, que é o ponto mais oriental das Americas, o que faz a cidade ser conhecida como o lugar "onde o Sol nasce primeiro nas Americas". O municipio 
+	    e também notavel pelo clima tropical, e uma das capitais de melhor qualidade de vida no Nordeste.</string>
+	
 </resources>
 

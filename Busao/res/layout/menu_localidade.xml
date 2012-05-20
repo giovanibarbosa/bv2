@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@drawable/background">
+    
+    <LinearLayout 
+        xmlns:android="http://schemas.android.com/apk/res/android"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" >
+        
+        <ImageView
+			android:id="@+id/setaLocalidade"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="20dp"
+			android:layout_marginLeft="10dp"
+			android:contentDescription="@string/cidade_titulo_inicial"
+			android:src="@drawable/seta_titulo" />
+            
+	    <TextView android:id="@+id/localidade"
+	    	android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="15dp"
+			android:layout_marginLeft="5dp"
+			android:textSize="26dp"
+			android:textColor="#000000"
+			android:text="@string/cidade_titulo_inicial"/>
+        
+    </LinearLayout>
+
+    <TextView android:id="@+id/nome_cidade"
+    	android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:layout_marginLeft="10dp"
+		android:textSize="20dp"
+		android:textColor="#000000"
+		android:text="@string/titulo_campinagrande"/>
+
+    <TextView android:id="@+id/descricao_cidade"
+    	android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="15dp"
+		android:layout_marginLeft="10dp"
+		android:textSize="16dp"
+		android:textColor="#000000"
+		android:text="@string/cidade_campinagrande"/>
+    
+    <TextView android:id="@+id/tarifa_cidade"
+    	android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:layout_marginLeft="10dp"
+		android:textSize="16dp"
+		android:textColor="#000000"
+		android:text="@string/texto_tarifa"/>
+    
+    <ImageView
+		android:id="@+id/botaoAlterarCidade"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="20dp"
+		android:layout_gravity="right"
+		android:src="@drawable/botao_alterar_normal" />
+
+</LinearLayout>
