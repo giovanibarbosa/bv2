@@ -10,7 +10,7 @@
 		xmlns:my="http://schemas.android.com/apk/res/br.edu.ufcg.dsc"
 		android:id="@+id/drawer"
 		my:direction="leftToRight"
-		android:layout_width="115px"
+		android:layout_width="115dp"
 		android:layout_height="wrap_content"
 		my:handle="@+id/handle"
 		my:content="@+id/content">
@@ -24,4 +24,12 @@
 			android:layout_height="wrap_content"
 			android:src="@drawable/botao_retrair" />
 	</it.sephiroth.demo.slider.widget.MultiDirectionSlidingDrawer>
+
+	<include
+	    android:layout_width="210dp"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_alignParentTop="true"
+	    layout="@layout/horizontal_scroll_view" />
+	
 </RelativeLayout>
