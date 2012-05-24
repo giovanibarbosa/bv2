@@ -23,7 +23,7 @@ public class MenuActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.menu_principal);
+		setContentView(R.layout.main);
 		setTextFont();
 		MultiDirectionSlidingDrawer drawer = (MultiDirectionSlidingDrawer) findViewById(R.id.drawer);
 		drawer.open();
@@ -71,8 +71,8 @@ public class MenuActivity extends Activity {
 	 * Limpa a pilha de Views no Linear Layout 
 	 */
 	public void limpaLinearLayout(){
-		LinearLayout scrollView = (LinearLayout)findViewById(R.id.layout_menu_scrolling);
-		scrollView.removeAllViews();
+//		LinearLayout scrollView = (LinearLayout)findViewById(R.id.layout_menu_scrolling);
+//		scrollView.removeAllViews();
 	}
 	
 	private void setTextFont(){

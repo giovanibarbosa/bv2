@@ -17,57 +17,57 @@
             </TableRow>
             <TableRow android:gravity="bottom" android:id="@+id/tableRowFora2" android:layout_width="wrap_content" android:layout_weight="1" android:layout_height="0dp" android:layout_gravity="bottom">
                 <TableLayout android:id="@+id/tableLayout1" android:layout_width="match_parent" android:layout_gravity="bottom" android:layout_height="wrap_content">
-            <TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom">
+            <TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content" android:layout_gravity="bottom" android:layout_height="0dp" android:layout_weight="1">
 	             <ImageView android:id="@+id/separar" android:layout_width="wrap_content"
 		          android:layout_height="wrap_content" android:src="@drawable/sombra_menu_botoes" />
             </TableRow>
-            <TableRow android:id="@+id/rowLocalidade" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom">
+            <TableRow android:id="@+id/rowLocalidade" android:layout_gravity="bottom" android:layout_width="wrap_content"  android:layout_weight="1">
                 <TextView android:id="@+id/textLocalidade" 
                 android:layout_height="wrap_content" 
                 android:textAppearance="?android:attr/textAppearanceMedium" 
                 android:text="@string/menu_localidade" 
                 android:layout_width="wrap_content"
                 android:textSize="15dp"
-                android:layout_gravity="right" android:layout_marginTop="10px" android:layout_marginBottom="10px"></TextView>
+                android:layout_gravity="center" android:layout_marginTop="10px" android:layout_marginBottom="10px"></TextView>
             </TableRow>
-            <TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom">
+            <TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content" android:layout_gravity="bottom" android:layout_height="0dp" android:layout_weight="1">
 	             <ImageView android:id="@+id/separar" android:layout_width="wrap_content"
 		          android:layout_height="wrap_content" android:src="@drawable/sombra_menu_botoes" />
             </TableRow>
-            <TableRow android:id="@+id/rowBuscar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom">
+            <TableRow android:id="@+id/rowBuscar" android:layout_width="wrap_content" android:layout_gravity="bottom" android:layout_height="0dp" android:layout_weight="1">
             	<TextView android:id="@+id/textBuscar"
             	 android:layout_height="wrap_content"
             	  android:textAppearance="?android:attr/textAppearanceMedium"
             	   android:text="@string/menu_buscar" 
             	   android:layout_width="wrap_content"
             	android:textSize="15dp"
-                android:layout_gravity="right" android:layout_marginTop="10px" android:layout_marginBottom="10px"></TextView>
+                android:layout_marginTop="10px" android:layout_marginBottom="10px" android:layout_gravity="center"></TextView>
             </TableRow>
-            <TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom">
+            <TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content" android:layout_gravity="bottom" android:layout_height="0dp" android:layout_weight="1">
 	             <ImageView android:id="@+id/separar" android:layout_width="wrap_content"
 		          android:layout_height="wrap_content" android:src="@drawable/sombra_menu_botoes" />
             </TableRow>
-            <TableRow android:id="@+id/rowTurismo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom">
+            <TableRow android:id="@+id/rowTurismo" android:layout_width="wrap_content" android:layout_gravity="bottom" android:layout_height="0dp" android:layout_weight="1">
             	<TextView android:id="@+id/textTurismo"
             	android:layout_height="wrap_content" 
             	android:textAppearance="?android:attr/textAppearanceMedium" 
             	android:text="@string/menu_turismo" 
             	android:layout_width="wrap_content" 
             	android:textSize="15dp"
-                android:layout_gravity="right" android:layout_marginTop="10px" android:layout_marginBottom="10px"></TextView>
+                android:layout_marginTop="10px" android:layout_marginBottom="10px" android:layout_gravity="center"></TextView>
             </TableRow>
-            <TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom">
+            <TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content" android:layout_gravity="bottom" android:layout_height="0dp" android:layout_weight="1">
 	             <ImageView android:id="@+id/separar" android:layout_width="wrap_content"
 		          android:layout_height="wrap_content" android:src="@drawable/sombra_menu_botoes" />
             </TableRow>
-            <TableRow android:id="@+id/rowAjuda" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom">
+            <TableRow android:id="@+id/rowAjuda" android:layout_width="wrap_content" android:layout_gravity="bottom" android:layout_height="0dp" android:layout_weight="1">
                 <TextView android:id="@+id/textAjuda" 
                 android:layout_height="wrap_content" 
                 android:textAppearance="?android:attr/textAppearanceMedium" 
                 android:text="@string/menu_ajuda" 
                 android:layout_width="wrap_content" 
                 android:textSize="15dp"
-                android:layout_gravity="right" android:layout_marginTop="10px" android:layout_marginBottom="10px"></TextView>
+                android:layout_marginTop="10px" android:layout_marginBottom="10px" android:layout_gravity="center_horizontal"></TextView>
             </TableRow>
         </TableLayout>
             
@@ -75,12 +75,5 @@
         </TableLayout>
         
     </LinearLayout>
-
-    <include
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/linearLayout1"
-        layout="@layout/horizontal_scroll_view" />
 
 </RelativeLayout>
