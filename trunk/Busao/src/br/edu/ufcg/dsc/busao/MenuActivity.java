@@ -1,5 +1,7 @@
 package br.edu.ufcg.dsc.busao;
 
+import java.util.zip.Inflater;
+
 import it.sephiroth.demo.slider.widget.MultiDirectionSlidingDrawer;
 
 import android.app.Activity;
@@ -13,13 +15,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import br.edu.ufcg.dsc.R;
 
 public class MenuActivity extends Activity {
 	TableRow rowLocalidade, rowBuscar, rowTurismo, rowAjuda, rowLogoBusao;
+	ViewGroup includePrincipal;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,7 +38,17 @@ public class MenuActivity extends Activity {
 		setActionsRows(rowBuscar);
 		setActionsRows(rowTurismo);
 		setActionsRows(rowAjuda);
+		includePrincipal = (ViewGroup) findViewById(R.id.includePrincipal);
 		
+
+
+        // The listener for the second button also has to be defined here as opposed to in the onCreate, as the score_submitted.xml isn't loaded yet at activity first run
+//        Button button = (Button)findViewById(R.id.new_game);
+//        button.setOnClickListener(newGameListener);
+		
+//		LayoutParams params = null;
+//		params = getResources().generateLayoutParams(getResources().getLayout(R.layout.principal_localidade));
+//		includePrincipal.setLayoutParams(new LayoutParams(getResources().getLayout(R.layout.principal_localidade)));
 		//Setar aqui a ação do butão para abrir o popup
 				
 		
@@ -45,6 +61,12 @@ public class MenuActivity extends Activity {
 	        public void onClick(View v) {
 	           limpaRows();
 	           row.setBackgroundDrawable(getResources().getDrawable(R.drawable.transparencia));
+	   		// Get a reference to the score_name_entry object in score.xml
+//	           RelativeLayout myLayout = (RelativeLayout)findViewById(R.id.includePrincipal);
+//	           RelativeLayout menuLayout = (RelativeLayout)findViewById(R.id.includePrincipal);
+//	           	 
+//	           myLayout.addView(getLayoutInflater().inflate(R.layout.menu_localidade, null));
+//	         //  myLayout.addView((View)getResources().getLayout(R.layout.menu_localidade));
 
 	        }
 	    });
