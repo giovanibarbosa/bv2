@@ -7,6 +7,7 @@ import it.sephiroth.demo.slider.widget.MultiDirectionSlidingDrawer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -34,10 +35,10 @@ public class MenuActivity extends Activity {
 		MultiDirectionSlidingDrawer drawer = (MultiDirectionSlidingDrawer) findViewById(R.id.drawer);
 		drawer.open();
 		instanciarRows();
-		setActionsRows(rowLocalidade);
-		setActionsRows(rowBuscar);
-		setActionsRows(rowTurismo);
-		setActionsRows(rowAjuda);
+		setActionsRows(rowLocalidade, R.layout.menu_localidade);
+		setActionsRows(rowBuscar, R.layout.menu_localidade);
+		setActionsRows(rowTurismo, R.layout.menu_localidade);
+		setActionsRows(rowAjuda, R.layout.menu_ajuda);
 		includePrincipal = (ViewGroup) findViewById(R.id.includePrincipal);
 		
 
@@ -55,18 +56,25 @@ public class MenuActivity extends Activity {
 		
 	}
 	
-	private void setActionsRows(final TableRow row) {
+	private void setActionsRows(final TableRow row, final int layout) {
 		row.setOnClickListener(new View.OnClickListener() {
 
 	        public void onClick(View v) {
 	           limpaRows();
 	           row.setBackgroundDrawable(getResources().getDrawable(R.drawable.transparencia));
-	   		// Get a reference to the score_name_entry object in score.xml
-//	           RelativeLayout myLayout = (RelativeLayout)findViewById(R.id.includePrincipal);
-//	           RelativeLayout menuLayout = (RelativeLayout)findViewById(R.id.includePrincipal);
-//	           	 
-//	           myLayout.addView(getLayoutInflater().inflate(R.layout.menu_localidade, null));
-//	         //  myLayout.addView((View)getResources().getLayout(R.layout.menu_localidade));
+	           
+//	   		Intent menuPrincipal = new Intent(MenuActivity.this,
+//					LocalidadeActivity.class);
+//	   		MenuActivity.this.startActivity(menuPrincipal);
+//	   		MenuActivity.this.finish();
+//	   		 Get a reference to the score_name_entry object in score.xml
+
+	           LinearLayout myLayout = (LinearLayout)findViewById(R.id.includePrincipal);
+	           myLayout.removeAllViews();
+	          // RelativeLayout menuLayout = (RelativeLayout)findViewById(R.id.includeMenu);
+	           myLayout.addView(getLayoutInflater().inflate(layout, null));
+	     //      myLayout.addView(getLayoutInflater().inflate(R.layout.menu_localidade, (RelativeLayout)findViewById(R.layout.main)));
+	         //  myLayout.addView((View)getResources().getLayout(R.layout.menu_localidade));
 
 	        }
 	    });
