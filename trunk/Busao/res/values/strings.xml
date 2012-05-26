@@ -10,7 +10,7 @@
     <string name="progress_msg">loading</string>
     
     <!-- Menu principal -->
-	<string name="bem_vindo">Bem vindo!</string>
+	<string name="bem_vindo">bem vindo!</string>
 	<string name="menu_localidade">localidade</string>
 	<string name="menu_buscar">buscar</string>
 	<string name="menu_turismo">turismo</string>
@@ -43,10 +43,10 @@
 
 	
 	<!-- Menu Ajuda -->
-	<string name="ajuda_pre">Pré-Requisitos</string>
-	<string name="ajuda_rotas">Buscar Rotas</string>
-	<string name="ajuda_onibus">Buscar Ônibus</string>
-	<string name="ajuda_mapas">Mapas</string>
+	<string name="ajuda_pre">pré-requisitos</string>
+	<string name="ajuda_rotas">buscar rotas</string>
+	<string name="ajuda_onibus">buscar ônibus</string>
+	<string name="ajuda_mapas">mapas</string>
 	<string name="ajuda_texto_pre_requisitos">É necessário que seu aparelho tenha acesso a Internet e GPS.</string>
 	<string name="ajuda_texto_onibus">Para pesquisar por uma linha de ônibus específica (menu buscar > ônibus), selecione uma linha desejada e serao exibidos seus dados.</string>
 	<string name="ajuda_texto_rotas">No menu buscar > rotas, marque no mapa os dois pontos desejados (podendo um destes ser sua localização atual) e se houver alguma linha de ônibus que passe por estes pontos, serão exibidos seus dados.</string>
