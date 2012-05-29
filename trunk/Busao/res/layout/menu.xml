@@ -60,14 +60,14 @@
 	             <ImageView android:id="@+id/separar" android:layout_width="wrap_content"
 		          android:layout_height="wrap_content" android:src="@drawable/sombra_menu_botoes" />
             </TableRow>
-            <TableRow android:id="@+id/rowAjuda" android:layout_width="wrap_content" android:layout_gravity="bottom" android:layout_height="0dp" android:layout_weight="1">
+            <TableRow android:id="@+id/rowAjuda" android:layout_width="wrap_content" android:layout_height="0dp" android:layout_weight="1" android:layout_gravity="bottom">
                 <TextView android:id="@+id/textAjuda" 
                 android:layout_height="wrap_content" 
                 android:textAppearance="?android:attr/textAppearanceMedium" 
                 android:text="@string/menu_ajuda" 
                 android:layout_width="wrap_content" 
                 android:textSize="15dp"
-                android:layout_marginTop="10px" android:layout_marginBottom="10px" android:layout_gravity="center_horizontal"></TextView>
+                android:layout_marginTop="10px" android:layout_marginBottom="10px" android:layout_gravity="center"></TextView>
             </TableRow>
         </TableLayout>
             
