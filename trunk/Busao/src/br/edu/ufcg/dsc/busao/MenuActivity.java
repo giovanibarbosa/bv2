@@ -1,35 +1,28 @@
 package br.edu.ufcg.dsc.busao;
 
-import java.util.zip.Inflater;
-
 import it.sephiroth.demo.slider.widget.MultiDirectionSlidingDrawer;
+import scrollView.*;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextThemeWrapper;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import br.edu.ufcg.dsc.R;
 import br.edu.ufcg.dsc.util.CustomBuilder;
 
 public class MenuActivity extends Activity {
+	
 	TableRow rowLocalidade, rowBuscar, rowTurismo, rowAjuda, rowLogoBusao;
 	ViewGroup includePrincipal;
+	LinearLayout linearLayoutScrollView;
+	CustomHorizontalScrollView horizontalScrollView;
 	private static final int ALERT_DIALOG_ALTERAR_CIDADE = 1;
 	
 	@Override
@@ -44,8 +37,15 @@ public class MenuActivity extends Activity {
 		setActionsRows(rowBuscar, R.layout.menu_localidade);
 		setActionsRows(rowTurismo, R.layout.menu_localidade);
 		setActionsRows(rowAjuda, R.layout.menu_ajuda);
-		includePrincipal = (ViewGroup) findViewById(R.id.includePrincipal);
+		//includePrincipal = (ViewGroup) findViewById(R.id.includePrincipal);
 		
+		//ScrollView
+//		initScrollView();
+
+        // The listener for the second button also has to be defined here as opposed to in the onCreate, as the score_submitted.xml isn't loaded yet at activity first run
+//        Button button = (Button)findViewById(R.id.new_game);
+//        button.setOnClickListener(newGameListener);
+
 		//Abrir PoPup
 //		showDialog( ALERT_DIALOG_ALTERAR_CIDADE );			
 		
@@ -65,12 +65,12 @@ public class MenuActivity extends Activity {
 //	   		MenuActivity.this.finish();
 //	   		 Get a reference to the score_name_entry object in score.xml
 
-	           LinearLayout myLayout = (LinearLayout)findViewById(R.id.includePrincipal);
-	           myLayout.removeAllViews();
-	          // RelativeLayout menuLayout = (RelativeLayout)findViewById(R.id.includeMenu);
-	           myLayout.addView(getLayoutInflater().inflate(layout, null));
-	     //      myLayout.addView(getLayoutInflater().inflate(R.layout.menu_localidade, (RelativeLayout)findViewById(R.layout.main)));
-	         //  myLayout.addView((View)getResources().getLayout(R.layout.menu_localidade));
+//	         LinearLayout myLayout = (LinearLayout)findViewById(R.id.includePrincipal);
+//	         myLayout.removeAllViews();
+//	         RelativeLayout menuLayout = (RelativeLayout)findViewById(R.id.includeMenu);
+//	         myLayout.addView(getLayoutInflater().inflate(layout, null));
+//	         myLayout.addView(getLayoutInflater().inflate(R.layout.menu_localidade, (RelativeLayout)findViewById(R.layout.main)));
+//	         myLayout.addView((View)getResources().getLayout(R.layout.menu_localidade));
 
 	        }
 	    });
@@ -115,6 +115,34 @@ public class MenuActivity extends Activity {
 		textAjuda.setTypeface(font);
 	}
 	
+//	private void initScrollView(){
+//		
+//		int width = this.getWindowManager().getDefaultDisplay().getWidth();
+//		int height = this.getWindowManager().getDefaultDisplay().getHeight();
+//		horizontalScrollView = new CustomHorizontalScrollView(this, 5, width);
+//		
+//		linearLayoutScrollView = (LinearLayout) findViewById(R.id.layerScrollView);
+//		linearLayoutScrollView.addView(horizontalScrollView);
+//		
+//		LinearLayout container = new LinearLayout(this);
+//		container.setLayoutParams(new LayoutParams(width, height));
+//	
+//		
+//		LinearLayout includeLinear = (LinearLayout) findViewById(R.id.layout_princial_busca);
+//		container.addView(includeLinear);
+//		
+//		includeLinear = (LinearLayout) findViewById(R.id.layout_princial_localidade);
+//		container.addView(includeLinear);
+//		
+//		includeLinear = (LinearLayout) findViewById(R.id.layout_princial_turismo);
+//		container.addView(includeLinear);
+//		
+//		includeLinear = (LinearLayout) findViewById(R.id.layout_princial_compartilhar);
+//		container.addView(includeLinear);
+//
+//		horizontalScrollView.addView(container);
+//	}
+
 	@Override
 	protected Dialog onCreateDialog( int id )
 	{
