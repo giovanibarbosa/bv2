@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/popup_element" android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:background="#444444"
-	android:padding="10px" android:orientation="vertical" android:weightSum="1">
-	<RelativeLayout android:layout_width="match_parent"
-		android:background="@drawable/background_popup" android:id="@+id/linearLayout1"
-		android:orientation="vertical"
-		android:layout_height="290dp" android:layout_weight="1" android:layout_marginTop="20dp" android:layout_marginBottom="20dp">
-		<ImageView android:layout_width="wrap_content" android:src="@drawable/botao_popup_cancelar" android:layout_height="wrap_content" android:id="@+id/botaoConfirmar" android:layout_alignParentBottom="true" android:layout_alignParentRight="true"></ImageView>
-		<ImageView android:layout_width="wrap_content" android:src="@drawable/botao_popup_confirmar" android:layout_height="wrap_content" android:id="@+id/botaoCancelar" android:layout_alignParentBottom="true" android:layout_alignParentLeft="true"></ImageView>
-		<TextView android:layout_width="wrap_content" android:text="confirmar" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:id="@+id/textConfirmar" android:layout_alignParentBottom="true" android:layout_toLeftOf="@+id/botaoConfirmar" android:layout_margin="20dp"></TextView>
-		<TextView android:layout_width="wrap_content" android:text="cancelar" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:id="@+id/textCancelar" android:layout_alignBottom="@+id/textConfirmar" android:layout_toRightOf="@+id/botaoCancelar" android:layout_marginLeft="18dp"></TextView>
-	</RelativeLayout>
-</LinearLayout>
+<RelativeLayout android:id="@+id/relativeLayout1"
+	android:layout_height="match_parent" android:layout_width="match_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<Spinner android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:id="@+id/spinner_cidade"
+		android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
+		android:layout_alignParentRight="true" android:layout_margin="10dp"></Spinner>
+	<TextView style="?android:textAppearanceMedium" android:text="@string/descricao_popup_cidade" android:layout_width="wrap_content" android:id="@+id/message" android:layout_height="wrap_content" android:layout_below="@+id/spinner_cidade" android:layout_alignParentLeft="true" android:layout_margin="10dp" android:layout_marginTop="20dp"></TextView>
+</RelativeLayout>
+

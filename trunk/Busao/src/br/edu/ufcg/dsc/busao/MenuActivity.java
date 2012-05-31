@@ -47,18 +47,7 @@ public class MenuActivity extends Activity {
 		includePrincipal = (ViewGroup) findViewById(R.id.includePrincipal);
 		
 		//Abrir PoPup
-		//showDialog( ALERT_DIALOG_ALTERAR_CIDADE );
-
-
-        // The listener for the second button also has to be defined here as opposed to in the onCreate, as the score_submitted.xml isn't loaded yet at activity first run
-//        Button button = (Button)findViewById(R.id.new_game);
-//        button.setOnClickListener(newGameListener);
-		
-//		LayoutParams params = null;
-//		params = getResources().generateLayoutParams(getResources().getLayout(R.layout.principal_localidade));
-//		includePrincipal.setLayoutParams(new LayoutParams(getResources().getLayout(R.layout.principal_localidade)));
-		//Setar aqui a ação do butão para abrir o popup
-				
+//		showDialog( ALERT_DIALOG_ALTERAR_CIDADE );			
 		
 		
 	}
@@ -118,6 +107,7 @@ public class MenuActivity extends Activity {
 		TextView textBuscar = (TextView) findViewById(R.id.textBuscar);  
 		TextView textTurismo = (TextView) findViewById(R.id.textTurismo);  
 		TextView textAjuda = (TextView) findViewById(R.id.textAjuda);  
+		TextView textAlterarCidade = (TextView) findViewById(R.id.text_alterar_cidade);  
 		Typeface font = Typeface.createFromAsset(getAssets(), "font.TTF");  
 		textLocalidade.setTypeface(font);
 		textBuscar.setTypeface(font);
@@ -132,12 +122,11 @@ public class MenuActivity extends Activity {
 		if ( id == ALERT_DIALOG_ALTERAR_CIDADE )
 		{
 			ContextThemeWrapper ctw = new ContextThemeWrapper( this, R.style.MyTheme );
-			CustomBuilder builder = new CustomBuilder( ctw, R.layout.alert_dialog_message );
-			builder
-			    .setTitle( "Alert Dialog" )
-				.setIcon( R.drawable.seta_titulo )
-				.setCancelable( false )
-				.setPositiveButton( "Close",
+			CustomBuilder builder = new CustomBuilder( ctw, R.layout.popup_escolher_cidade );
+			builder.setTitle( "Alert Dialog" );
+			builder.setIcon( R.drawable.seta_titulo );
+			builder.setCancelable( false );
+			builder.setPositiveButton( R.string.botao_confirmar,
 						new DialogInterface.OnClickListener()
 						{
 							@Override
@@ -146,18 +135,15 @@ public class MenuActivity extends Activity {
 								dialog.dismiss();
 							}
 						} 
-			)
-			.setNegativeButton("Open", new DialogInterface.OnClickListener()
+			);
+			builder.setNegativeButton(R.string.botao_cancelar, new DialogInterface.OnClickListener()
 						{
 							@Override
 							public void onClick( DialogInterface dialog, int which )
 							{
 								dialog.dismiss();
 							}
-						} )
-			.setNeutralButton("aa", null);
-			
-			dialog = builder.create();
+						} );
 		}
 		if ( dialog == null )
 		{
