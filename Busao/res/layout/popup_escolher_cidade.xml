@@ -2,24 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/popup_element" android:layout_width="fill_parent"
 	android:layout_height="fill_parent" android:background="#444444"
-	android:padding="10px" android:orientation="vertical">
+	android:padding="10px" android:orientation="vertical" android:weightSum="1">
 	<RelativeLayout android:layout_width="match_parent"
-		android:background="@drawable/popup_about" android:id="@+id/linearLayout1"
+		android:background="@drawable/background_popup" android:id="@+id/linearLayout1"
 		android:orientation="vertical"
-		android:layout_margin="20dp" android:layout_height="290dp">
-		<Spinner android:id="@+id/spinner1" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:layout_alignParentTop="true"
-			android:layout_alignParentRight="true"
-			android:layout_alignParentLeft="true" android:layout_marginLeft="20dp"
-			android:layout_marginRight="20dp" android:layout_marginTop="50dp"></Spinner>
-		<TextView android:id="@+id/textView1" android:text="@string/descricao_popup_cidade"
-			android:textAppearance="?android:attr/textAppearanceLarge"
-			android:textColor="#000000"
-			android:layout_height="wrap_content" android:layout_width="wrap_content"
-			android:layout_below="@+id/spinner1" android:layout_centerHorizontal="true"
-			android:layout_marginLeft="20dp" android:layout_marginRight="20dp"
-			android:layout_marginTop="47dp"></TextView>
-		<Button android:id="@+id/button1" android:text="Button" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_below="@+id/textView1" android:layout_marginTop="20dp" android:layout_alignLeft="@+id/textView1"></Button>
-		<Button android:id="@+id/button2" android:text="Button" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_alignParentBottom="true" android:layout_toRightOf="@+id/button1" android:layout_alignRight="@+id/textView1"></Button>
+		android:layout_height="290dp" android:layout_weight="1" android:layout_marginTop="20dp" android:layout_marginBottom="20dp">
+		<ImageView android:layout_width="wrap_content" android:src="@drawable/botao_popup_cancelar" android:layout_height="wrap_content" android:id="@+id/botaoConfirmar" android:layout_alignParentBottom="true" android:layout_alignParentRight="true"></ImageView>
+		<ImageView android:layout_width="wrap_content" android:src="@drawable/botao_popup_confirmar" android:layout_height="wrap_content" android:id="@+id/botaoCancelar" android:layout_alignParentBottom="true" android:layout_alignParentLeft="true"></ImageView>
+		<TextView android:layout_width="wrap_content" android:text="confirmar" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:id="@+id/textConfirmar" android:layout_alignParentBottom="true" android:layout_toLeftOf="@+id/botaoConfirmar" android:layout_margin="20dp"></TextView>
+		<TextView android:layout_width="wrap_content" android:text="cancelar" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:id="@+id/textCancelar" android:layout_alignBottom="@+id/textConfirmar" android:layout_toRightOf="@+id/botaoCancelar" android:layout_marginLeft="18dp"></TextView>
 	</RelativeLayout>
 </LinearLayout>

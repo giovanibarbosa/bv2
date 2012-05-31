@@ -6,13 +6,16 @@ import it.sephiroth.demo.slider.widget.MultiDirectionSlidingDrawer;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +25,12 @@ import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import br.edu.ufcg.dsc.R;
+import br.edu.ufcg.dsc.util.CustomBuilder;
 
 public class MenuActivity extends Activity {
 	TableRow rowLocalidade, rowBuscar, rowTurismo, rowAjuda, rowLogoBusao;
 	ViewGroup includePrincipal;
+	private static final int ALERT_DIALOG_ALTERAR_CIDADE = 1;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,8 @@ public class MenuActivity extends Activity {
 		setActionsRows(rowAjuda, R.layout.menu_ajuda);
 		includePrincipal = (ViewGroup) findViewById(R.id.includePrincipal);
 		
+		//Abrir PoPup
+		//showDialog( ALERT_DIALOG_ALTERAR_CIDADE );
 
 
         // The listener for the second button also has to be defined here as opposed to in the onCreate, as the score_submitted.xml isn't loaded yet at activity first run
@@ -116,6 +123,47 @@ public class MenuActivity extends Activity {
 		textBuscar.setTypeface(font);
 		textTurismo.setTypeface(font);
 		textAjuda.setTypeface(font);
+	}
+	
+	@Override
+	protected Dialog onCreateDialog( int id )
+	{
+		Dialog dialog = null;
+		if ( id == ALERT_DIALOG_ALTERAR_CIDADE )
+		{
+			ContextThemeWrapper ctw = new ContextThemeWrapper( this, R.style.MyTheme );
+			CustomBuilder builder = new CustomBuilder( ctw, R.layout.alert_dialog_message );
+			builder
+			    .setTitle( "Alert Dialog" )
+				.setIcon( R.drawable.seta_titulo )
+				.setCancelable( false )
+				.setPositiveButton( "Close",
+						new DialogInterface.OnClickListener()
+						{
+							@Override
+							public void onClick( DialogInterface dialog, int which )
+							{
+								dialog.dismiss();
+							}
+						} 
+			)
+			.setNegativeButton("Open", new DialogInterface.OnClickListener()
+						{
+							@Override
+							public void onClick( DialogInterface dialog, int which )
+							{
+								dialog.dismiss();
+							}
+						} )
+			.setNeutralButton("aa", null);
+			
+			dialog = builder.create();
+		}
+		if ( dialog == null )
+		{
+			dialog = super.onCreateDialog( id );
+		}
+		return dialog;
 	}
 	
 }
