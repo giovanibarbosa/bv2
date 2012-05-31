@@ -1,12 +1,67 @@
 <RelativeLayout android:id="@+id/relativeLayout1"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
 	xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="top">
-    <include
-        android:id="@+id/includePrincipal"
-	    android:layout_width="wrap_content"
+	
+<!--     <LinearLayout -->
+<!-- 		 android:orientation="vertical"  -->
+<!-- 		 android:layout_height="match_parent" -->
+<!-- 		 android:layout_width="match_parent"  -->
+<!-- 		 android:id="@+id/layerScrollView"> -->
+<!-- 	</LinearLayout> -->
+	
+    <scrollView.CustomHorizontalScrollView
+        android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentRight="true"
-	    android:layout_alignParentTop="true"
-	    layout="@layout/horizontal_scroll_view" />
+	    android:layout_alignParentTop="true">
+        
+        <LinearLayout
+            android:id="@+id/linearHorizontalScroll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            
+             <include
+	            android:id="@+id/include_bemvindo"
+	            android:layout_width="320dp"
+	            android:layout_height="wrap_content"
+	            layout="@layout/principal_bemvindo" />
+        
+	        <include
+	            android:id="@+id/include_localidade"
+	            android:layout_width="320dp"
+	            android:layout_height="wrap_content"
+	            layout="@layout/principal_localidade" />
+	        
+	        <include
+	            android:id="@+id/include_busca"
+	            android:layout_width="320dp"
+	            android:layout_height="wrap_content"
+	            layout="@layout/principal_busca" />
+	        
+	        <include
+	            android:id="@+id/include_turismo"
+	            android:layout_width="320dp"
+	            android:layout_height="wrap_content"
+	            layout="@layout/principal_turismo" />
+	        
+	        <include
+	            android:id="@+id/include_compartilhar"
+	            android:layout_width="320dp"
+	            android:layout_height="wrap_content"
+	            layout="@layout/principal_compartilhar" />   
+            
+        </LinearLayout>
+        
+    </scrollView.CustomHorizontalScrollView>
+    
+<!--     <include -->
+<!--         android:id="@+id/includePrincipal" -->
+<!-- 	    android:layout_width="wrap_content" -->
+<!-- 	    android:layout_height="wrap_content" -->
+<!-- 	    android:layout_alignParentRight="true" -->
+<!-- 	    android:layout_alignParentTop="true" -->
+<!-- 	    layout="@layout/horizontal_scroll_view" /> -->
+
     <include android:layout_height="wrap_content" layout="@layout/menu_principal" android:layout_width="wrap_content" android:id="@+id/includeMenu" android:layout_alignParentTop="true" android:layout_alignParentLeft="true"></include>
 </RelativeLayout>
