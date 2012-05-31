@@ -8,9 +8,12 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -23,7 +26,7 @@ public class MenuActivity extends Activity {
 	ViewGroup includePrincipal;
 	LinearLayout linearLayoutScrollView;
 	CustomHorizontalScrollView horizontalScrollView;
-	private static final int ALERT_DIALOG_ALTERAR_CIDADE = 1;
+	ImageView botaoAlterarCidade;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,9 @@ public class MenuActivity extends Activity {
 		setActionsRows(rowBuscar, R.layout.menu_localidade);
 		setActionsRows(rowTurismo, R.layout.menu_localidade);
 		setActionsRows(rowAjuda, R.layout.menu_ajuda);
+		setActionsRowLogo();
+		
+		
 		//includePrincipal = (ViewGroup) findViewById(R.id.includePrincipal);
 		
 		//ScrollView
@@ -47,34 +53,60 @@ public class MenuActivity extends Activity {
 //        button.setOnClickListener(newGameListener);
 
 		//Abrir PoPup
-//		showDialog( ALERT_DIALOG_ALTERAR_CIDADE );			
+	//		
+//		Log.i("esntrou", "entrou");
 		
 		
 	}
 	
+	private void setActionAlterarCidade(ImageView botao){
+		if(botao == null) return;
+		botao.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				showDialog( 1 );
+			}
+		});
+	}
+	
+	
 	private void setActionsRows(final TableRow row, final int layout) {
 		row.setOnClickListener(new View.OnClickListener() {
 
-	        public void onClick(View v) {
-	           limpaRows();
-	           row.setBackgroundDrawable(getResources().getDrawable(R.drawable.transparencia));
-	           
-//	   		Intent menuPrincipal = new Intent(MenuActivity.this,
-//					LocalidadeActivity.class);
-//	   		MenuActivity.this.startActivity(menuPrincipal);
-//	   		MenuActivity.this.finish();
-//	   		 Get a reference to the score_name_entry object in score.xml
+			public void onClick(View v) {
+				limpaRows();
+				row.setBackgroundDrawable(getResources().getDrawable(
+						R.drawable.transparencia));
 
-//	         LinearLayout myLayout = (LinearLayout)findViewById(R.id.includePrincipal);
-//	         myLayout.removeAllViews();
-//	         RelativeLayout menuLayout = (RelativeLayout)findViewById(R.id.includeMenu);
-//	         myLayout.addView(getLayoutInflater().inflate(layout, null));
-//	         myLayout.addView(getLayoutInflater().inflate(R.layout.menu_localidade, (RelativeLayout)findViewById(R.layout.main)));
-//	         myLayout.addView((View)getResources().getLayout(R.layout.menu_localidade));
-
-	        }
-	    });
+				LinearLayout myLayout = (LinearLayout) findViewById(R.id.includePrincipal);
+				myLayout.removeAllViews();
+				myLayout.addView(getLayoutInflater().inflate(layout, null));
+				setAlteracoesTela(layout);
+			}
+		});
 		
+	}
+	
+	private void setActionsRowLogo() {
+		rowLogoBusao.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				showDialog( 2 );
+			}
+		});
+		
+	}
+	private void setAlteracoesTela(int id){
+		switch (id) {
+		case R.layout.menu_localidade:
+			//alterar os dados...
+			botaoAlterarCidade = (ImageView) findViewById(R.id.botao_alterar_cidade);
+			setActionAlterarCidade(botaoAlterarCidade);
+			break;
+
+		default:
+			break;
+		}
 	}
 
 	private void instanciarRows() {
@@ -147,14 +179,15 @@ public class MenuActivity extends Activity {
 	protected Dialog onCreateDialog( int id )
 	{
 		Dialog dialog = null;
-		if ( id == ALERT_DIALOG_ALTERAR_CIDADE )
-		{
-			ContextThemeWrapper ctw = new ContextThemeWrapper( this, R.style.MyTheme );
-			CustomBuilder builder = new CustomBuilder( ctw, R.layout.popup_escolher_cidade );
-			builder.setTitle( "Alert Dialog" );
+		ContextThemeWrapper ctw = new ContextThemeWrapper( this, R.style.MyTheme );
+		CustomBuilder builder = null;
+		switch (id) {
+		case 1:
+			builder = new CustomBuilder( ctw, R.layout.popup_escolher_cidade );
+			builder.setTitle( getString(R.string.titulo_alterar_cidade) );
 			builder.setIcon( R.drawable.seta_titulo );
 			builder.setCancelable( false );
-			builder.setPositiveButton( R.string.botao_confirmar,
+			builder.setPositiveButton( getString(R.string.botao_confirmar),
 						new DialogInterface.OnClickListener()
 						{
 							@Override
@@ -164,7 +197,7 @@ public class MenuActivity extends Activity {
 							}
 						} 
 			);
-			builder.setNegativeButton(R.string.botao_cancelar, new DialogInterface.OnClickListener()
+			builder.setNegativeButton(getString(R.string.botao_cancelar), new DialogInterface.OnClickListener()
 						{
 							@Override
 							public void onClick( DialogInterface dialog, int which )
@@ -172,9 +205,28 @@ public class MenuActivity extends Activity {
 								dialog.dismiss();
 							}
 						} );
+			break;
+
+		case 2:
+			builder = new CustomBuilder( ctw, R.layout.about );
+			builder.setTitle("");
+			builder.setIcon(null);
+			builder.setCancelable( false );
+			builder.setNegativeButton(getString(R.string.botao_voltar), new DialogInterface.OnClickListener()
+						{
+							@Override
+							public void onClick( DialogInterface dialog, int which )
+							{
+								dialog.dismiss();
+							}
+						} );
+			break;
+
+		default:
+			break;
 		}
-		if ( dialog == null )
-		{
+		dialog = builder.create();
+		if ( dialog == null ){
 			dialog = super.onCreateDialog( id );
 		}
 		return dialog;

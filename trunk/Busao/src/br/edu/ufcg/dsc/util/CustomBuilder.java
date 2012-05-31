@@ -43,6 +43,7 @@ public class CustomBuilder extends Builder
 		title.setText( textResId );
 		return this;
 	}
+	
 
 	@Override
 	public CustomBuilder setTitle( CharSequence text )
