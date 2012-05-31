@@ -84,5 +84,13 @@
 	<string name="url_busao">busaoapp.com</string>
 	<string name="descricao_popup_cidade">Aqui vem toda a descrição que deve ter aqis sjshs sdjhsd jj</string>
 	
+	<string name="botao_confirmar">confirmar</string>
+	<string name="botao_cancelar">cancelar</string>
+	<string name="botao_ok">ok</string>
+	<string name="botao_voltar">voltar</string>
+	<string name="botao_mapa">mapa</string>
+	<string name="botao_alterar_cidade">alterar cidade</string>
+	
+	
 </resources>
 
