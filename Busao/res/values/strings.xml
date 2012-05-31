@@ -81,8 +81,9 @@
 	<string name="cidade_joaopessoa">Capital do Estado da Paraiba, Joao Pessoa e conhecida como "Portal do Sol", devido ao fato de no município estar localizada a 
 	    Ponta do Seixas, que é o ponto mais oriental das Americas, o que faz a cidade ser conhecida como o lugar "onde o Sol nasce primeiro nas Americas". O municipio 
 	    e também notavel pelo clima tropical, e uma das capitais de melhor qualidade de vida no Nordeste.</string>
-	<string name="url_busao">busaoapp.com</string>
-	<string name="descricao_popup_cidade">Aqui vem toda a descrição que deve ter aqis sjshs sdjhsd jj</string>
+	<string name="descricao_about">Aqui vem uma descrição simples do aplicativo</string>
+	<string name="descricao_popup_cidade">Aqui vem toda a descrição que deve ter aqis sjshs sdjhsd 
+	fsdjhfs sdjhfsjf sfs fsfsf  sdjfjhjs hj fjsfjhsjf sjfjs jsfjsj hsj fjh jj</string>
 	
 	<string name="botao_confirmar">confirmar</string>
 	<string name="botao_cancelar">cancelar</string>
@@ -90,6 +91,7 @@
 	<string name="botao_voltar">voltar</string>
 	<string name="botao_mapa">mapa</string>
 	<string name="botao_alterar_cidade">alterar cidade</string>
+	<string name="titulo_alterar_cidade">alterar cidade</string>
 	
 	
 </resources>

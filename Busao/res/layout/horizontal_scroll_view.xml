@@ -3,49 +3,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView1"
+        <scrollView.CustomHorizontalScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_alignParentTop="true">
+        
         <LinearLayout
             android:id="@+id/linearHorizontalScroll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
             
-        <include
-            android:id="@+id/include_bemvindo"
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            layout="@layout/principal_bemvindo" />
+             <include
+	            android:id="@+id/include_bemvindo"
+	            android:layout_width="320dp"
+	            android:layout_height="wrap_content"
+	            layout="@layout/principal_bemvindo" />
         
-        <include
-            android:id="@+id/include_localidade"
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            layout="@layout/principal_localidade" />
-        
-        <include
-            android:id="@+id/include_busca"
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            layout="@layout/principal_busca" />
-        
-        <include
-            android:id="@+id/include_turismo"
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            layout="@layout/principal_turismo" />
-        
-        <include
-            android:id="@+id/include_compartilhar"
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            layout="@layout/principal_compartilhar" />    
-        
+	        <include
+	            android:id="@+id/include_localidade"
+	            android:layout_width="320dp"
+	            android:layout_height="wrap_content"
+	            layout="@layout/principal_localidade" />
+	        
+	        <include
+	            android:id="@+id/include_busca"
+	            android:layout_width="320dp"
+	            android:layout_height="wrap_content"
+	            layout="@layout/principal_busca" />
+	        
+	        <include
+	            android:id="@+id/include_turismo"
+	            android:layout_width="320dp"
+	            android:layout_height="wrap_content"
+	            layout="@layout/principal_turismo" />
+	        
+	        <include
+	            android:id="@+id/include_compartilhar"
+	            android:layout_width="320dp"
+	            android:layout_height="wrap_content"
+	            layout="@layout/principal_compartilhar" />   
+            
         </LinearLayout>
         
-    </HorizontalScrollView>
+    </scrollView.CustomHorizontalScrollView>
 
 </LinearLayout>
