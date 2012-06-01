@@ -1,12 +1,16 @@
-package scrollView;
+package br.edu.ufcg.dsc.util;
 
+import br.edu.ufcg.dsc.R;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.gesture.GestureOverlayView;
 import android.gesture.GestureOverlayView.OnGestureListener;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 
 public class CustomHorizontalScrollView extends HorizontalScrollView implements OnTouchListener, OnGestureListener {
@@ -26,21 +30,45 @@ public class CustomHorizontalScrollView extends HorizontalScrollView implements 
 	private float currentScrollX;
 	private boolean flingDisable = true;
 
-	public CustomHorizontalScrollView(Context context, AttributeSet attrs){
-		super(context, attrs);
-	}
-	
 	public CustomHorizontalScrollView(Context context) {
 		super(context);
 		setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
 				LayoutParams.FILL_PARENT));
 	}
+	
+	public CustomHorizontalScrollView(Context context, AttributeSet attr) {
+        super(context);
+        TypedArray a = context.obtainStyledAttributes(attr, R.styleable.CustomHorizontalScrollView);
+		this.itemWidth = a.getInteger(R.styleable.CustomHorizontalScrollView_itemWidth, 320);
+		this.maxItem = a.getInteger(R.styleable.CustomHorizontalScrollView_maxItem, 4);
+		//Log.i("Deu", ""+valor);
+		this.setOnTouchListener(this);
+    }
+
 
 	public CustomHorizontalScrollView(Context context, int maxItem, int itemWidth) {
 		this(context);
 		this.maxItem = maxItem;
 		this.itemWidth = itemWidth;
 		this.setOnTouchListener(this);
+	}
+	
+	
+
+	public int getMaxItem() {
+		return maxItem;
+	}
+
+	public void setMaxItem(int maxItem) {
+		this.maxItem = maxItem;
+	}
+
+	public int getItemWidth() {
+		return itemWidth;
+	}
+
+	public void setItemWidth(int itemWidth) {
+		this.itemWidth = itemWidth;
 	}
 
 	@Override
@@ -70,8 +98,7 @@ public class CustomHorizontalScrollView extends HorizontalScrollView implements 
 					activeItem = activeItem - 1;
 			}
 			System.out.println("horizontal : " + activeItem);
-			scrollTo = activeItem * 320;
-			//this.scrollToPage(activeItem+1);
+			scrollTo = activeItem * itemWidth;
 			this.smoothScrollTo(scrollTo, 0);
 			returnValue = true;
 			break;
@@ -104,28 +131,11 @@ public class CustomHorizontalScrollView extends HorizontalScrollView implements 
 
 			returnValue = true;
 		}
-		scrollTo = activeItem * 320;
-		//this.scrollToPage(activeItem+1);
+		scrollTo = activeItem * itemWidth;
 		this.smoothScrollTo(0, scrollTo);
 		return returnValue;
 	}
 
-	
-	/// pageNo starts from 1 whereas active item starts from 0
-	public void scrollToPage(int pageNo) { 
-		activeItem = pageNo- 1;
-		scrollTo = activeItem * itemWidth;
-		this.smoothScrollTo(scrollTo, 0);
-	}
-
-
-	// these method is used to render to particular location at start
-	@Override
-	protected void onLayout (boolean changed, int l, int t, int r, int b) {
-		super.onLayout(changed, l, t, r, b);
-		this.scrollTo(scrollTo, 0);
-	}
-	
 	public boolean onDown(MotionEvent e) {
 		return false;
 	}

@@ -25,7 +25,6 @@ public class MenuActivity extends Activity {
 	TableRow rowLocalidade, rowBuscar, rowTurismo, rowAjuda, rowLogoBusao;
 	ViewGroup includePrincipal;
 	LinearLayout linearLayoutScrollView;
-	CustomHorizontalScrollView horizontalScrollView;
 	ImageView botaoAlterarCidade;
 	
 	@Override
@@ -41,12 +40,6 @@ public class MenuActivity extends Activity {
 		setActionsRows(rowTurismo, R.layout.menu_localidade);
 		setActionsRows(rowAjuda, R.layout.menu_ajuda);
 		setActionsRowLogo();
-		
-		
-		//includePrincipal = (ViewGroup) findViewById(R.id.includePrincipal);
-		
-		//ScrollView
-//		initScrollView();
 
         // The listener for the second button also has to be defined here as opposed to in the onCreate, as the score_submitted.xml isn't loaded yet at activity first run
 //        Button button = (Button)findViewById(R.id.new_game);
@@ -146,34 +139,6 @@ public class MenuActivity extends Activity {
 		textTurismo.setTypeface(font);
 		textAjuda.setTypeface(font);
 	}
-	
-//	private void initScrollView(){
-//		
-//		int width = this.getWindowManager().getDefaultDisplay().getWidth();
-//		int height = this.getWindowManager().getDefaultDisplay().getHeight();
-//		horizontalScrollView = new CustomHorizontalScrollView(this, 5, width);
-//		
-//		linearLayoutScrollView = (LinearLayout) findViewById(R.id.layerScrollView);
-//		linearLayoutScrollView.addView(horizontalScrollView);
-//		
-//		LinearLayout container = new LinearLayout(this);
-//		container.setLayoutParams(new LayoutParams(width, height));
-//	
-//		
-//		LinearLayout includeLinear = (LinearLayout) findViewById(R.id.layout_princial_busca);
-//		container.addView(includeLinear);
-//		
-//		includeLinear = (LinearLayout) findViewById(R.id.layout_princial_localidade);
-//		container.addView(includeLinear);
-//		
-//		includeLinear = (LinearLayout) findViewById(R.id.layout_princial_turismo);
-//		container.addView(includeLinear);
-//		
-//		includeLinear = (LinearLayout) findViewById(R.id.layout_princial_compartilhar);
-//		container.addView(includeLinear);
-//
-//		horizontalScrollView.addView(container);
-//	}
 
 	@Override
 	protected Dialog onCreateDialog( int id )
