@@ -92,6 +92,8 @@
 	<string name="botao_mapa">mapa</string>
 	<string name="botao_alterar_cidade">alterar cidade</string>
 	<string name="titulo_alterar_cidade">alterar cidade</string>
+	<string name="faltam">faltam</string>
+	<string name="minutos">min</string>
 	
 	
 </resources>

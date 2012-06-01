@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background" >
+    <Spinner android:layout_height="wrap_content" android:id="@+id/spinner1" android:layout_width="wrap_content" android:layout_alignParentTop="true" android:layout_alignParentLeft="true" android:layout_alignParentRight="true" android:layout_margin="10dp"></Spinner>
+    <ImageView android:id="@+id/image_timer" android:layout_height="wrap_content" android:layout_width="wrap_content" android:src="@drawable/timer" android:layout_below="@+id/spinner1" android:layout_centerHorizontal="true"></ImageView>
+    <TextView android:id="@+id/text_faltam" android:layout_height="wrap_content" android:textStyle="bold" android:text="@string/faltam" android:layout_width="wrap_content" android:layout_alignTop="@+id/image_timer" android:layout_centerHorizontal="true" android:layout_marginTop="30dp"  android:textColor="#000000"></TextView>
+    <TextView android:textColor="#000000" android:id="@+id/text_minutos" android:layout_height="wrap_content" android:text="@string/minutos" android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall" android:layout_above="@+id/text_hora_atual" android:layout_centerHorizontal="true"></TextView>
+    <TextView android:textColor="#000000" android:id="@+id/text_tempo_restante" android:layout_height="wrap_content" android:text="0" android:layout_width="wrap_content" android:textStyle="bold" android:textAppearance="?android:attr/textAppearanceLarge" android:textSize="70dp" android:layout_below="@+id/text_faltam" android:layout_centerHorizontal="true"></TextView>
+    <TextView android:textColor="#000000" android:id="@+id/text_hora_atual" android:layout_height="wrap_content" android:text="12:00" android:layout_width="wrap_content" android:textStyle="bold" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_below="@+id/text_tempo_restante" android:layout_alignLeft="@+id/text_faltam"></TextView>
+
+
+</RelativeLayout>
