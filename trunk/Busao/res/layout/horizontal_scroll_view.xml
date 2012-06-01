@@ -1,52 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-        <scrollView.CustomHorizontalScrollView
-        android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentRight="true"
-	    android:layout_alignParentTop="true">
-        
-        <LinearLayout
-            android:id="@+id/linearHorizontalScroll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-            
-             <include
-	            android:id="@+id/include_bemvindo"
-	            android:layout_width="320dp"
-	            android:layout_height="wrap_content"
-	            layout="@layout/principal_bemvindo" />
-        
-	        <include
-	            android:id="@+id/include_localidade"
-	            android:layout_width="320dp"
-	            android:layout_height="wrap_content"
-	            layout="@layout/principal_localidade" />
-	        
-	        <include
-	            android:id="@+id/include_busca"
-	            android:layout_width="320dp"
-	            android:layout_height="wrap_content"
-	            layout="@layout/principal_busca" />
-	        
-	        <include
-	            android:id="@+id/include_turismo"
-	            android:layout_width="320dp"
-	            android:layout_height="wrap_content"
-	            layout="@layout/principal_turismo" />
-	        
-	        <include
-	            android:id="@+id/include_compartilhar"
-	            android:layout_width="320dp"
-	            android:layout_height="wrap_content"
-	            layout="@layout/principal_compartilhar" />   
-            
-        </LinearLayout>
-        
-    </scrollView.CustomHorizontalScrollView>
 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:my="http://schemas.android.com/apk/res/br.edu.ufcg.dsc"
+	android:orientation="vertical" android:layout_height="match_parent"
+	android:layout_width="match_parent" android:id="@+id/layer">
+	<br.edu.ufcg.dsc.util.CustomHorizontalScrollView
+		android:id="@+id/scroll" android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		my:maxItem="4" my:itemWidth="320">
+		<LinearLayout android:id="@+id/linearLayout1"
+			android:layout_width="match_parent" android:layout_height="match_parent"
+			android:orientation="horizontal">
+			<include layout="@layout/principal_bemvindo" android:id="@+id/include2" 
+			android:layout_width="320dp" android:layout_height="match_parent"></include>
+				
+			<include layout="@layout/principal_localidade" android:layout_height="match_parent"
+				android:id="@+id/include1" android:layout_width="320dp"></include>
+			
+			<include layout="@layout/principal_busca" android:layout_height="match_parent"
+				android:id="@+id/include1" android:layout_width="320dp"></include>
+				
+			<include layout="@layout/principal_turismo" android:layout_height="match_parent"
+				android:id="@+id/include1" android:layout_width="320dp"></include>
+				
+		</LinearLayout>
+	</br.edu.ufcg.dsc.util.CustomHorizontalScrollView>
 </LinearLayout>
