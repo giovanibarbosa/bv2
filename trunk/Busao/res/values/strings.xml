@@ -63,6 +63,7 @@
 	<string name="result_voltar">voltar</string>
 	<string name="result_onibus">ônibus encontrados</string>
 	<string name="result_result">Resultados da busca</string>
+	<string name="result_mapa">mapa</string>
 	
 	
 	<!-- Cidades -->
@@ -100,5 +101,7 @@
 	<string name="busca_label_onibus">Linha</string>
 	<string name="busca_label_rota">Rota</string>
 	<string name="busca_label_favoritos">Favoritos</string>
+	
+	
 </resources>
 
