@@ -1,18 +1,14 @@
 package br.edu.ufcg.dsc.busao;
 
 import it.sephiroth.demo.slider.widget.MultiDirectionSlidingDrawer;
-import scrollView.*;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
@@ -36,7 +32,7 @@ public class MenuActivity extends Activity {
 		drawer.open();
 		instanciarRows();
 		setActionsRows(rowLocalidade, R.layout.menu_localidade);
-		setActionsRows(rowBuscar, R.layout.menu_localidade);
+		setActionsRows(rowBuscar, R.layout.buscar_onibus);
 		setActionsRows(rowTurismo, R.layout.menu_localidade);
 		setActionsRows(rowAjuda, R.layout.menu_ajuda);
 		setActionsRowLogo();

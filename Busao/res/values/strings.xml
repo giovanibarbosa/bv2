@@ -95,6 +95,10 @@
 	<string name="faltam">faltam</string>
 	<string name="minutos">min</string>
 	
+	<!-- MAPA -->
 	
+	<string name="busca_label_onibus">Linha</string>
+	<string name="busca_label_rota">Rota</string>
+	<string name="busca_label_favoritos">Favoritos</string>
 </resources>
 
