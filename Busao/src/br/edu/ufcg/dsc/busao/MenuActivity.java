@@ -21,7 +21,7 @@ public class MenuActivity extends Activity {
 	TableRow rowLocalidade, rowBuscar, rowTurismo, rowAjuda, rowLogoBusao;
 	ViewGroup includePrincipal;
 	LinearLayout linearLayoutScrollView;
-	ImageView botaoAlterarCidade;
+	ImageView botaoAlterarCidade, botaoSearch;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +36,6 @@ public class MenuActivity extends Activity {
 		setActionsRows(rowTurismo, R.layout.menu_localidade);
 		setActionsRows(rowAjuda, R.layout.menu_ajuda);
 		setActionsRowLogo();
-
-        // The listener for the second button also has to be defined here as opposed to in the onCreate, as the score_submitted.xml isn't loaded yet at activity first run
-//        Button button = (Button)findViewById(R.id.new_game);
-//        button.setOnClickListener(newGameListener);
-
-		//Abrir PoPup
-	//		
-//		Log.i("esntrou", "entrou");
-		
 		
 	}
 	
@@ -93,10 +84,21 @@ public class MenuActivity extends Activity {
 			setActionAlterarCidade(botaoAlterarCidade);
 			break;
 
-		default:
+		case R.layout.buscar_onibus:
+			botaoSearch = (ImageView) findViewById(R.id.search);
+			botaoSearch.setOnClickListener(new View.OnClickListener() {
+
+					public void onClick(View v) {
+						showDialog( 3 );
+					}
+				});
+			break;
+		default :
 			break;
 		}
 	}
+	
+
 
 	private void instanciarRows() {
 		rowLocalidade = (TableRow) findViewById(R.id.rowLocalidade);
@@ -181,6 +183,38 @@ public class MenuActivity extends Activity {
 								dialog.dismiss();
 							}
 						} );
+			break;
+		
+		case 3:
+			builder = new CustomBuilder( ctw, R.layout.result );
+			builder.setTitle(getString(R.string.result_result));
+			builder.setIcon(null);
+			builder.setCancelable( false );
+			builder.setNegativeButton(getString(R.string.result_voltar), new DialogInterface.OnClickListener()
+						{
+							@Override
+							public void onClick( DialogInterface dialog, int which )
+							{
+								dialog.dismiss();
+							}
+						} );
+			builder.setPositiveButton(getString(R.string.result_ok), new DialogInterface.OnClickListener()
+			{
+				@Override
+				public void onClick( DialogInterface dialog, int which )
+				{
+					dialog.dismiss();
+				}
+			} );
+			builder.setNeutralButton(getString(R.string.result_mapa), new DialogInterface.OnClickListener()
+			{
+				@Override
+				public void onClick( DialogInterface dialog, int which )
+				{
+					//abrir mapa
+					dialog.dismiss();
+				}
+			} );
 			break;
 
 		default:
