@@ -32,7 +32,7 @@ public class MenuActivity extends Activity {
 	TableRow rowLocalidade, rowBuscar, rowTurismo, rowAjuda, rowLogoBusao;
 	ViewGroup includePrincipal;
 	LinearLayout linearLayoutScrollView;
-	ImageView botaoAlterarCidade, botaoSearch;
+	ImageView botaoAlterarCidade, botaoSearch,botaoFace,botaoTwitter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +107,24 @@ public class MenuActivity extends Activity {
 			
 		case R.layout.menu_turismo:
 			criaListView();
+			botaoFace = (ImageView) findViewById(R.id.botaoFace);
+			botaoFace.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					
+					
+				}
+			});
+			botaoTwitter = (ImageView) findViewById(R.id.botaoTwitter);
+			botaoTwitter.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					
+					
+				}
+			});
 		default :
 			break;
 		}
