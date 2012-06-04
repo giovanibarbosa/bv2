@@ -1,20 +1,31 @@
 package br.edu.ufcg.dsc.busao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import it.sephiroth.demo.slider.widget.MultiDirectionSlidingDrawer;
+//import scrollView.*;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TableRow;
 import android.widget.TextView;
 import br.edu.ufcg.dsc.R;
 import br.edu.ufcg.dsc.util.CustomBuilder;
+import br.edu.ufcg.dsc.util.PontoAdapter;
+import br.edu.ufcg.dsc.util.PontoTuristico;
 
 public class MenuActivity extends Activity {
 	
@@ -33,7 +44,7 @@ public class MenuActivity extends Activity {
 		instanciarRows();
 		setActionsRows(rowLocalidade, R.layout.menu_localidade);
 		setActionsRows(rowBuscar, R.layout.buscar_onibus);
-		setActionsRows(rowTurismo, R.layout.menu_localidade);
+		setActionsRows(rowTurismo, R.layout.menu_turismo);
 		setActionsRows(rowAjuda, R.layout.menu_ajuda);
 		setActionsRowLogo();
 		
@@ -82,8 +93,8 @@ public class MenuActivity extends Activity {
 			//alterar os dados...
 			botaoAlterarCidade = (ImageView) findViewById(R.id.botao_alterar_cidade);
 			setActionAlterarCidade(botaoAlterarCidade);
-			break;
-
+			break;		
+			
 		case R.layout.buscar_onibus:
 			botaoSearch = (ImageView) findViewById(R.id.search);
 			botaoSearch.setOnClickListener(new View.OnClickListener() {
@@ -93,12 +104,28 @@ public class MenuActivity extends Activity {
 					}
 				});
 			break;
+			
+		case R.layout.menu_turismo:
+			criaListView();
 		default :
 			break;
 		}
 	}
 	
 
+	private void criaListView() {
+		ListView list = (ListView) findViewById(R.id.turismo_list);;
+		List<PontoTuristico> pontos = new ArrayList<PontoTuristico>();
+		PontoAdapter adapter = new PontoAdapter(this,pontos);
+ 		pontos.add(new PontoTuristico("Canal de bodocongo","Canal de bodocongo eh um lugar para lazer e bla bla bla bla ", R.drawable.icon));
+		pontos.add(new PontoTuristico("Acude de bodocongo","Acude de bodocongo eh um otimo lugar para se refrescar, muito limpo e 0 por cento de agua de esgoto ", R.drawable.transparencia));
+		pontos.add(new PontoTuristico("Parque do Povo","Parque do povo eh um otimo lugar, extremamente seguro!!! Pode levar seu Android sem medo pra la ¬¬", R.drawable.logo_lrcosta));
+	 
+		adapter = new PontoAdapter(this,pontos);
+ 
+		list.setAdapter(adapter);
+		
+	}
 
 	private void instanciarRows() {
 		rowLocalidade = (TableRow) findViewById(R.id.rowLocalidade);
