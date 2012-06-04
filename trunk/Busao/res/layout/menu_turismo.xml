@@ -20,12 +20,13 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="120dp"
         android:orientation="vertical" >
-
+
         <ListView
             android:id="@+id/turismo_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@drawable/background_divisoria"
+            android:drawSelectorOnTop="true"
             android:textColor="#000000" >
 
             <!-- Preview: 
