@@ -107,24 +107,6 @@ public class MenuActivity extends Activity {
 			
 		case R.layout.menu_turismo:
 			criaListView();
-			botaoFace = (ImageView) findViewById(R.id.botaoFace);
-			botaoFace.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					
-					
-				}
-			});
-			botaoTwitter = (ImageView) findViewById(R.id.botaoTwitter);
-			botaoTwitter.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					
-					
-				}
-			});
 		default :
 			break;
 		}
@@ -134,7 +116,7 @@ public class MenuActivity extends Activity {
 	private void criaListView() {
 		ListView list = (ListView) findViewById(R.id.turismo_list);;
 		List<PontoTuristico> pontos = new ArrayList<PontoTuristico>();
-		PontoAdapter adapter = new PontoAdapter(this,pontos);
+		PontoAdapter adapter;
  		pontos.add(new PontoTuristico("Canal de bodocongo","Canal de bodocongo eh um lugar para lazer e bla bla bla bla ", R.drawable.icon));
 		pontos.add(new PontoTuristico("Acude de bodocongo","Acude de bodocongo eh um otimo lugar para se refrescar, muito limpo e 0 por cento de agua de esgoto ", R.drawable.transparencia));
 		pontos.add(new PontoTuristico("Parque do Povo","Parque do povo eh um otimo lugar, extremamente seguro!!! Pode levar seu Android sem medo pra la ¬¬", R.drawable.logo_lrcosta));

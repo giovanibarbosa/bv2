@@ -4,27 +4,35 @@ import java.util.List;
 
 import br.edu.ufcg.dsc.R;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PontoAdapter extends BaseAdapter {
 	private List<PontoTuristico> pontos;
 	private LayoutInflater mInflater;
 	private ViewHolder holder;
+	private Context context;
  
  
 	static class ViewHolder{
 		private TextView texto;
 		private ImageView imagem;
+		private ImageView face, twitter;
 	}
  
  
-	public PontoAdapter(Context context, List<PontoTuristico> pontos) {
+	public PontoAdapter(Activity activity, List<PontoTuristico> pontos) {
+		this.context = activity;
 		mInflater = LayoutInflater.from(context);
 		this.pontos = pontos;
 	}
@@ -54,6 +62,8 @@ public class PontoAdapter extends BaseAdapter {
  
 			holder.texto = (TextView) convertView.findViewById(R.id.text1);
 			holder.imagem = (ImageView) convertView.findViewById(R.id.image1);
+			holder.face = (ImageView) convertView.findViewById(R.id.botaoFace);
+			holder.twitter = (ImageView) convertView.findViewById(R.id.botaoTwitter);
  
 			convertView.setTag(holder);
  
@@ -66,9 +76,43 @@ public class PontoAdapter extends BaseAdapter {
  
 		holder.texto.setText(p.getTexto());
 		holder.imagem.setImageResource(p.getImagem());
+		
+		holder.face.setOnClickListener(new FaceClickListener(p));
+		holder.twitter.setOnClickListener(new TwitterClickListener(p));
  
 		return convertView;
 	}
 	
+	private class FaceClickListener implements OnClickListener{
+		private PontoTuristico ponto;
+		
+		public FaceClickListener(PontoTuristico ponto){
+			this.ponto = ponto;
+		}
+
+		@Override
+		public void onClick(View v) {
+			// Ver como postar mensagem no face
+			Toast.makeText(context, "Face: " +"Eu conheci o " + ponto.getNome() +" pelo Busão!", Toast.LENGTH_LONG).show();
+			
+		}
+		
+	}
+	
+	private class TwitterClickListener implements OnClickListener{
+		private PontoTuristico ponto;
+		
+		public TwitterClickListener(PontoTuristico ponto){
+			this.ponto = ponto;
+		}
+
+		@Override
+		public void onClick(View v) {
+			// Ver como postar mensagem no twitter
+			Toast.makeText(context, "Twitter: " +"Eu conheci o " + ponto.getNome() +" pelo Busão!", Toast.LENGTH_LONG).show();
+			
+		}
+		
+	}
 }
  
