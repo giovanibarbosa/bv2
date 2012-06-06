@@ -3,6 +3,10 @@ package br.edu.ufcg.dsc.busao;
 import java.util.ArrayList;
 import java.util.List;
 
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+
 import it.sephiroth.demo.slider.widget.MultiDirectionSlidingDrawer;
 //import scrollView.*;
 
@@ -11,6 +15,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -124,6 +129,7 @@ public class MenuActivity extends Activity {
 		adapter = new PontoAdapter(this,pontos);
  
 		list.setAdapter(adapter);
+		
 		
 	}
 
