@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
+<RelativeLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:my="http://schemas.android.com/apk/res/br.edu.ufcg.dsc"
 	android:orientation="vertical" 
@@ -8,97 +8,47 @@
 	android:id="@+id/layer">
 	
 	<br.edu.ufcg.dsc.util.CustomHorizontalScrollView
-		android:id="@+id/scroll"
+		android:id="@+id/scroll" 
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		my:maxItem="4" my:itemWidth="320">
+		my:maxItem="4" 
+		my:itemWidth="320">
+	
+	    	<RelativeLayout 
+	    	    android:id="@+id/linearLayout1"
+				android:layout_width="match_parent" 
+				android:layout_height="match_parent"
+				android:orientation="horizontal">
+			
+				<include 
+				    layout="@layout/principal_bemvindo" 
+				    android:id="@+id/include2" 
+					android:layout_width="320dp" 
+					android:layout_height="match_parent"/>
+					
+				<include 
+				    layout="@layout/principal_localidade" 
+				    android:layout_height="match_parent"
+					android:id="@+id/include1" 
+					android:layout_width="320dp"
+					android:layout_toRightOf="@+id/include2"/>
+				
+				<include 
+				    layout="@layout/principal_busca" 
+				    android:layout_height="match_parent"
+					android:id="@+id/include3" 
+					android:layout_width="320dp"
+					android:layout_toRightOf="@+id/include1"/>
+					
+				<include 
+				    layout="@layout/principal_turismo" 
+				    android:layout_height="match_parent"
+					android:id="@+id/include4" 
+					android:layout_width="320dp"
+					android:layout_toRightOf="@+id/include3"/>
+				
+		</RelativeLayout>
 		
-		<LinearLayout 
-		    android:id="@+id/linearLayout1"
-			android:layout_width="match_parent" 
-			android:layout_height="match_parent"
-			android:orientation="horizontal">
-			
-			<include 
-			    layout="@layout/principal_bemvindo" 
-			    android:id="@+id/include2" 
-				android:layout_width="320dp" 
-				android:layout_height="match_parent"/>
-				
-			<include 
-			    layout="@layout/principal_localidade" 
-			    android:layout_height="match_parent"
-				android:id="@+id/include1" 
-				android:layout_width="320dp"/>
-			
-			<include 
-			    layout="@layout/principal_busca" 
-			    android:layout_height="match_parent"
-				android:id="@+id/include1" 
-				android:layout_width="320dp"/>
-				
-			<include 
-			    layout="@layout/principal_turismo" 
-			    android:layout_height="match_parent"
-				android:id="@+id/include1" 
-				android:layout_width="320dp"/>
-				
-		</LinearLayout>
 	</br.edu.ufcg.dsc.util.CustomHorizontalScrollView>
-</LinearLayout>
 
-
-<!-- <?xml version="1.0" encoding="utf-8"?> -->
-<!-- <RelativeLayout  -->
-<!--     xmlns:android="http://schemas.android.com/apk/res/android" -->
-<!--     xmlns:my="http://schemas.android.com/apk/res/br.edu.ufcg.dsc" -->
-<!-- 	android:orientation="vertical"  -->
-<!-- 	android:layout_height="match_parent" -->
-<!-- 	android:layout_width="match_parent"  -->
-<!-- 	android:id="@+id/layer"> -->
-	
-<!-- 	<br.edu.ufcg.dsc.util.CustomHorizontalScrollView -->
-<!-- 		android:id="@+id/scroll"  -->
-<!-- 		android:layout_width="match_parent" -->
-<!-- 		android:layout_height="match_parent" -->
-<!-- 		my:maxItem="4"  -->
-<!-- 		my:itemWidth="320"> -->
-	
-<!-- 	    	<RelativeLayout  -->
-<!-- 	    	    android:id="@+id/linearLayout1" -->
-<!-- 				android:layout_width="match_parent"  -->
-<!-- 				android:layout_height="match_parent" -->
-<!-- 				android:orientation="horizontal"> -->
-			
-<!-- 				<include  -->
-<!-- 				    layout="@layout/principal_bemvindo"  -->
-<!-- 				    android:id="@+id/include2"  -->
-<!-- 					android:layout_width="320dp"  -->
-<!-- 					android:layout_height="match_parent"/> -->
-					
-<!-- 				<include  -->
-<!-- 				    layout="@layout/principal_localidade"  -->
-<!-- 				    android:layout_height="match_parent" -->
-<!-- 					android:id="@+id/include1"  -->
-<!-- 					android:layout_width="320dp" -->
-<!-- 					android:layout_toRightOf="@+id/include2"/> -->
-				
-<!-- 				<include  -->
-<!-- 				    layout="@layout/principal_busca"  -->
-<!-- 				    android:layout_height="match_parent" -->
-<!-- 					android:id="@+id/include3"  -->
-<!-- 					android:layout_width="320dp" -->
-<!-- 					android:layout_toRightOf="@+id/include1"/> -->
-					
-<!-- 				<include  -->
-<!-- 				    layout="@layout/principal_turismo"  -->
-<!-- 				    android:layout_height="match_parent" -->
-<!-- 					android:id="@+id/include4"  -->
-<!-- 					android:layout_width="320dp" -->
-<!-- 					android:layout_toRightOf="@+id/include3"/> -->
-				
-<!-- 		</RelativeLayout> -->
-		
-<!-- 	</br.edu.ufcg.dsc.util.CustomHorizontalScrollView> -->
-
-<!-- </RelativeLayout> -->
+</RelativeLayout>
