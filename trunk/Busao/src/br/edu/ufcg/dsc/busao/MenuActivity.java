@@ -25,6 +25,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import br.edu.ufcg.dsc.R;
@@ -74,7 +75,7 @@ public class MenuActivity extends Activity {
 				row.setBackgroundDrawable(getResources().getDrawable(
 						R.drawable.transparencia));
 
-				LinearLayout myLayout = (LinearLayout) findViewById(R.id.includePrincipal);
+				RelativeLayout myLayout = (RelativeLayout) findViewById(R.id.includePrincipal);
 				myLayout.removeAllViews();
 				myLayout.addView(getLayoutInflater().inflate(layout, null));
 				setAlteracoesTela(layout);
