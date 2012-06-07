@@ -13,10 +13,10 @@ public class LoadingActivity extends Activity {
 		setContentView(R.layout.loading);
 		// checa as atualizações necessárias,
 		// depois passa para a tela de menu
-
-		Intent menuPrincipal = new Intent(LoadingActivity.this,
+		Intent principal = new Intent(LoadingActivity.this,
 				MenuActivity.class);
-		LoadingActivity.this.startActivity(menuPrincipal);
+		LoadingActivity.this.startActivity(principal);
 		LoadingActivity.this.finish();
+
 	}
 }

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:orientation="vertical" >
+    android:orientation="vertical" android:gravity="right">
 
 	<include
 	    android:id="@+id/acesso_mapa"
@@ -23,9 +23,10 @@
         <EditText
             android:id="@+id/paramBusca"
             android:layout_width="132dp"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:layout_marginLeft="40dp"
-            android:gravity="center" />
+            android:textSize="10dp"
+            android:gravity="center" android:layout_alignBottom="@+id/search"/>
 
         <ImageView
             android:id="@+id/search"

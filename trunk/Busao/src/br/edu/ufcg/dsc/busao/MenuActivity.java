@@ -49,7 +49,8 @@ public class MenuActivity extends Activity {
 		drawer.open();
 		instanciarRows();
 		setActionsRows(rowLocalidade, R.layout.menu_localidade);
-		setActionsRows(rowBuscar, R.layout.buscar_onibus);
+		//setActionsRows(rowBuscar, R.layout.buscar_onibus);
+		setActionRowBuscar();
 		setActionsRows(rowTurismo, R.layout.menu_turismo);
 		setActionsRows(rowAjuda, R.layout.menu_ajuda);
 		setActionsRowLogo();
@@ -62,6 +63,20 @@ public class MenuActivity extends Activity {
 
 			public void onClick(View v) {
 				showDialog( 1 );
+			}
+		});
+	}
+	
+	private void setActionRowBuscar(){
+		rowBuscar.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent buscarPrincipal = new Intent(MenuActivity.this,
+						BuscarActivity.class);
+				MenuActivity.this.startActivity(buscarPrincipal);
+				MenuActivity.this.finish();
+				
 			}
 		});
 	}
@@ -93,6 +108,7 @@ public class MenuActivity extends Activity {
 		});
 		
 	}
+	
 	private void setAlteracoesTela(int id){
 		switch (id) {
 		case R.layout.menu_localidade:

@@ -1,5 +1,6 @@
 package br.edu.ufcg.dsc.busao;
 
+
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
@@ -17,7 +18,7 @@ public class MapActivity extends Activity {
 	
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-//	    setContentView(R.layout.buscar_mapa);
+//	    setContentView(R.layout.);
 //	    
 //	    mapView = (MapView) findViewById(R.id.mapView);
 //	    LinearLayout zoomLayout = (LinearLayout)findViewById(R.id.zoom);  
