@@ -1,5 +1,7 @@
 package br.edu.ufcg.dsc.busao;
 
+import com.google.android.maps.MapActivity;
+
 import it.sephiroth.demo.slider.widget.MultiDirectionSlidingDrawer;
 import br.edu.ufcg.dsc.R;
 import android.app.Activity;
@@ -7,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -16,7 +19,9 @@ import android.widget.TextView;
 public class BuscarActivity extends MapActivity {
 	
 	TableRow rowLocalidade, rowBuscar, rowTurismo, rowAjuda, rowLogoBusao;
-	ImageView botaoBuscarOnibus, botaoBuscarPonto, botaoRotasFavoritas;
+	ImageView botaoBuscarOnibus = null;
+	ImageView botaoBuscarPonto = null; 
+	ImageView botaoRotasFavoritas = null;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -24,19 +29,24 @@ public class BuscarActivity extends MapActivity {
 		setTextFont();
 		instanciarRows();
 		instanciarBotoes();
+		Log.i("botoes onibus", botaoBuscarOnibus.toString());
+		Log.i("botoes rota", botaoBuscarPonto.toString());
+		Log.i("favoritas", botaoRotasFavoritas.toString());
 		selectRowBuscar();
 		MultiDirectionSlidingDrawer drawer = (MultiDirectionSlidingDrawer) findViewById(R.id.drawer);
 		drawer.close();
 		setActionsBotao(botaoBuscarOnibus, R.layout.buscar_onibus);
 		setActionsBotao(botaoBuscarPonto, R.layout.buscar_mapa);
-		setActionsBotao(botaoRotasFavoritas, R.layout.buscar_mapa);
+		setActionsBotao(botaoRotasFavoritas, R.layout.buscar_onibus);
 
 	}
 	
 	private void instanciarBotoes() {
-		botaoBuscarOnibus = (ImageView) findViewById(R.id.buscar_onibus);
-		botaoBuscarPonto = (ImageView) findViewById(R.id.buscarPonto);
-		botaoRotasFavoritas = (ImageView) findViewById(R.id.rotasFavoritas);
+		botaoBuscarOnibus = (ImageView) findViewById(R.id.botao_icone_buscar_onibus);
+		botaoBuscarPonto = (ImageView) findViewById(R.id.botao_icone_buscar_ponto);
+		botaoRotasFavoritas = (ImageView) findViewById(R.id.botao_icone_rotas_favoritas);
+		botaoBuscarOnibus.setAlpha(100);
+		botaoBuscarOnibus.setEnabled(false);
 		
 	}
 
@@ -46,6 +56,7 @@ public class BuscarActivity extends MapActivity {
 
 			public void onClick(View v) {
 				limpaBotoes();
+				botao.setAlpha(100);
 				botao.setEnabled(false);
 
 				RelativeLayout myLayout = (RelativeLayout) findViewById(R.id.includePrincipal);
@@ -58,6 +69,9 @@ public class BuscarActivity extends MapActivity {
 	}
 	
 	private void limpaBotoes() {
+		botaoBuscarOnibus.setAlpha(255);
+		botaoBuscarPonto.setAlpha(255);
+		botaoRotasFavoritas.setAlpha(255);
 		botaoBuscarOnibus.setEnabled(true);
 		botaoBuscarPonto.setEnabled(true);
 		botaoRotasFavoritas.setEnabled(true);
@@ -90,5 +104,11 @@ public class BuscarActivity extends MapActivity {
 		textBuscar.setTypeface(font);
 		textTurismo.setTypeface(font);
 		textAjuda.setTypeface(font);
+	}
+
+	@Override
+	protected boolean isRouteDisplayed() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
