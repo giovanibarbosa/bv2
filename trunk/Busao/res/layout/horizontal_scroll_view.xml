@@ -8,7 +8,7 @@
 	android:id="@+id/layer">
 	
 	<br.edu.ufcg.dsc.util.CustomHorizontalScrollView
-		android:id="@+id/scroll" 
+		android:id="@+id/custom_horizontal_scroll_view" 
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		my:maxItem="4" 

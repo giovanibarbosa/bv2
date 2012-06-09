@@ -5,6 +5,7 @@
     
     <!-- Splash Screen -->
     <string name="description">Splash Screen</string>
+    <string name="versao">versão 1.0</string>
     
     <!-- Loading -->
     <string name="progress_msg">loading</string>
