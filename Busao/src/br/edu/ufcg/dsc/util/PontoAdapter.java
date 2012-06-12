@@ -122,7 +122,7 @@ public class PontoAdapter extends BaseAdapter {
 				context.startActivity(new Intent().setClass(v.getContext(),
 						AuthTwitterActivity.class));
 			}
-			String tweet = "Eu conheci o " + ponto.getNome() + " pelo Busão!";
+			String tweet = "Eu conheci o " + ponto.getNome() + " pelo @busaoapp !!!";
 			try {
 				TwitterUtils.sendTweet(prefs, tweet);
 				Toast.makeText(context,	"Tweet enviado!", Toast.LENGTH_LONG).show();
