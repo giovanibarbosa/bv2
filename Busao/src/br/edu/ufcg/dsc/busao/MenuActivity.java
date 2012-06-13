@@ -48,9 +48,7 @@ public class MenuActivity extends Activity {
 		setTextFont();
 		MultiDirectionSlidingDrawer drawer = (MultiDirectionSlidingDrawer) findViewById(R.id.drawer);
 		drawer.open();
-		int width = this.getWindowManager().getDefaultDisplay().getWidth();
-		Log.i("Width", ""+width);
-		CustomHorizontalScrollView scroll = (CustomHorizontalScrollView) findViewById(R.id.custom_horizontal_scroll_view);
+
 		//scroll.setItemWidth(width);
 		instanciarRows();
 		setActionsRows(rowLocalidade, R.layout.menu_localidade);

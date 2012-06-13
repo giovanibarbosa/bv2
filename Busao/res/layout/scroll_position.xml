@@ -1,0 +1,30 @@
+
+<RelativeLayout android:id="@+id/relativeLayout1"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<ImageView android:layout_height="wrap_content"
+		android:layout_width="wrap_content" android:id="@+id/image_bolinha_0"
+		android:src="@drawable/bolinha_position"
+		android:layout_alignParentTop="true" android:layout_alignParentRight="true"
+		android:layout_margin="1dp"></ImageView>
+	<ImageView android:layout_height="wrap_content"
+		android:layout_width="wrap_content" android:id="@+id/image_bolinha_1"
+		android:src="@drawable/bolinha_position"
+		android:layout_alignParentTop="true" android:layout_toLeftOf="@+id/image_bolinha_0"
+		android:layout_margin="1dp"></ImageView>
+	<ImageView android:layout_height="wrap_content"
+		android:layout_width="wrap_content" android:id="@+id/image_bolinha_2"
+		android:src="@drawable/bolinha_position"
+		android:layout_alignParentTop="true" android:layout_toLeftOf="@+id/image_bolinha_1"
+		android:layout_margin="1dp"></ImageView>
+	<ImageView android:layout_height="wrap_content"
+		android:layout_width="wrap_content" android:id="@+id/image_bolinha_3"
+		android:src="@drawable/bolinha_position"
+		android:layout_alignParentTop="true" android:layout_toLeftOf="@+id/image_bolinha_2"
+		android:layout_margin="1dp"></ImageView>
+	<ImageView android:layout_height="wrap_content"
+		android:layout_width="wrap_content" android:id="@+id/image_bolinha_4"
+		android:src="@drawable/bolinha_position"
+		android:layout_alignParentTop="true" android:layout_toLeftOf="@+id/image_bolinha_3"
+		android:layout_margin="1dp"></ImageView>
+</RelativeLayout>

@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -22,6 +23,9 @@ public class BuscarActivity extends MapActivity {
 	ImageView botaoBuscarOnibus = null;
 	ImageView botaoBuscarPonto = null; 
 	ImageView botaoRotasFavoritas = null;
+	View viewInflateOnibus;
+	View viewInflateMapa;
+	View viewInflateFavoritos;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,15 +33,12 @@ public class BuscarActivity extends MapActivity {
 		setTextFont();
 		instanciarRows();
 		instanciarBotoes();
-		Log.i("botoes onibus", botaoBuscarOnibus.toString());
-		Log.i("botoes rota", botaoBuscarPonto.toString());
-		Log.i("favoritas", botaoRotasFavoritas.toString());
 		selectRowBuscar();
 		MultiDirectionSlidingDrawer drawer = (MultiDirectionSlidingDrawer) findViewById(R.id.drawer);
 		drawer.close();
-		setActionsBotao(botaoBuscarOnibus, R.layout.buscar_onibus);
-		setActionsBotao(botaoBuscarPonto, R.layout.buscar_mapa);
-		setActionsBotao(botaoRotasFavoritas, R.layout.buscar_onibus);
+		setActionsBotao(botaoBuscarOnibus, 1);
+		setActionsBotao(botaoBuscarPonto, 2);
+		setActionsBotao(botaoRotasFavoritas, 3);
 
 	}
 	
@@ -50,7 +51,7 @@ public class BuscarActivity extends MapActivity {
 		
 	}
 
-	private void setActionsBotao(final ImageView botao, final int layout) {
+	private void setActionsBotao(final ImageView botao, final int codigo) {
 		if(botao == null) return;
 		botao.setOnClickListener(new View.OnClickListener() {
 
@@ -60,8 +61,28 @@ public class BuscarActivity extends MapActivity {
 				botao.setEnabled(false);
 
 				RelativeLayout myLayout = (RelativeLayout) findViewById(R.id.includePrincipal);
-				myLayout.removeAllViews();
-				myLayout.addView(getLayoutInflater().inflate(layout, null));
+				myLayout.removeAllViewsInLayout();
+				switch (codigo) {
+				case 1:
+					if(viewInflateOnibus == null)
+						viewInflateOnibus = getLayoutInflater().inflate(R.layout.buscar_onibus, null);
+					myLayout.addView(viewInflateOnibus);
+					break;
+				case 2:
+					if(viewInflateMapa == null)
+						viewInflateMapa = getLayoutInflater().inflate(R.layout.buscar_mapa, null);
+					myLayout.addView(viewInflateMapa);
+					break;
+				case 3:
+					if(viewInflateFavoritos == null)
+						viewInflateFavoritos = getLayoutInflater().inflate(R.layout.buscar_onibus, null);
+					myLayout.addView(viewInflateFavoritos);
+					break;
+
+				default:
+					break;
+				}
+				
 			}
 
 		});
