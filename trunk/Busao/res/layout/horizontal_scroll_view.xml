@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:my="http://schemas.android.com/apk/res/br.edu.ufcg.dsc"
-	android:orientation="vertical" 
-	android:layout_height="match_parent"
-	android:layout_width="match_parent" 
-	android:id="@+id/layer">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:my="http://schemas.android.com/apk/res/br.edu.ufcg.dsc"
+	android:orientation="vertical" android:layout_height="match_parent"
+	android:layout_width="match_parent">
 	
+		
 	<br.edu.ufcg.dsc.util.CustomHorizontalScrollView
+	    
 		android:id="@+id/custom_horizontal_scroll_view" 
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
@@ -50,5 +49,9 @@
 		</RelativeLayout>
 		
 	</br.edu.ufcg.dsc.util.CustomHorizontalScrollView>
-
+	
+	<include android:layout_height="wrap_content" android:id="@+id/include3"
+		android:layout_width="wrap_content" layout="@layout/scroll_position"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentRight="true" android:layout_margin="20dp"></include>
 </RelativeLayout>
