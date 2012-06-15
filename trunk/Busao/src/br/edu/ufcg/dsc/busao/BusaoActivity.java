@@ -3,6 +3,7 @@ package br.edu.ufcg.dsc.busao;
 import br.edu.ufcg.dsc.R;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -12,6 +13,7 @@ public class BusaoActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
     	 super.onCreate(savedInstanceState);
          setContentView(R.layout.splash_screen);
+         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
          
          new Handler().postDelayed(new Runnable() {
  			
@@ -23,4 +25,10 @@ public class BusaoActivity extends Activity {
  			}
  		}, SPLASH_SCREEN_DURATION);
      }
+    
+	@Override
+	protected void onResume(){
+		super.onResume();
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+	}
 }
