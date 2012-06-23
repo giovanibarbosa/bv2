@@ -2,6 +2,7 @@ package br.edu.ufcg.dsc.busao;
 
 import it.sephiroth.demo.slider.widget.MultiDirectionSlidingDrawer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,10 +19,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import br.edu.ufcg.dsc.R;
+import br.edu.ufcg.dsc.util.PontoAdapter;
+import br.edu.ufcg.dsc.util.PontoTuristico;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
@@ -32,6 +36,7 @@ import com.google.android.maps.Overlay;
 public class BuscarActivity extends MapActivity {
 	
 	TableRow rowLocalidade, rowBuscar, rowTurismo, rowAjuda, rowLogoBusao;
+	ImageView botaoAlterarCidade;
 	ImageView botaoBuscarOnibus = null;
 	ImageView botaoBuscarPonto = null; 
 	ImageView botaoRotasFavoritas = null;
@@ -60,6 +65,12 @@ public class BuscarActivity extends MapActivity {
 		selectRowBuscar();
 		MultiDirectionSlidingDrawer drawer = (MultiDirectionSlidingDrawer) findViewById(R.id.drawer);
 		drawer.close();
+		
+		setActionsRows(rowLocalidade, R.layout.menu_localidade);
+		setActionsRows(rowTurismo, R.layout.menu_turismo);
+		setActionsRows(rowAjuda, R.layout.menu_ajuda);
+		setActionRowBuscar();
+		
 		setActionsBotao(botaoBuscarOnibus, 1);
 		setActionsBotao(botaoBuscarPonto, 2);
 		setActionsBotao(botaoRotasFavoritas, 3);
@@ -138,7 +149,7 @@ public class BuscarActivity extends MapActivity {
 			
 			zoomMap();
 			setMapCenter();
-			
+			onCreateMap();
 			break;
 		case 3:
 			//rotas favoritas
@@ -172,6 +183,77 @@ public class BuscarActivity extends MapActivity {
 		
 	}
 	
+	private void setActionsRows(final TableRow row, final int layout) {
+		row.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				limpaRows();
+
+				row.setBackgroundDrawable(getResources().getDrawable(R.drawable.transparencia));
+				RelativeLayout myLayout = (RelativeLayout) findViewById(R.id.include1);
+				myLayout.removeAllViews();
+				myLayout.addView(getLayoutInflater().inflate(layout, null));
+				myLayout.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+				setAlteracoesTela(layout);
+			}
+		});
+	}
+	
+	private void setActionRowBuscar(){
+		rowBuscar.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				BuscarActivity.this.startActivity(getIntent());
+			}
+		});
+	}
+	
+	private void setAlteracoesTela(int id){
+		switch (id) {
+		case R.layout.menu_localidade:
+			//alterar os dados...
+			botaoAlterarCidade = (ImageView) findViewById(R.id.botao_alterar_cidade);
+			setActionAlterarCidade(botaoAlterarCidade);
+			break;		
+			
+		case R.layout.menu_turismo:
+			criaListView();
+		default :
+			break;
+		}
+	}
+	
+	private void setActionAlterarCidade(ImageView botao){
+		if(botao == null) return;
+		botao.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				showDialog(R.layout.popup_escolher_cidade);
+			}
+		});
+	}
+	
+	private void criaListView() {
+		ListView list = (ListView) findViewById(R.id.turismo_list);;
+		List<PontoTuristico> pontos = new ArrayList<PontoTuristico>();
+		PontoAdapter adapter;
+ 		pontos.add(new PontoTuristico("Canal de bodocongo","Canal de bodocongo eh um lugar para lazer e bla bla bla bla ", R.drawable.icon));
+		pontos.add(new PontoTuristico("Acude de bodocongo","Acude de bodocongo eh um otimo lugar para se refrescar, muito limpo e 0 por cento de agua de esgoto ", R.drawable.transparencia));
+		pontos.add(new PontoTuristico("Parque do Povo","Parque do povo eh um otimo lugar, extremamente seguro!!! Pode levar seu Android sem medo pra la ¬¬", R.drawable.logo_lrcosta));
+	 
+		adapter = new PontoAdapter(this,pontos);
+ 
+		list.setAdapter(adapter);
+	}
+	
+	private void limpaRows(){
+		rowLocalidade.setBackgroundDrawable(null);
+		rowBuscar.setBackgroundDrawable(null);
+		rowTurismo.setBackgroundDrawable(null);
+		rowAjuda.setBackgroundDrawable(null);
+	}
+	
 	private void setTextFont(){
 		//set Font
 		TextView textLocalidade = (TextView) findViewById(R.id.textLocalidade);  
@@ -201,19 +283,39 @@ public class BuscarActivity extends MapActivity {
 	
 	private void setMapCenter(){
 		MapController mc = mapView.getController();
-		GeoPoint centroCidade = new GeoPoint((int) -07.14,(int) -35.53); 
+		GeoPoint centroCidade = new GeoPoint((int) (-07.14 * 1E6),(int) (-35.53 * 1E6)); 
 		mc.setCenter(centroCidade);
 	}
 	
 	public void onCreateMap(){
-        MyLocationOverlay mapOverlay = new MyLocationOverlay();
-        listOfOverlays = mapView.getOverlays();
-        listOfOverlays.clear();
-        listOfOverlays.add(mapOverlay);  
-        
-        mapView.invalidate();
+		
+		if (mapView != null){
+	        MyLocationOverlay mapOverlay = new MyLocationOverlay();
+	        listOfOverlays = mapView.getOverlays();
+	        listOfOverlays.clear();
+	        listOfOverlays.add(mapOverlay);  
+	        
+	        mapView.invalidate();
+		}
 	}
-	
+
+	public void atualizaBotoes(){
+		//TODO
+//		if(mapaPontosSelecionado.size() == 4){
+//			botaoPesquisar.setAlpha(255);
+//			botaoPesquisar.setEnabled(true);
+//		}else{
+//			botaoPesquisar.setAlpha(50);
+//			botaoPesquisar.setEnabled(false);
+//		}
+//		if(mapaPontosSelecionado.size() > 0){
+//			botaoLimpar.setAlpha(255);
+//			botaoLimpar.setEnabled(true);
+//		}else{
+//			botaoLimpar.setAlpha(50);
+//			botaoLimpar.setEnabled(false);
+//		}
+	}
 	
 	public void inserePontoSelecionado(double lat, double longi){
 		if(mapaPontosSelecionado.size()< 4){
@@ -228,6 +330,16 @@ public class BuscarActivity extends MapActivity {
 		//atualizaMapa();
 	}
 	
+	public void limparDados(){
+		if(listOfOverlays.size() > 1){
+			if (listOfOverlays.size() == 3){
+				listOfOverlays.remove(2);
+			}
+			listOfOverlays.remove(1);
+		}
+		mapaPontosSelecionado.clear();
+		//atualizaBotoes();
+	}
 	
 	class MapOverlay extends Overlay{
         private GeoPoint point;

@@ -23,7 +23,7 @@
 	    as rotas que levam aos pontos turisticos, compartilhamento 
 	    de redes sociais e muito mais!!!! Aproveite !</string>
 	
-	<string name="localidade_desc">No menu localidade, voce tere acesso as melhores 
+	<string name="localidade_desc">No menu localidade, voce tera acesso as melhores 
 	    informacoes sobre a cidade em uso, como por exemplo o preco da tarifa do onibus.
 	    O BUSAO cobre varias cidades do Nordeste, o usuario podera modificar a cidade atual
 	    a qualquer momento. </string>
@@ -83,9 +83,9 @@
 	<string name="cidade_joaopessoa">Capital do Estado da Paraiba, Joao Pessoa e conhecida como "Portal do Sol", devido ao fato de no município estar localizada a 
 	    Ponta do Seixas, que é o ponto mais oriental das Americas, o que faz a cidade ser conhecida como o lugar "onde o Sol nasce primeiro nas Americas". O municipio 
 	    e também notavel pelo clima tropical, e uma das capitais de melhor qualidade de vida no Nordeste.</string>
-	<string name="descricao_about">Aqui vem uma descrição simples do aplicativo</string>
-	<string name="descricao_popup_cidade">Aqui vem toda a descrição que deve ter aqis sjshs sdjhsd 
-	fsdjhfs sdjhfsjf sfs fsfsf  sdjfjhjs hj fjsfjhsjf sjfjs jsfjsj hsj fjh jj</string>
+	<string name="descricao_about">www.busaoapp.com</string>
+	
+	<string name="descricao_popup_cidade">Escolha uma cidade para visualizar suas rotas</string>
 	
 	<string name="botao_confirmar">confirmar</string>
 	<string name="botao_cancelar">cancelar</string>
@@ -99,6 +99,7 @@
 	
 	<!-- MAPA -->
 	
+	<string name="obs_rotas">As informacoes aqui contidas sobre as rotas de onibus foram fornecidas pelos orgaos responsaveis de cada municipio</string>
 	<string name="busca_label_onibus">Linha</string>
 	<string name="busca_label_rota">Rota</string>
 	<string name="busca_label_favoritos">Favoritos</string>
