@@ -2,7 +2,6 @@ package br.edu.ufcg.dsc.busao;
 
 import br.edu.ufcg.dsc.R;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 
 public class LocalidadeActivity extends Activity {
