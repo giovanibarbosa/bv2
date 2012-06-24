@@ -70,10 +70,11 @@ public class BuscarActivity extends MapActivity {
 		setActionsRows(rowTurismo, R.layout.menu_turismo);
 		setActionsRows(rowAjuda, R.layout.menu_ajuda);
 		setActionRowBuscar();
-		
+		setActionsRowLogo();
 		setActionsBotao(botaoBuscarOnibus, 1);
 		setActionsBotao(botaoBuscarPonto, 2);
 		setActionsBotao(botaoRotasFavoritas, 3);
+		
 		
 		pesquisaOnibus = (ImageView) findViewById(R.id.search);
 		
@@ -93,7 +94,6 @@ public class BuscarActivity extends MapActivity {
 		botaoRotasFavoritas = (ImageView) findViewById(R.id.botao_icone_rotas_favoritas);
 		botaoBuscarOnibus.setAlpha(100);
 		botaoBuscarOnibus.setEnabled(false);
-		
 	}
 
 	private void setActionsBotao(final ImageView botao, final int codigo) {
@@ -123,17 +123,13 @@ public class BuscarActivity extends MapActivity {
 						viewInflateFavoritos = getLayoutInflater().inflate(R.layout.buscar_onibus, null);
 					myLayout.addView(viewInflateFavoritos);
 					break;
-
 				default:
 					break;
 				}
 				
 				setAlteracoesBuscar(codigo);
-				
 			}
-
 		});
-		
 	}
 	
 	
@@ -146,10 +142,9 @@ public class BuscarActivity extends MapActivity {
 		case 2:
 			//R.layout.buscar_onibus
 			mapView = (MapView)findViewById(R.id.mapView);
-			
 			zoomMap();
-			setMapCenter();
 			onCreateMap();
+			setMapCenter();
 			break;
 		case 3:
 			//rotas favoritas
@@ -201,10 +196,17 @@ public class BuscarActivity extends MapActivity {
 	
 	private void setActionRowBuscar(){
 		rowBuscar.setOnClickListener(new View.OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
 				BuscarActivity.this.startActivity(getIntent());
+			}
+		});
+	}
+	
+	private void setActionsRowLogo() {
+		rowLogoBusao.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				showDialog(R.layout.about);
 			}
 		});
 	}
@@ -283,8 +285,9 @@ public class BuscarActivity extends MapActivity {
 	
 	private void setMapCenter(){
 		MapController mc = mapView.getController();
-		GeoPoint centroCidade = new GeoPoint((int) (-07.14 * 1E6),(int) (-35.53 * 1E6)); 
+		GeoPoint centroCidade = new GeoPoint((int) (-07.23 * 1E6),(int) (-35.88 * 1E6)); 
 		mc.setCenter(centroCidade);
+		mc.setZoom(16);
 	}
 	
 	public void onCreateMap(){
