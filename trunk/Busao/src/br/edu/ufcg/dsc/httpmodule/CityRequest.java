@@ -19,7 +19,7 @@ public class CityRequest extends HTTPModule {
 
 	public static String getDataCity(String id, String campo) throws Exception{
 		if(!Cache.isAtualCidade(id)){
-			String result = getResult(Configurations.getInstance().getCityByIdPath() + id);
+			String result = getResult(Configurations.getInstance().getCityData() + id);
 			Map<String, String> mapeamento = ParserResult.parse(result);
 			Cidade cidade = getObjectCity(mapeamento);
 			Cache.setCidade(cidade);

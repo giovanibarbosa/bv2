@@ -35,8 +35,8 @@ public class Configurations {
 	/**
 	 * Retorna uma cidade, dado o id dela
 	 */
-	public String getCityByIdPath() {
-		return getServerPath() + "city/getCityById.php?id=";
+	public String getCityData() {
+		return getServerPath() + "city/getCityData.php?id=";
 	}
 
 	/**
@@ -216,7 +216,7 @@ public class Configurations {
 	}
 
 	public String getAllTuristicPontsByCity(String idCity) {
-		return getServerPath() + "touristpoint/getAllTouristPointByCity.php?city=" + idCity + "&atribute=id, nome";
+		return getServerPath() + "touristpoint/getAllTouristPointByCity.php?city=" + idCity + "&atribute=id, nome, latitude, longitude, descricao";
 	}
 
 	public String getRouteHorarioPath(String id) {

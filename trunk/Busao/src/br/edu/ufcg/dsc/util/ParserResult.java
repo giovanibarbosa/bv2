@@ -30,6 +30,9 @@ public class ParserResult {
 	
 	public static List<Map<String, String>> parseAll(String str) {
 		//elimina sujeira
+		/*
+		 * [{"id":"1","nome":"Parque do Povo","latitude":"-7.224269","longitude":"-35.887624","descricao":null},{"id":"2","nome":"Acude Velho","latitude":"-7.226611","longitude":"-35.885167","descricao":null}]
+		 */
 		List<Map<String, String>> listaTuplas = new ArrayList<Map<String,String>>();
 		str = str.replace("[{\"", "").replace("\"}]", ""); //mudar para ""
 		String[] separaLinhas = str.split("\"},"); //mudar para ""
@@ -96,7 +99,12 @@ public class ParserResult {
 //		for (String string : lista) {
 //			System.out.println(string);
 //		}
+		String str = "[{\"id\":\"1\",\"nome\":\"Parque do Povo\",\"latitude\":\"-7.224269\",\"longitude\":\"-35.887624\",\"descricao\":\"O Parque do Povo, onde e realizado\"},{\"id\":\"2\",\"nome\":\"Acude Velho\",\"latitude\":\"-7.226611\",\"longitude\":\"-35.885167\",\"descricao\":\"null\"}]";
+		List<Map<String, String>> lista = parseAll(str);
+		for (Map string : lista) {
+			System.out.println(string);
 		}
+	}
 		
 	
 
