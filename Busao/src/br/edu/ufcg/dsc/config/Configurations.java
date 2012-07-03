@@ -13,7 +13,7 @@ public class Configurations {
 
 	private static Configurations instance;
 
-	private static final String serverUrl = "http://sertaonosso.com.br/busaoproject/";
+	private static final String serverUrl = "http://busaoapp.com/service/";
 
 	public static Configurations getInstance() {
 
