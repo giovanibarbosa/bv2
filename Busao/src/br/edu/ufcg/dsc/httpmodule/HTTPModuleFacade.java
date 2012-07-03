@@ -1,6 +1,7 @@
 package br.edu.ufcg.dsc.httpmodule;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 /**
  * Fachada que permite a camada de negocio acessar a camada de banco de dados.
@@ -72,6 +73,16 @@ public class HTTPModuleFacade {
 		}
 	}
 	
+	//PONTO TURISTICO
+	public List<Map<String,String>> getAllTuristicPoint(){
+		try {
+			return PointRequest.getAllPointsByCity(getIdCity());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	//ROTA
 	public String getRouteNome(String id){

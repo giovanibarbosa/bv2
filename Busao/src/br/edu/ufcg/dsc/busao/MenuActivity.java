@@ -2,6 +2,8 @@ package br.edu.ufcg.dsc.busao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import it.sephiroth.demo.slider.widget.MultiDirectionSlidingDrawer;
 import android.app.Activity;
 import android.app.Dialog;
@@ -10,6 +12,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import br.edu.ufcg.dsc.R;
+import br.edu.ufcg.dsc.httpmodule.HTTPModuleFacade;
 import br.edu.ufcg.dsc.util.CustomBuilder;
 import br.edu.ufcg.dsc.util.PontoAdapter;
 import br.edu.ufcg.dsc.util.PontoTuristico;
@@ -30,6 +34,7 @@ public class MenuActivity extends Activity {
 	ViewGroup includePrincipal;
 	LinearLayout linearLayoutScrollView;
 	ImageView botaoAlterarCidade, botaoSearch,botaoFace,botaoTwitter;
+	HTTPModuleFacade service;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +52,8 @@ public class MenuActivity extends Activity {
 		setActionsRows(rowTurismo, R.layout.menu_turismo);
 		setActionsRows(rowAjuda, R.layout.menu_ajuda);
 		setActionsRowLogo();
-		
+		service = new HTTPModuleFacade("1", "0", "0");
+		Log.i("Tarifa", service.getCityValorTarifa());
 	}
 	
 	@Override
@@ -114,6 +120,8 @@ public class MenuActivity extends Activity {
 			//alterar os dados...
 			botaoAlterarCidade = (ImageView) findViewById(R.id.botao_alterar_cidade);
 			setActionAlterarCidade(botaoAlterarCidade);
+			TextView textTarifa = (TextView) findViewById(R.id.text_preco_tarifa);
+			textTarifa.setText(textTarifa.getText() + " " + service.getCityValorTarifa());
 			break;		
 			
 		case R.layout.buscar_onibus:
@@ -138,6 +146,10 @@ public class MenuActivity extends Activity {
 		ListView list = (ListView) findViewById(R.id.turismo_list);;
 		List<PontoTuristico> pontos = new ArrayList<PontoTuristico>();
 		PontoAdapter adapter;
+		List<Map<String, String>> pontosTuri = service.getAllTuristicPoint();
+		for (Map<String, String> map : pontosTuri) {
+			Log.i("Mapa", map.toString());
+		}
  		pontos.add(new PontoTuristico("Canal de bodocongo","Canal de bodocongo eh um lugar para lazer e bla bla bla bla ", R.drawable.icon));
 		pontos.add(new PontoTuristico("Acude de bodocongo","Acude de bodocongo eh um otimo lugar para se refrescar, muito limpo e 0 por cento de agua de esgoto ", R.drawable.transparencia));
 		pontos.add(new PontoTuristico("Parque do Povo","Parque do povo eh um otimo lugar, extremamente seguro!!! Pode levar seu Android sem medo pra la ¬¬", R.drawable.logo_lrcosta));

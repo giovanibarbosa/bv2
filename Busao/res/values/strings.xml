@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, BusaoActivity!</string>
-    <string name="app_name">Busao</string>
+    <string name="app_name">Busão</string>
     
     <!-- Splash Screen -->
     <string name="description">Splash Screen</string>
@@ -18,12 +18,12 @@
 	<string name="menu_ajuda">ajuda</string>
 	<string name="compartilhar">compartilhar</string> 
     
-	<string name="bem_vindo_desc">O BUSAO e um aplicativo da uma perspectiva 
+	<string name="bem_vindo_desc">O BUSÃO e um aplicativo da uma perspectiva 
 	    ao usuario do empo para a passagem do proximo onibus. Alem disso, informamos 
 	    as rotas que levam aos pontos turisticos, compartilhamento 
 	    de redes sociais e muito mais!!!! Aproveite !</string>
 	
-	<string name="localidade_desc">No menu localidade, voce tera acesso as melhores 
+	<string name="localidade_desc">No menu localidade, você tera acesso as melhores 
 	    informacoes sobre a cidade em uso, como por exemplo o preco da tarifa do onibus.
 	    O BUSAO cobre varias cidades do Nordeste, o usuario podera modificar a cidade atual
 	    a qualquer momento. </string>
@@ -70,7 +70,7 @@
 	<!-- Cidades -->
 	
 	<string name="cidade_titulo_inicial">voce esta em</string>
-	<string name="texto_tarifa">Sua tarifa de onibus custa: </string>
+	<string name="texto_tarifa">Preço da tarifa: R$</string>
 	
 	<string name="titulo_campinagrande">Campina Grande, Paraiba</string>
 	<string name="titulo_joaopessoa">Joao Pessoa, Paraiba</string>
