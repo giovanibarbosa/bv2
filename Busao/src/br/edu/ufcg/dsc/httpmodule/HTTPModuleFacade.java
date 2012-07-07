@@ -13,13 +13,25 @@ import java.util.Map;
  */
 public class HTTPModuleFacade {
 	private UserData user;
+	private static HTTPModuleFacade instance = null;
+
+	
+	public static HTTPModuleFacade getInstance(String idCity, String latitude, String longitude){
+		if(instance == null)
+			instance = new HTTPModuleFacade(idCity, latitude, longitude);
+		return instance;
+	}
+	
+	public static HTTPModuleFacade getInstance(){
+		return instance;
+	}
 	
 	/**
 	 * Metodo construtor que recebe por parametro o id da cidade que se deseja
 	 * fazer todas as requesições no servidor.
 	 * @param idCity: id da cidade
 	 */
-	public HTTPModuleFacade(String idCity, String latitude, String longitude) {
+	private HTTPModuleFacade(String idCity, String latitude, String longitude) {
 		user = new UserData(idCity, latitude, longitude);
 		setUp(idCity);
 	}

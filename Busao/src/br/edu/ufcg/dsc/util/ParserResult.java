@@ -16,6 +16,7 @@ public class ParserResult {
 	 * @return Todas as cidades em uma so string
 	 */
 	public static Map<String, String> parse(String str) {
+		if(str.equals("null")) return new HashMap<String, String>();
 		//elimina sujeira
 		Map<String, String> mapaResultado = new HashMap<String, String>();
 		str = str.replace("[{\"", "").replace("\"}]", ""); //mudar para ""
@@ -29,6 +30,7 @@ public class ParserResult {
 	}
 	
 	public static List<Map<String, String>> parseAll(String str) {
+		if(str.equals("null")) return null;
 		//elimina sujeira
 		/*
 		 * [{"id":"1","nome":"Parque do Povo","latitude":"-7.224269","longitude":"-35.887624","descricao":null},{"id":"2","nome":"Acude Velho","latitude":"-7.226611","longitude":"-35.885167","descricao":null}]
@@ -51,6 +53,7 @@ public class ParserResult {
 	}
 	
 	public static List<String> parseOnlyName(String str) {
+		if(str.equals("null")) return new ArrayList<String>();
 		//[{"nome":"Campina Grande"},{"nome":"Jo"}]
 		//elimina sujeira
 		List<String> listaNomes = new ArrayList<String>();
@@ -69,6 +72,7 @@ public class ParserResult {
 	}
 	
 	public static Map<String, String> parseIdName(String str) {
+		if(str.equals("null")) return new HashMap<String, String>();
 		//elimina sujeira
 		//"[{'id':'1','nome':'Campina Grande'},{'id':'2','nome':'Jo'}]";
 		str = str.replace("[{\"", "").replace("\"}]", ""); //mudar para ""
@@ -89,21 +93,21 @@ public class ParserResult {
 	}
 	
 	public static void main(String[] args) {
-//		String str = "[{'id':'1','nome':'Campina Grande'},{'id':'2','nome':'Jo'}]";
-//		Map<String, String> map = parseIdName(str);
-//			for (String string : map.keySet()) {
-//				System.out.println(string + " - Valor: " + map.get(string));
-//			}
+		String str = "[{\"id\":\"15\",\"nome\":\"202-Ramadinha\"},{\"id\":\"16\",\"nome\":\"202\"},{\"id\":\"17\",\"nome\":\"202-A\"}]";
+		Map<String, String> map = parseIdName(str);
+			for (String string : map.keySet()) {
+				System.out.println(string + " - Valor: " + map.get(string));
+			}
 //		String str = "[{'nome':'Campina Grande'},{'nome':'Jo'}]";
 //		List<String> lista = parseOnlyName(str);
 //		for (String string : lista) {
 //			System.out.println(string);
 //		}
-		String str = "[{\"id\":\"1\",\"nome\":\"Parque do Povo\",\"latitude\":\"-7.224269\",\"longitude\":\"-35.887624\",\"descricao\":\"O Parque do Povo, onde e realizado\"},{\"id\":\"2\",\"nome\":\"Acude Velho\",\"latitude\":\"-7.226611\",\"longitude\":\"-35.885167\",\"descricao\":\"null\"}]";
-		List<Map<String, String>> lista = parseAll(str);
-		for (Map string : lista) {
-			System.out.println(string);
-		}
+//		String str = "[{\"id\":\"1\",\"nome\":\"Parque do Povo\",\"latitude\":\"-7.224269\",\"longitude\":\"-35.887624\",\"descricao\":\"O Parque do Povo, onde e realizado\"},{\"id\":\"2\",\"nome\":\"Acude Velho\",\"latitude\":\"-7.226611\",\"longitude\":\"-35.885167\",\"descricao\":\"null\"}]";
+//		List<Map<String, String>> lista = parseAll(str);
+//		for (Map string : lista) {
+//			System.out.println(string);
+//		}
 	}
 		
 	
