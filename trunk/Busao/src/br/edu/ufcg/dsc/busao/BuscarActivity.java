@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
@@ -52,6 +54,8 @@ public class BuscarActivity extends MapActivity {
 	private Map<String,Double> mapaPontosSelecionado = new HashMap<String, Double>();
 	private long startTime=0;
 	private long endTime=0;
+	private Intent telaConsultar;
+	private EditText paramBusca;
 	
 	
 	
@@ -75,16 +79,21 @@ public class BuscarActivity extends MapActivity {
 		setActionsBotao(botaoBuscarPonto, 2);
 		setActionsBotao(botaoRotasFavoritas, 3);
 		
+		paramBusca = (EditText) findViewById(R.id.paramBusca);
 		
 		pesquisaOnibus = (ImageView) findViewById(R.id.search);
 		
-//		pesquisaOnibus.setOnClickListener(new View.OnClickListener() {
-//			
-//			public void onClick(View v) {
-//				buscaLinha = findViewById(R.id.paramBusca).toString();
-//				
-//			}
-//		});
+		pesquisaOnibus.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				telaConsultar = new Intent(BuscarActivity.this, ResultadoActivity.class);
+				Bundle b = new Bundle();
+				b.putString("paramBusca", paramBusca.getText().toString());
+				telaConsultar.putExtras(b);				
+				startActivity(telaConsultar);
+				
+			}
+		});
 		
 	}
 	

@@ -34,6 +34,11 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         
+         <activity
+            android:name=".busao.ResultadoActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        
         <activity
             android:name=".busao.LocalidadeActivity"
             android:label="@string/app_name"

@@ -100,7 +100,7 @@ public class Configurations {
 	}
 	
 	public String searchRoute(String idCity) {
-		return getServerPath() + "route/searchRoute.php?idCity=" + idCity + "&nome=";
+		return getServerPath() + "route/searchRouteByName.php?idCity=" + idCity + "&nome=";
 	}
 
 	/**

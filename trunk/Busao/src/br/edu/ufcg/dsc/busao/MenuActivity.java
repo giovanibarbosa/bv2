@@ -52,7 +52,7 @@ public class MenuActivity extends Activity {
 		setActionsRows(rowTurismo, R.layout.menu_turismo);
 		setActionsRows(rowAjuda, R.layout.menu_ajuda);
 		setActionsRowLogo();
-		service = new HTTPModuleFacade("1", "0", "0");
+		service = HTTPModuleFacade.getInstance("1", "0", "0");
 		Log.i("Tarifa", service.getCityValorTarifa());
 	}
 	
@@ -79,6 +79,9 @@ public class MenuActivity extends Activity {
 			public void onClick(View v) {
 				Intent buscarPrincipal = new Intent(MenuActivity.this,
 						BuscarActivity.class);
+				Bundle b = new Bundle();
+			//	b.put("paramBusca", paramBusca.getText().toString());
+				buscarPrincipal.putExtras(b);	
 				MenuActivity.this.startActivity(buscarPrincipal);
 				MenuActivity.this.finish();
 				
