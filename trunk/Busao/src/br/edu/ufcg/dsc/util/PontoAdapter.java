@@ -78,7 +78,7 @@ public class PontoAdapter extends BaseAdapter {
 
 		PontoTuristico p = pontos.get(posicao);
 
-		holder.texto.setText(p.getTexto());
+		holder.texto.setText(p.getDescricao());
 		holder.imagem.setImageResource(p.getImagem());
 
 		holder.face.setOnClickListener(new FaceClickListener(p));

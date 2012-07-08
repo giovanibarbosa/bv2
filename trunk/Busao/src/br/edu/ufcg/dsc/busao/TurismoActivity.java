@@ -2,8 +2,10 @@ package br.edu.ufcg.dsc.busao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import br.edu.ufcg.dsc.R;
+import br.edu.ufcg.dsc.httpmodule.HTTPModuleFacade;
 import br.edu.ufcg.dsc.util.PontoAdapter;
 import br.edu.ufcg.dsc.util.PontoTuristico;
 import android.app.Activity;
@@ -14,6 +16,7 @@ public class TurismoActivity extends Activity {
 	private ListView list;
 	private List<PontoTuristico> pontos;
 	private PontoAdapter adapter;
+	private HTTPModuleFacade service;;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -22,16 +25,16 @@ public class TurismoActivity extends Activity {
 		list = (ListView) findViewById(R.id.turismo_list);
 		createListView();
 	
-		}
+		service = HTTPModuleFacade.getInstance("1", "0", "0");
+	}
 
 	private void createListView() {
 		pontos = new ArrayList<PontoTuristico>();
- 		pontos.add(new PontoTuristico("Canal de bodocongo","Canal de bodocongo eh um lugar para lazer e bla bla bla bla ", R.drawable.icon));
-		pontos.add(new PontoTuristico("Acude de bodocongo","Acude de bodocongo eh um otimo lugar para se refrescar, muito limpo e 0 por cento de agua de esgoto ", R.drawable.transparencia));
-		pontos.add(new PontoTuristico("Parque do Povo","Parque do povo eh um otimo lugar para nao ser assaltado!!!!!", R.drawable.logo_lrcosta));
-	 
+		List<Map<String, String>> pontosTuri = service.getAllTuristicPoint();
+		for (Map<String, String> map : pontosTuri) {
+			pontos.add(new PontoTuristico(map.get("id"), map.get("nome"), map.get("latitude"), map.get("longitude"), map.get("descricao"), R.drawable.icon));
+		}
 		adapter = new PontoAdapter(this,pontos);
- 
 		list.setAdapter(adapter);
 	}
 }
