@@ -18,6 +18,7 @@ import android.view.ContextThemeWrapper;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 import android.view.View;
 
 public class ResultadoActivity extends Activity {
@@ -102,6 +103,7 @@ public class ResultadoActivity extends Activity {
 					dialog.dismiss();
 				}
 			} );
+
 			break;
 
 		default:
@@ -111,33 +113,37 @@ public class ResultadoActivity extends Activity {
 		if ( dialog == null ){
 			dialog = super.onCreateDialog( id );
 		}
-		Object spinnerRotas = dialog.findViewById(R.id.spinner_rotas);
-		Log.i("spinner", spinnerRotas.toString());
+		
+//		Log.i("spinner1", ""+spinnerRotas1);
+//		Log.i("spinner2", ""+spinnerRotas2);
+//		Log.i("spinner1", ""+.findViewById(R.id.spinner_rotas));
+		View bodyResult = builder.getTemplateBody();
 		//Identifica o Spinner no layout
+		spinnerRotas = (Spinner) bodyResult.findViewById(R.id.spinner_rotas);
+		//Cria um ArrayAdapter usando um padrão de layout da classe R do android, passando o ArrayList nomes
+		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
+				new ArrayList(resultado.values()));
+		ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
+		spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinnerRotas.setAdapter(spinnerArrayAdapter);
+ 
+		//Método do Spinner para capturar o item selecionado
+		spinnerRotas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+ 
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
+				//pega nome pela posição
+				nome = parent.getItemAtPosition(posicao).toString();
+				//imprime um Toast na tela com o nome que foi selecionado
+				Toast.makeText(ResultadoActivity.this, "Nome Selecionado: " + nome, Toast.LENGTH_LONG).show();
+			}
+ 
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+ 
+			}
+		});
 
-//		//Cria um ArrayAdapter usando um padrão de layout da classe R do android, passando o ArrayList nomes
-//		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, 
-//				new ArrayList(resultado.values()));
-//		ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
-//		spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-//		spinnerRotas.setAdapter(spinnerArrayAdapter);
-// 
-//		//Método do Spinner para capturar o item selecionado
-//		spinnerRotas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-// 
-//			@Override
-//			public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
-//				//pega nome pela posição
-//				nome = parent.getItemAtPosition(posicao).toString();
-//				//imprime um Toast na tela com o nome que foi selecionado
-//				Log.i("nome", nome);
-//			}
-// 
-//			@Override
-//			public void onNothingSelected(AdapterView<?> parent) {
-// 
-//			}
-//		});
 		return dialog;
 	}
 
