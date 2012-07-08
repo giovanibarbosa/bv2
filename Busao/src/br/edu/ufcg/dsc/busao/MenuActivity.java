@@ -1,10 +1,12 @@
 package br.edu.ufcg.dsc.busao;
 
+import it.sephiroth.demo.slider.widget.MultiDirectionSlidingDrawer;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import it.sephiroth.demo.slider.widget.MultiDirectionSlidingDrawer;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -16,10 +18,12 @@ import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
 import br.edu.ufcg.dsc.R;
@@ -35,6 +39,10 @@ public class MenuActivity extends Activity {
 	LinearLayout linearLayoutScrollView;
 	ImageView botaoAlterarCidade, botaoSearch,botaoFace,botaoTwitter;
 	HTTPModuleFacade service;
+	private Map<String, String> cidadesApp = new HashMap<String, String>();
+	private Spinner featuresSelection;
+	private List<CharSequence> featuresList;
+	private ArrayAdapter<CharSequence> featuresAdapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +61,12 @@ public class MenuActivity extends Activity {
 		setActionsRows(rowAjuda, R.layout.menu_ajuda);
 		setActionsRowLogo();
 		service = HTTPModuleFacade.getInstance("1", "0", "0");
-		Log.i("Tarifa", service.getCityValorTarifa());
+
+		//cria o spinner na tela
+        featuresList = new ArrayList<CharSequence>();
+        featuresAdapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, featuresList);       
+		featuresAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		
 	}
 	
 	@Override
@@ -125,6 +138,22 @@ public class MenuActivity extends Activity {
 			setActionAlterarCidade(botaoAlterarCidade);
 			TextView textTarifa = (TextView) findViewById(R.id.text_preco_tarifa);
 			textTarifa.setText(textTarifa.getText() + " " + service.getCityValorTarifa());
+			
+			featuresSelection = (Spinner) findViewById(R.id.spinner_cidade);		
+			featuresSelection.setAdapter(featuresAdapter);
+			
+			cidadesApp = service.getAllCitys();
+			
+			if(cidadesApp.size() > 0){
+				
+				featuresAdapter.clear();
+				for (String idCidadeEncontrada : cidadesApp.values()) {
+					featuresAdapter.add(idCidadeEncontrada);	
+				}
+				
+				featuresSelection.setEnabled(true);
+			}
+			
 			break;		
 			
 		case R.layout.buscar_onibus:
@@ -151,17 +180,10 @@ public class MenuActivity extends Activity {
 		PontoAdapter adapter;
 		List<Map<String, String>> pontosTuri = service.getAllTuristicPoint();
 		for (Map<String, String> map : pontosTuri) {
-			Log.i("Mapa", map.toString());
+			pontos.add(new PontoTuristico(map.get("id"), map.get("nome"), map.get("latitude"), map.get("longitude"), map.get("descricao"), R.drawable.icon));
 		}
- 		pontos.add(new PontoTuristico("Canal de bodocongo","Canal de bodocongo eh um lugar para lazer e bla bla bla bla ", R.drawable.icon));
-		pontos.add(new PontoTuristico("Acude de bodocongo","Acude de bodocongo eh um otimo lugar para se refrescar, muito limpo e 0 por cento de agua de esgoto ", R.drawable.transparencia));
-		pontos.add(new PontoTuristico("Parque do Povo","Parque do povo eh um otimo lugar, extremamente seguro!!! Pode levar seu Android sem medo pra la ¬¬", R.drawable.logo_lrcosta));
-	 
 		adapter = new PontoAdapter(this,pontos);
- 
 		list.setAdapter(adapter);
-		
-		
 	}
 
 	private void instanciarRows() {

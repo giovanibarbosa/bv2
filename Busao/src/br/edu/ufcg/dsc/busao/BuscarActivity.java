@@ -26,6 +26,7 @@ import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import br.edu.ufcg.dsc.R;
+import br.edu.ufcg.dsc.httpmodule.HTTPModuleFacade;
 import br.edu.ufcg.dsc.util.PontoAdapter;
 import br.edu.ufcg.dsc.util.PontoTuristico;
 
@@ -56,7 +57,7 @@ public class BuscarActivity extends MapActivity {
 	private long endTime=0;
 	private Intent telaConsultar;
 	private EditText paramBusca;
-	
+	private HTTPModuleFacade service;
 	
 	
 	@Override
@@ -78,6 +79,8 @@ public class BuscarActivity extends MapActivity {
 		setActionsBotao(botaoBuscarOnibus, 1);
 		setActionsBotao(botaoBuscarPonto, 2);
 		setActionsBotao(botaoRotasFavoritas, 3);
+		
+		service = HTTPModuleFacade.getInstance("1", "0", "0");
 		
 		paramBusca = (EditText) findViewById(R.id.paramBusca);
 		
@@ -249,12 +252,11 @@ public class BuscarActivity extends MapActivity {
 		ListView list = (ListView) findViewById(R.id.turismo_list);;
 		List<PontoTuristico> pontos = new ArrayList<PontoTuristico>();
 		PontoAdapter adapter;
- 		pontos.add(new PontoTuristico("Canal de bodocongo","Canal de bodocongo eh um lugar para lazer e bla bla bla bla ", R.drawable.icon));
-		pontos.add(new PontoTuristico("Acude de bodocongo","Acude de bodocongo eh um otimo lugar para se refrescar, muito limpo e 0 por cento de agua de esgoto ", R.drawable.transparencia));
-		pontos.add(new PontoTuristico("Parque do Povo","Parque do povo eh um otimo lugar, extremamente seguro!!! Pode levar seu Android sem medo pra la ¬¬", R.drawable.logo_lrcosta));
-	 
+		List<Map<String, String>> pontosTuri = service.getAllTuristicPoint();
+		for (Map<String, String> map : pontosTuri) {
+			pontos.add(new PontoTuristico(map.get("id"), map.get("nome"), map.get("latitude"), map.get("longitude"), map.get("descricao"), R.drawable.icon));
+		}
 		adapter = new PontoAdapter(this,pontos);
- 
 		list.setAdapter(adapter);
 	}
 	

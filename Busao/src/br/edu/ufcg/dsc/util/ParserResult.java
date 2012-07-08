@@ -8,8 +8,6 @@ import java.util.Map;
 
 public class ParserResult {
 	
-	
-
 	/**
 	 * Trata a string proveniente do banco de dados
 	 * @param str A string vinda do bd
@@ -31,25 +29,47 @@ public class ParserResult {
 	
 	public static List<Map<String, String>> parseAll(String str) {
 		if(str.equals("null")) return null;
-		//elimina sujeira
-		/*
-		 * [{"id":"1","nome":"Parque do Povo","latitude":"-7.224269","longitude":"-35.887624","descricao":null},{"id":"2","nome":"Acude Velho","latitude":"-7.226611","longitude":"-35.885167","descricao":null}]
-		 */
+		Map<String, String> mapaResultado = new HashMap<String, String>();
 		List<Map<String, String>> listaTuplas = new ArrayList<Map<String,String>>();
-		str = str.replace("[{\"", "").replace("\"}]", ""); //mudar para ""
-		String[] separaLinhas = str.split("\"},"); //mudar para ""
-		for (String string : separaLinhas) {
-			string = string.replace("{\"", "");//mudar ""
-			Map<String, String> mapaResultado = new HashMap<String, String>();
-			String separado = "\",\"";//Mudar para ""
-			String[] resultado = string.split(separado);
-			for (String string2 : resultado) {
-				String[] valores = string2.split("\":\"");//mudar para ""
-				mapaResultado.put(valores[0], valores[1]);
+		str = str.substring(2, str.length()-2);
+		str = str.replaceAll("\"", "").trim();
+		String[] pontos = str.split("id");
+		char id;
+		for (String s : pontos) {
+			if (s.length() > 0){
+				id = s.substring(0, 2).toCharArray()[1];
+				mapaResultado.put("id", id+"");
+				s = s.substring(3, s.length());
+						
+				if (s.endsWith("{")) s = s.substring(0, s.length() - 3);
+				
+				String[] att = s.split(",");
+				for (String a : att) {
+					String[] fields = a.split(":");
+					mapaResultado.put(fields[0], fields[1]);
+				}
+				listaTuplas.add(mapaResultado);
 			}
-			listaTuplas.add(mapaResultado);
 		}
+		
 		return listaTuplas;
+		
+//		if(str.equals("null")) return null;
+//		List<Map<String, String>> listaTuplas = new ArrayList<Map<String,String>>();
+//		str = str.replace("[{\"", "").replace("\"}]", ""); //mudar para ""
+//		String[] separaLinhas = str.split("\"},"); //mudar para ""
+//		for (String string : separaLinhas) {
+//			string = string.replace("{\"", "");//mudar ""
+//			Map<String, String> mapaResultado = new HashMap<String, String>();
+//			String separado = "\",\"";//Mudar para ""
+//			String[] resultado = string.split(separado);
+//			for (String string2 : resultado) {
+//				String[] valores = string2.split("\":\"");//mudar para ""
+//				mapaResultado.put(valores[0], valores[1]);
+//			}
+//			listaTuplas.add(mapaResultado);
+//		}
+//		return listaTuplas;
 	}
 	
 	public static List<String> parseOnlyName(String str) {
@@ -73,23 +93,32 @@ public class ParserResult {
 	
 	public static Map<String, String> parseIdName(String str) {
 		if(str.equals("null")) return new HashMap<String, String>();
-		//elimina sujeira
-		//"[{'id':'1','nome':'Campina Grande'},{'id':'2','nome':'Jo'}]";
-		str = str.replace("[{\"", "").replace("\"}]", ""); //mudar para ""
+		str = str.replace("[{\"", "").replace("\"}]", "");
 		Map<String, String> mapaResultado = new HashMap<String, String>();
-		String[] separaLinhas = str.split("\"},"); //mudar para ""
-		for (String string : separaLinhas) {
-			string = string.replace("{\"","");//mudar ""
-			String separado = "\",\"";//Mudar para ""
-			String[] resultado = string.split(separado);
-			List<String> mapa = new ArrayList<String>();
-			for (String string2 : resultado) {
-				String[] valores = string2.split("\":\"");//mudar para ""
-				mapa.add(valores[1]);
-			}
-			mapaResultado.put(mapa.get(0), mapa.get(1));
+		String [] separaLinhas = str.split(",");
+		for (String s : separaLinhas){
+			s = s.replaceAll("\"", "");
+			String[] fields = s.split(":");
+			mapaResultado.put(fields[0], fields[1]);
 		}
 		return mapaResultado;
+		
+//		if(str.equals("null")) return new HashMap<String, String>();
+//		str = str.replace("[{\"", "").replace("\"}]", ""); //mudar para ""
+//		Map<String, String> mapaResultado = new HashMap<String, String>();
+//		String[] separaLinhas = str.split("\"},"); //mudar para ""
+//		for (String string : separaLinhas) {
+//			string = string.replace("{\"","");//mudar ""
+//			String separado = "\",\"";//Mudar para ""
+//			String[] resultado = string.split(separado);
+//			List<String> mapa = new ArrayList<String>();
+//			for (String string2 : resultado) {
+//				String[] valores = string2.split("\":\"");//mudar para ""
+//				mapa.add(valores[1]);
+//			}
+//			mapaResultado.put(mapa.get(0), mapa.get(1));
+//		}
+//		return mapaResultado;
 	}
 	
 	public static void main(String[] args) {
