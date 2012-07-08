@@ -15,7 +15,7 @@ public class CustomBuilder extends Builder
 	private TextView message = null;
 	private ImageView icon = null;
 	private int templateBody;
-	private View customTitle;
+	private View customTitle, customMessage;
 
 	public CustomBuilder( Context context , int templateBody)
 	{
@@ -27,14 +27,14 @@ public class CustomBuilder extends Builder
 		icon = (ImageView) customTitle.findViewById( R.id.icon );
 		setCustomTitle( customTitle );
 
-		View customMessage = View.inflate( context,
+		customMessage = View.inflate( context,
 				this.templateBody, null );
 		message = (TextView) customMessage.findViewById( R.id.message );
 		setView( customMessage );
 	}
 	
 	public View getTemplateBody(){
-		return customTitle.findViewById(this.templateBody);
+		return customMessage;
 	}
 
 	@Override
