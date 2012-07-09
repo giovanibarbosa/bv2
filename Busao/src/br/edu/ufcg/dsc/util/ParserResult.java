@@ -38,6 +38,7 @@ public class ParserResult {
 		for (String s : pontos) {
 			if (s.length() > 0){
 				id = s.substring(0, 2).toCharArray()[1];
+				mapaResultado.clear();
 				mapaResultado.put("id", id+"");
 				s = s.substring(3, s.length());
 						

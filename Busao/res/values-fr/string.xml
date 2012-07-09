@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, BusaoActivity!</string>
+    <string name="app_name">Busão</string>
+    
+    <!-- Splash Screen -->
+    <string name="description">Splash Screen</string>
+    <string name="versao">versão 1.0</string>
+    
+    <!-- Loading -->
+    <string name="progress_msg">chargement</string>
+    
+    <!-- Menu principal -->
+	<string name="bem_vindo">accueil!</string>
+	<string name="menu_localidade">localité</string>
+	<string name="menu_buscar">rechercher</string>
+	<string name="menu_turismo">tourisme</string>
+	<string name="menu_ajuda">aider</string>
+	<string name="compartilhar">part</string> 
+    
+	<string name="bem_vindo_desc">Le BUSÃO et une perspective d application
+		de l utilisateur IME pour le passage du prochain bus. En outre, nous avons signalé
+		les routes qui mènent à des sites touristiques, le partage
+		réseaux sociaux et plus encore! Amusez-vous!</string>
+	
+	<string name="localidade_desc">Dans la zone de menu, vous aurez accès au meilleur
+		informations sur la ville en cours d utilisation, tels que le prix de billets d autobus.
+		Le BUSAO couvre plusieurs villes dans le Nord-Est, l utilisateur peut modifier la ville actuelle
+		à tout moment. </string>
+	
+	<string name="buscar_desc">L application de recherche permet à l utilisateur de trouver un bus
+		ou rechercher des itinéraires qui répondent à leurs besoins. La recherche peut être effectuée par
+		ligne spécifique ou d un GPS</string>
+	    
+	<string name="turismo_desc">Le BUSAO informe également les lignes de bus qui mènent à
+		des visites guidées dans chaque ville. Ainsi, vous aurez plus de temps pour profiter de
+		beautés architecturales et culturelles.</string>
+	
+	<string name="compartilhar_desc">Choisir des parcours avec des sites touristiques et
+		Partager sur les réseaux sociaux</string>
+	 
+	<string name="open">ouvrir</string>
+
+	<!-- Menu Ajuda -->
+	<string name="ajuda_pre">conditions préalables</string>
+	<string name="ajuda_rotas">rechercher des itinéraires de</string>
+	<string name="ajuda_onibus">prendre le bus</string>
+	<string name="ajuda_mapas">cartes</string>
+	<string name="ajuda_texto_pre_requisitos">Il est nécessaire que votre appareil dispose d un accès Internet et GPS.</string>
+	<string name="ajuda_texto_onibus">Pour rechercher une ligne de bus spécifique (afficher le menu> bus), sélectionnez une ligne désirée et leurs données seront affichées.</string>
+	<string name="ajuda_texto_rotas">Dans le menu de recherche> itinéraires, marquer les deux points sur la carte que vous souhaitez (ce peut être l un de votre position actuelle) et si il ya une ligne de bus qui passe à travers ces points, vos données seront affichées.</string>
+	<string name="ajuda_texto_mapas">En cherchant> cartes peuvent être consultés itinéraires balisés en tant que favori.</string>
+
+	
+	<!-- Popup Resultado -->
+	<string name="result_faltam">insuffisant</string>
+	<string name="result_minutos">procès-verbal</string>
+	<string name="result_inicio">Première</string>
+	<string name="result_termino">Fin</string>
+	<string name="result_empresa">Entreprise</string>
+	<string name="result_ok">ok</string>
+	<string name="result_voltar">retour</string>
+	<string name="result_onibus">bus trouvée</string>
+	<string name="result_result">Résultats de la recherche</string>
+	<string name="result_mapa">carte</string>
+	
+	
+	<!-- Cidades -->
+	
+	<string name="cidade_titulo_inicial">vous êtes dans</string>
+	<string name="texto_tarifa">Le tarif: R$</string>
+	
+	<string name="titulo_campinagrande">Campina Grande, Paraiba</string>
+	<string name="titulo_joaopessoa">Joao Pessoa, Paraiba</string>
+	
+	<string name="cidade_campinagrande">Considéré comme l un des principaux pôles indrustriais la région du Nord et la plus grande plate-forme technologique de l Amérique latine,
+		Campina Grande a été élevé au statut de ville le 11 Octobre, 1864. La ville dispose d une chaîne culturelle variée ordre du jour, debout les festivités de Saint-Jean,
+		passe tout le mois de Juin, la réunion de la nouvelle conscience, une rencontre œcuménique tenue pendant le carnaval, outre le Festival d hiver.
+		Selon le sens de l année 2010, la population est d environ 400.000 habitants. Et considérée comme la ville la plus dynamique dans le nord-est et la sixième ville la plus dynamique au 
+		Brésil.</string>
+		
+	<string name="cidade_joaopessoa">Capitale de l Etat de Paraiba, Joao Pessoa et connu comme la «Porte du Soleil", en raison du fait que la ville soit située
+			Ponta do Seixas, qui est le point le plus oriental des Amériques, ce qui rend la ville était connue comme le lieu «où le soleil se lève le premier dans les Amériques." La municipalité
+			et aussi remarquable pour son climat tropical, et un de la meilleure qualité de vie des capitales dans le nord.</string>
+	<string name="descricao_about">www.busaoapp.com</string>
+	
+	<string name="descricao_popup_cidade">Choisissez une ville pour afficher vos itinéraires</string>
+	
+	<string name="botao_confirmar">confirmer</string>
+	<string name="botao_cancelar">annuler</string>
+	<string name="botao_ok">ok</string>
+	<string name="botao_voltar">retour</string>
+	<string name="botao_mapa">carte</string>
+	<string name="botao_alterar_cidade">changer la ville</string>
+	<string name="titulo_alterar_cidade">changer la ville</string>
+	<string name="faltam">insuffisant</string>
+	<string name="minutos">min</string>
+	
+	<!-- MAPA -->
+	
+	<string name="obs_rotas">Les informations contenues dans ce document sur ​​les lignes de bus ont été fournis par les organes responsables de chaque municipalité</string>
+	<string name="busca_label_onibus">Ligne</string>
+	<string name="busca_label_rota">Route</string>
+	<string name="busca_label_favoritos">Favoris</string>
+	
+	
+</resources>

@@ -252,9 +252,23 @@ public class BuscarActivity extends MapActivity {
 		ListView list = (ListView) findViewById(R.id.turismo_list);;
 		List<PontoTuristico> pontos = new ArrayList<PontoTuristico>();
 		PontoAdapter adapter;
+		int imagem = 0;
 		List<Map<String, String>> pontosTuri = service.getAllTuristicPoint();
 		for (Map<String, String> map : pontosTuri) {
-			pontos.add(new PontoTuristico(map.get("id"), map.get("nome"), map.get("latitude"), map.get("longitude"), map.get("descricao"), R.drawable.icon));
+			
+			if (map.get("nome").equalsIgnoreCase("Parque do Povo")){
+				imagem = R.drawable.pt_cg_pp;
+			} else if (map.get("nome").equalsIgnoreCase("Tropeiros da Borborema")){
+				imagem = R.drawable.pt_cg_tropeiros;
+			} else if (map.get("nome").equalsIgnoreCase("Acude Velho")){
+				imagem = R.drawable.pt_cg_acudevelho;
+			} else if (map.get("nome").equalsIgnoreCase("Jackson do Pandeiro")){
+				imagem = R.drawable.pt_cg_jackson;
+			} else { //imagem default
+				imagem = R.drawable.pt_default;
+			}
+			
+			pontos.add(new PontoTuristico(map.get("id"), map.get("nome"), map.get("latitude"), map.get("longitude"), map.get("descricao"), imagem));
 		}
 		adapter = new PontoAdapter(this,pontos);
 		list.setAdapter(adapter);
