@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, BusaoActivity!</string>
+    <string name="app_name">Busão</string>
+    
+    <!-- Splash Screen -->
+    <string name="description">Splash Screen</string>
+    <string name="versao">versão 1.0</string>
+    
+    <!-- Loading -->
+    <string name="progress_msg">loading</string>
+    
+    <!-- Menu principal -->
+	<string name="bem_vindo">welcome!</string>
+	<string name="menu_localidade">locality</string>
+	<string name="menu_buscar">search</string>
+	<string name="menu_turismo">tourism</string>
+	<string name="menu_ajuda">help</string>
+	<string name="compartilhar">share</string> 
+    
+	<string name="bem_vindo_desc">The BUSÂO it´s an application that gives to user 
+	    the perspective  of time to the next bus. In adition, informs the routes 
+	    for the tourism point and allow share with social networks. Enjoy !!!!!</string>
+	
+	<string name="localidade_desc">In locality menu, the user has access to informations 
+	    about the current city, like the tariff price. The BUSÃO covers some of the majors 
+	    cities of the Northeast. The user can choose the city for the application. </string>
+	
+	<string name="buscar_desc">The search in the application, helps the user to find the 
+	    correct bus and the routes that meet their needs. The search can be by specific 
+	    line or by GPS</string>
+	    
+	<string name="turismo_desc">The BUSÃO also informs the routes for the tourism point 
+	    of each city. So you will have more time to enjoy architectural and cultural 
+	    beauties.</string>
+	
+	<string name="compartilhar_desc">Choice routes with tourism point and share with 
+	    social networks</string>
+	
+	<string name="open">open</string>
+	
+	<!-- Menu Ajuda -->
+	<string name="ajuda_pre">pre-requisites</string>
+	<string name="ajuda_rotas">search routes</string>
+	<string name="ajuda_onibus">search bus</string>
+	<string name="ajuda_mapas">maps</string>
+	<string name="ajuda_texto_pre_requisitos">It is necessary that your device has Internet access and GPS.</string>
+	<string name="ajuda_texto_onibus">To search for a specific bus line (get menu> bus), select a desired row and their data will be displayed.</string>
+	<string name="ajuda_texto_rotas">In the search menu > routes, mark the two points on the map you want (this may be one of your current location) and if there is a bus line that passes through these points, your data will be displayed.</string>
+	<string name="ajuda_texto_mapas">In search > maps can be viewed routes marked as favorites.</string>
+
+	
+	<!-- Popup Resultado -->
+	<string name="result_faltam">Missing</string>
+	<string name="result_minutos">Minutes</string>
+	<string name="result_inicio">Start</string>
+	<string name="result_termino">End</string>
+	<string name="result_empresa">Company</string>
+	<string name="result_ok">ok</string>
+	<string name="result_voltar">back</string>
+	<string name="result_onibus">bus founded</string>
+	<string name="result_result">Search result</string>
+	<string name="result_mapa">map</string>
+	
+	
+	<!-- Cidades -->
+	
+	<string name="cidade_titulo_inicial">you are in</string>
+	<string name="texto_tarifa">Tariff Price: R$</string>
+	
+	<string name="titulo_campinagrande">Campina Grande, Paraiba</string>
+	<string name="titulo_joaopessoa">Joao Pessoa, Paraiba</string>
+	
+	<string name="cidade_campinagrande">Considered one of the main poles indrustriais the Northeast Region and the largest technological hub of Latin America,
+Campina Grande was elevated to city status on October 11, 1864. The city has a varied cultural agenda chain, standing up the festivities of São João,
+happening throughout the month of June, the Meeting of the New Consciousness, an ecumenical meeting held during the carnival, besides the Winter Festival.
+According to the sense of 2010, the population is around 400,000 inhabitants. And considered the most dynamic city in the northeast and the sixth most dynamic city in Brazil.</string>
+		
+	<string name="cidade_joaopessoa">Capital of the State of Paraiba, Joao Pessoa and known as the "Gateway of the Sun", due to the fact that the city be located
+Ponta do Seixas, which is the easternmost point of the Americas, which makes the city was known as the place "where the sun rises first in the Americas." The municipality
+and also notable for its tropical climate, and one of the capitals best quality of life in the Northeast.</string>
+	    
+	<string name="descricao_about">www.busaoapp.com</string>
+	
+	<string name="descricao_popup_cidade">Choose a city to view your routes</string>
+	
+	<string name="botao_confirmar">confirm</string>
+	<string name="botao_cancelar">cancel</string>
+	<string name="botao_ok">ok</string>
+	<string name="botao_voltar">back</string>
+	<string name="botao_mapa">map</string>
+	<string name="botao_alterar_cidade">change city</string>
+	<string name="titulo_alterar_cidade">change city</string>
+	<string name="faltam">missing</string>
+	<string name="minutos">min</string>
+	
+	<!-- MAPA -->
+	
+	<string name="obs_rotas">The information contained herein about the bus routes were provided by the responsible organs of each municipality</string>
+	<string name="busca_label_onibus">Line</string>
+	<string name="busca_label_rota">Route</string>
+	<string name="busca_label_favoritos">Favourites</string>
+	
+	
+</resources>
