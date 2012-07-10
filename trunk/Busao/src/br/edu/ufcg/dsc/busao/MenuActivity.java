@@ -139,20 +139,20 @@ public class MenuActivity extends Activity {
 			TextView textTarifa = (TextView) findViewById(R.id.text_preco_tarifa);
 			textTarifa.setText(textTarifa.getText() + " " + service.getCityValorTarifa());
 			
-			featuresSelection = (Spinner) findViewById(R.id.spinner_cidade);		
-			featuresSelection.setAdapter(featuresAdapter);
+//			featuresSelection = (Spinner) findViewById(R.id.spinner_cidade);		
+//			featuresSelection.setAdapter(featuresAdapter);
 			
 			cidadesApp = service.getAllCitys();
 			
-			if(cidadesApp.size() > 0){
-				
-				featuresAdapter.clear();
-				for (String idCidadeEncontrada : cidadesApp.values()) {
-					featuresAdapter.add(idCidadeEncontrada);	
-				}
-				
-				featuresSelection.setEnabled(true);
-			}
+//			if(cidadesApp.size() > 0){
+//				
+//				featuresAdapter.clear();
+//				for (String idCidadeEncontrada : cidadesApp.values()) {
+//					featuresAdapter.add(idCidadeEncontrada);	
+//				}
+//				
+//				featuresSelection.setEnabled(true);
+//			}
 			
 			break;		
 			
