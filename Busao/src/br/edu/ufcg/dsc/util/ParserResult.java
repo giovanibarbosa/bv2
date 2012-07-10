@@ -29,7 +29,7 @@ public class ParserResult {
 	
 	public static List<Map<String, String>> parseAll(String str) {
 		if(str.equals("null")) return null;
-		Map<String, String> mapaResultado = new HashMap<String, String>();
+		Map<String, String> mapaResultado;
 		List<Map<String, String>> listaTuplas = new ArrayList<Map<String,String>>();
 		str = str.substring(2, str.length()-2);
 		str = str.replaceAll("\"", "").trim();
@@ -37,8 +37,8 @@ public class ParserResult {
 		char id;
 		for (String s : pontos) {
 			if (s.length() > 0){
+				mapaResultado = new HashMap<String, String>();
 				id = s.substring(0, 2).toCharArray()[1];
-				mapaResultado.clear();
 				mapaResultado.put("id", id+"");
 				s = s.substring(3, s.length());
 						

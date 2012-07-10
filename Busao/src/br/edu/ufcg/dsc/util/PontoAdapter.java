@@ -97,11 +97,7 @@ public class PontoAdapter extends BaseAdapter {
 		@Override
 		public void onClick(View v) {
 			// Ver como postar mensagem no face
-			Toast.makeText(
-					context,
-					"Face: " + "Eu conheci o " + ponto.getNome()
-							+ " pelo Busão!", Toast.LENGTH_LONG).show();
-
+			Toast.makeText(context, "Face: " + "Eu conheci o " + ponto.getNome() + " pelo Busão!", Toast.LENGTH_LONG).show();
 		}
 
 	}
@@ -131,6 +127,5 @@ public class PontoAdapter extends BaseAdapter {
 			}
 
 		}
-
 	}
 }

@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:clickable="false">
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -30,12 +31,6 @@
             android:clickable="false"
             android:drawSelectorOnTop="true"
             android:textColor="#000000" >
-
-            <!-- Preview: 
-                listheader=@android:layout/two_line_list_item
-                listitem=@layout/ponto_adapter_item
-             -->
-
         </ListView>
 
     </LinearLayout>
