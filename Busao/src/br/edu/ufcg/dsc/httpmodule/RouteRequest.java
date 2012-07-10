@@ -21,8 +21,8 @@ public class RouteRequest extends HTTPModule {
 
 	
 	public static String getDataRoute(String id, String campo, String latitude, String longitude) throws Exception {
-		if(Cache.isAtualRota(id)){
-			String result = getResult(Configurations.getInstance().getRoutesPath(id, latitude, longitude));
+		if(!Cache.isAtualRota(id)){
+			String result = getResult(Configurations.getInstance().getRoutesPathSmall(id, latitude, longitude));
 			Map<String, String> mapeamento = ParserResult.parse(result);
 			Rota rota = getObjectRota(mapeamento);
 			Cache.setRota(rota);

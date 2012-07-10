@@ -80,7 +80,7 @@ public class BuscarActivity extends MapActivity {
 		setActionsBotao(botaoBuscarPonto, 2);
 		setActionsBotao(botaoRotasFavoritas, 3);
 		
-		service = HTTPModuleFacade.getInstance("1", "0", "0");
+		service = HTTPModuleFacade.getInstance();
 		
 		paramBusca = (EditText) findViewById(R.id.paramBusca);
 		

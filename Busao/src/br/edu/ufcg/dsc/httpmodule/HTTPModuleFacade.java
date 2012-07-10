@@ -110,7 +110,7 @@ public class HTTPModuleFacade {
 		return getRouteData(id, "cor");
 	}
 	public String getRouteUrlRota(String id){
-		return getRouteData(id, "urlRota");
+		return getRouteData(id, "url");
 	}
 
 	public String getRouteDirecao(String id){

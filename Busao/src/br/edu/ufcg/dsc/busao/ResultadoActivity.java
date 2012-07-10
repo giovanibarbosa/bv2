@@ -12,12 +12,15 @@ import br.edu.ufcg.dsc.util.CustomBuilder;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.view.View;
 
@@ -29,6 +32,9 @@ public class ResultadoActivity extends Activity {
 	private ArrayAdapter<CharSequence> featuresAdapter;
 	private List<CharSequence> featuresList;
 	private String nome;
+	private View bodyResult;
+	public String atualURLMap = "";
+	public String idRota = "";
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -99,8 +105,18 @@ public class ResultadoActivity extends Activity {
 				@Override
 				public void onClick( DialogInterface dialog, int which )
 				{
-					//abrir mapa
-					dialog.dismiss();
+					String urlRota = atualURLMap;
+					Log.i("url", urlRota);
+					
+					if(!urlRota.equals("")){
+						Uri uri1 = Uri.parse(urlRota);					
+						Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri1);
+						mapIntent.setData(uri1);
+						startActivity(Intent.createChooser(mapIntent, idRota));				
+					}else{
+						Toast toast = Toast.makeText(getApplicationContext(), "Rota Indisponivel", Toast.LENGTH_SHORT);
+						toast.show();
+					}
 				}
 			} );
 
@@ -114,10 +130,7 @@ public class ResultadoActivity extends Activity {
 			dialog = super.onCreateDialog( id );
 		}
 		
-//		Log.i("spinner1", ""+spinnerRotas1);
-//		Log.i("spinner2", ""+spinnerRotas2);
-//		Log.i("spinner1", ""+.findViewById(R.id.spinner_rotas));
-		View bodyResult = builder.getTemplateBody();
+		bodyResult = builder.getTemplateBody();
 		//Identifica o Spinner no layout
 		spinnerRotas = (Spinner) bodyResult.findViewById(R.id.spinner_rotas);
 		//Cria um ArrayAdapter usando um padrão de layout da classe R do android, passando o ArrayList nomes
@@ -135,7 +148,9 @@ public class ResultadoActivity extends Activity {
 				//pega nome pela posição
 				nome = parent.getItemAtPosition(posicao).toString();
 				//imprime um Toast na tela com o nome que foi selecionado
-				Toast.makeText(ResultadoActivity.this, "Nome Selecionado: " + nome, Toast.LENGTH_LONG).show();
+				//Toast.makeText(ResultadoActivity.this, "Nome Selecionado: " + nome, Toast.LENGTH_LONG).show();
+				String idRota = getKeyByValue(resultado, nome);
+				atualizaDados(idRota);
 			}
  
 			@Override
@@ -145,6 +160,23 @@ public class ResultadoActivity extends Activity {
 		});
 
 		return dialog;
+	}
+	
+	private String getKeyByValue(Map<String, String> mapa, String value){
+		for (String key : mapa.keySet()) {
+			if(mapa.get(key).equals(value)){
+				return key;
+			}
+		}
+		return "";
+	}
+	
+	private void atualizaDados(String idRota){
+		this.idRota = idRota;
+		TextView textMinutos = (TextView) bodyResult.findViewById(R.id.text_tempo_restante);
+		textMinutos.setText(service.getRouteTimeWait(idRota));
+		this.atualURLMap = service.getRouteUrlRota(idRota);
+		Log.i("atualizandoDados", idRota);
 	}
 
 }

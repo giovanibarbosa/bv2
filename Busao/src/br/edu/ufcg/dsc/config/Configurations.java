@@ -71,6 +71,9 @@ public class Configurations {
 		return getServerPath() + "route/getRouteData.php?id=" + idRota +"&coordinates="+latitude+","+longitude ;
 	}
 
+	public String getRoutesPathSmall(String idRota, String latitude, String longitude) {
+		return getServerPath() + "route/getRouteData.php?id=" + idRota +"&coordinates="+latitude+","+longitude+"&atribute=id, nome, url" ;
+	}
 
 	/**
 	 * Retorna, se houver, uma rota de onibus que passe entre dois pontos no
