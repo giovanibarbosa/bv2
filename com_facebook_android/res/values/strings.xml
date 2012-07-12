@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="loading">Loading&#8230;</string>
+    <string name="send">Send</string>
+    <string name="cancel">Cancel</string>
+    <string name="dialog_comment_title">Comment</string>
+    <string name="dialog_comment_placeholder">Write something&#8230;</string>
+    <string name="dialog_post_to_wall_title">Post to Wall</string>
+    <string name="dialog_post_to_wall_placeholder">Say something about this&#8230;</string>
+</resources>
