@@ -12,8 +12,10 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.ecs.sample.Constants;
+import com.ecs.sample.TwitterUtils;
 import com.ecs.sample.store.CredentialStore;
 import com.ecs.sample.store.SharedPreferencesCredentialStore;
 import com.ecs.sample.util.QueryStringParser;
@@ -29,7 +31,8 @@ public class AuthTwitterActivity extends Activity {
 	final String TAG = getClass().getName();
 	
 	private SharedPreferences prefs;
-
+	
+	private Activity act = this;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -99,6 +102,13 @@ public class AuthTwitterActivity extends Activity {
 		            			CredentialStore credentialStore = new SharedPreferencesCredentialStore(prefs);
 					  		      credentialStore.write(new String[] {credentials.token,credentials.tokenSecret});
 					  		      view.setVisibility(View.INVISIBLE);
+					  		      String ponto = getIntent().getStringExtra("ponto");
+									try {
+										TwitterUtils.sendTweet(prefs, "Eu conheci o " + ponto + " pelo @busaoapp !!!");
+										Toast.makeText(act,	"Tweet enviado!", Toast.LENGTH_LONG).show();
+									} catch (Exception e) {
+										e.printStackTrace();
+									}
 					  		      startActivity(new Intent(AuthTwitterActivity.this,MenuActivity.class));
 	            			} else if (url.indexOf("error=")!=-1) {
 	            				view.setVisibility(View.INVISIBLE);
