@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
+import br.com.indigo.android.facebook.SocialFacebook;
 import br.edu.ufcg.dsc.R;
 import br.edu.ufcg.dsc.httpmodule.HTTPModuleFacade;
 import br.edu.ufcg.dsc.util.CustomBuilder;
@@ -326,5 +326,12 @@ public class MenuActivity extends Activity {
 		}
 		return dialog;
 	}
+	
+
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	SocialFacebook.getInstance().authorizeCallback(requestCode, resultCode, data);
+	
+}
 	
 }

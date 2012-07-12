@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.ecs.sample.TwitterUtils;
 
+import br.com.indigo.android.facebook.SocialFacebook;
+import br.com.indigo.android.facebook.SocialFacebook.NewObjectListener;
+import br.com.indigo.android.facebook.models.FbSimplePost;
 import br.edu.ufcg.dsc.R;
 
 import br.edu.ufcg.dsc.busao.AuthTwitterActivity;
@@ -13,6 +16,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,8 +100,38 @@ public class PontoAdapter extends BaseAdapter {
 
 		@Override
 		public void onClick(View v) {
-			// Ver como postar mensagem no face
-			Toast.makeText(context, "Face: " + "Eu conheci o " + ponto.getNome() + " pelo Busão!", Toast.LENGTH_LONG).show();
+		    FbSimplePost post = new FbSimplePost();
+			post.setName("Eu conheci o " + ponto.getNome() + " pelo Busão!");
+			post.setCaption("busaoapp.com");
+			post.setDescription("O Busão é um aplicativo para Android, que fornece ao usuário o itinerário de rotas de ônibus de algumas cidades.");
+			post.setLink("http://www.busaoapp.com");
+			//post.setPicture("./res/drawable-hdpi/icon.png");
+			post.setActionName("Website do Busão");
+			post.setActionLink("http://www.busaoapp.com");
+			post.setMessage("Mensagem criado por Busão");
+			 
+			SocialFacebook.getInstance().publish((Activity)context, post, new NewObjectListener(){
+
+				@Override
+				public void onFail(Throwable thr) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void onCancel() {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void onComplete(String id) {
+					Toast.makeText(context, "Post enviado!", Toast.LENGTH_LONG).show();
+					
+				}
+				
+			});
+			
 		}
 
 	}
@@ -115,8 +149,10 @@ public class PontoAdapter extends BaseAdapter {
 		@Override
 		public void onClick(View v) {
 			if (!TwitterUtils.isAuthenticated(prefs)) {
+				Bundle b = new Bundle();
+				b.putString("ponto", ponto.getNome());
 				context.startActivity(new Intent().setClass(v.getContext(),
-						AuthTwitterActivity.class));
+						AuthTwitterActivity.class).putExtra("ponto", ponto.getNome()));
 			}
 			String tweet = "Eu conheci o " + ponto.getNome() + " pelo @busaoapp !!!";
 			try {
