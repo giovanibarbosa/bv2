@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="left|center"
+	android:paddingBottom="5sp"
+	android:paddingTop="5sp"
+	android:paddingLeft="5sp"
+	android:clickable="false">
+    
+	<RelativeLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="150dp"
+	    android:layout_alignParentLeft="true"
+	    android:layout_centerVertical="true"
+	    android:layout_weight="1"
+	    android:orientation="horizontal" 
+	    android:clickable="false">
+	    
+	    <ImageView
+	        android:id="@+id/icone_list_rota"
+	        android:layout_width="48dp"
+	        android:layout_height="48dp"
+	        android:layout_marginRight="6dip" 
+	        android:src="@drawable/route_list"/>
+
+	    <!-- NOME DA ROTA. CONCATENAR COM COR -->
+	    <TextView
+	        android:id="@+id/list_routeName"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_toRightOf="@+id/icone_list_rota"
+	        android:layout_marginTop="2dp"
+	        android:layout_marginLeft="2dp"
+	        android:layout_alignParentLeft="true"
+	        android:layout_centerVertical="true"
+	        android:textColor="#000000"
+	        android:textSize="10sp" />
+	    
+	    <TextView
+	        android:id="@+id/list_num"
+	        android:text="@string/num_onibus"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_toRightOf="@+id/icone_list_rota"
+	        android:layout_above="@+id/list_routeName"
+	        android:layout_marginTop="2dp"
+	        android:layout_marginLeft="2dp"
+	        android:textColor="#000000"
+	        android:textSize="10sp" />
+	    	    
+	    <TextView
+	        android:id="@+id/list_dif"
+	        android:text="@string/dif_onibus"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_toRightOf="@+id/list_num"
+	        android:layout_marginTop="2dp"
+	        android:layout_marginLeft="2dp"
+	        android:textColor="#000000"
+	        android:textSize="10sp" />
+	    
+	    	    
+	    <TextView
+	        android:id="@+id/list_h1"
+	        android:text="@string/hora_inicio"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_toRightOf="@+id/icone_list_rota"
+	        android:layout_above="@+id/list_num"
+	        android:layout_marginTop="2dp"
+	        android:layout_marginLeft="2dp"
+	        android:textColor="#000000"
+	        android:textSize="10sp" />
+	    	    
+	    <TextView
+	        android:id="@+id/list_hf"
+	        android:text="@string/hora_fim"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_toRightOf="@+id/list_h1"
+	        android:layout_marginTop="2dp"
+	        android:layout_marginLeft="2dp"
+	        android:textColor="#000000"
+	        android:textSize="10sp" />
+	    
+	</RelativeLayout>
+    
+    
+</RelativeLayout>

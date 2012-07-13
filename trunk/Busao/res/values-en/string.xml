@@ -101,5 +101,11 @@ and also notable for its tropical climate, and one of the capitals best quality 
 	<string name="busca_label_rota">Route</string>
 	<string name="busca_label_favoritos">Favourites</string>
 	
+	    <!-- LIST ROUTE -->
+    
+    <string name="num_onibus">Number of Bus: </string>
+    <string name="dif_onibus">Diference between bus: </string>
+    <string name="hora_inicio">Start Time: </string>
+    <string name="hora_fim">End Time: </string>
 	
 </resources>
