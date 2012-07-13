@@ -10,6 +10,8 @@
     <ScrollView
         android:id="@+id/scrollView1"
         android:textColor="#000000"
+        android:background="@android:color/transparent"
+		android:cacheColorHint="@android:color/transparent"
         android:layout_width="match_parent"
         android:clickable="false"
         android:layout_height="wrap_content" >
@@ -29,6 +31,8 @@
             android:layout_height="wrap_content"
             android:divider="@drawable/background_divisoria"
             android:clickable="false"
+            android:background="@android:color/transparent"
+			android:cacheColorHint="@android:color/transparent"
             android:drawSelectorOnTop="true"
             android:textColor="#000000" >
         </ListView>

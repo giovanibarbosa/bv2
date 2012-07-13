@@ -26,9 +26,13 @@ import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import br.edu.ufcg.dsc.R;
+import br.edu.ufcg.dsc.dao.Rota;
+import br.edu.ufcg.dsc.dao.RotaDataSource;
 import br.edu.ufcg.dsc.httpmodule.HTTPModuleFacade;
+import br.edu.ufcg.dsc.util.AdapterRouteListView;
 import br.edu.ufcg.dsc.util.PontoAdapter;
 import br.edu.ufcg.dsc.util.PontoTuristico;
+import br.edu.ufcg.dsc.util.RouteListView;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
@@ -58,8 +62,11 @@ public class BuscarActivity extends MapActivity {
 	private Intent telaConsultar;
 	private EditText paramBusca;
 	private HTTPModuleFacade service;
-	
-	
+	private RotaDataSource rotaDataSource;
+	private ArrayList<RouteListView> rotas;
+	private AdapterRouteListView adapterListView;
+	private ListView listView;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -132,7 +139,7 @@ public class BuscarActivity extends MapActivity {
 					break;
 				case 3:
 					if(viewInflateFavoritos == null)
-						viewInflateFavoritos = getLayoutInflater().inflate(R.layout.buscar_onibus, null);
+						viewInflateFavoritos = getLayoutInflater().inflate(R.layout.list_routes, null);
 					myLayout.addView(viewInflateFavoritos);
 					break;
 				default:
@@ -158,8 +165,28 @@ public class BuscarActivity extends MapActivity {
 			onCreateMap();
 			setMapCenter();
 			break;
+			
 		case 3:
 			//rotas favoritas
+			rotaDataSource = new RotaDataSource(this);
+			rotaDataSource.open();
+			
+			List<Rota> values = rotaDataSource.getAllRoutes();
+			
+			listView = (ListView) findViewById(R.id.tela_consulta_listView);
+			
+			rotas = new ArrayList<RouteListView>();
+			
+			for (Rota rota : values) {
+				rotas.add(new RouteListView(rota.getRoutename(), rota.getColour(), rota.getUrlRoute(), (int) rota.getDifBetweenBus(),
+						rota.getStartTime(), rota.getEndTime(), (int) rota.getTimePerTotal(), (int) rota.getNumBus()));
+			}
+			
+			adapterListView = new AdapterRouteListView(this, rotas);
+			listView.setAdapter(adapterListView);
+			
+			//SE CLICAR EM UM ITEM MOSTRAR A ROTA
+			//ONDE FECHO O BD ?
 			break;
 		default :
 			break;

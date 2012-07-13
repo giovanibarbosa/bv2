@@ -103,5 +103,12 @@
 	<string name="busca_label_rota">Route</string>
 	<string name="busca_label_favoritos">Favoris</string>
 	
+	<!-- LIST ROUTE -->
+    
+    <string name="num_onibus">Nombre d autobus: </string>
+    <string name="dif_onibus">Différence entre le bus: </string>
+    <string name="hora_inicio">Heure de départ: </string>
+    <string name="hora_fim">Heure de fin: </string>
+	
 	
 </resources>
