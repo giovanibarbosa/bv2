@@ -109,6 +109,6 @@
     <string name="dif_onibus">Différence entre le bus: </string>
     <string name="hora_inicio">Heure de départ: </string>
     <string name="hora_fim">Heure de fin: </string>
-	
+	<string name="add_rota">itinéraire ajouté avec succès</string>
 	
 </resources>
