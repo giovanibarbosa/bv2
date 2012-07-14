@@ -79,16 +79,16 @@ public class RotaDataSource {
 	private Rota cursorToRota(Cursor cursor) {
 		Rota rota = new Rota();
 		
-		rota.setId(cursor.getInt(1));
-		rota.setRoutename(cursor.getString(2));
-		rota.setColour(cursor.getString(3));
-		rota.setUrlRoute(cursor.getString(4));
-		rota.setDifBetweenBus(cursor.getInt(5));
-		rota.setStartTime(cursor.getString(6));
-		rota.setEndTime(cursor.getString(7));
-		rota.setTimePerTotal(cursor.getInt(8));
-		rota.setNumBus(cursor.getInt(9));
-		rota.setDays(cursor.getString(10));
+		rota.setId(cursor.getInt(0));
+		rota.setRoutename(cursor.getString(1));
+		rota.setColour(cursor.getString(2));
+		rota.setUrlRoute(cursor.getString(3));
+		rota.setDifBetweenBus(cursor.getInt(4));
+		rota.setStartTime(cursor.getString(5));
+		rota.setEndTime(cursor.getString(6));
+		rota.setTimePerTotal(cursor.getInt(7));
+		rota.setNumBus(cursor.getInt(8));
+		rota.setDays(cursor.getString(9));
 		
 		return rota;
 	}

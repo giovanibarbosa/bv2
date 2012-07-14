@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,6 +18,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,6 +27,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 import br.edu.ufcg.dsc.R;
 import br.edu.ufcg.dsc.dao.Rota;
 import br.edu.ufcg.dsc.dao.RotaDataSource;
@@ -101,10 +104,8 @@ public class BuscarActivity extends MapActivity {
 				b.putString("paramBusca", paramBusca.getText().toString());
 				telaConsultar.putExtras(b);				
 				startActivity(telaConsultar);
-				
 			}
 		});
-		
 	}
 	
 	private void instanciarBotoes() {
@@ -184,9 +185,10 @@ public class BuscarActivity extends MapActivity {
 			
 			adapterListView = new AdapterRouteListView(this, rotas);
 			listView.setAdapter(adapterListView);
-			
+
 			//SE CLICAR EM UM ITEM MOSTRAR A ROTA
-			//ONDE FECHO O BD ?
+			
+			rotaDataSource.close();
 			break;
 		default :
 			break;
@@ -450,7 +452,6 @@ public class BuscarActivity extends MapActivity {
 		     } 
 
 	         return false;
-
 	    }     
 	}
 	
