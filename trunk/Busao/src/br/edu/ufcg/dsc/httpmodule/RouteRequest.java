@@ -53,11 +53,11 @@ public class RouteRequest extends HTTPModule {
 	 * @return A rota que passa pelos dois pontos
 	 * @throws Exception 
 	 */
-	public static List<String> getRoutesBetweenPoints(String city, double lat1, double long1,
+	public static Map<String, String> getRoutesBetweenPoints(String city, double lat1, double long1,
 			double lat2, double long2, int distance) throws Exception {
 		String result = getResult(Configurations.getInstance()
 				.getRoutesBetweenPointsPath(city, lat1, long1, lat2, long2, distance));
-		return (List<String>) ParserResult.parseIdName(result).values();
+		return ParserResult.parseIdName(result);
 	}
 
 

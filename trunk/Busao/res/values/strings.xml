@@ -65,6 +65,8 @@
 	<string name="result_onibus">ônibus encontrados</string>
 	<string name="result_result">Resultados da busca</string>
 	<string name="result_mapa">mapa</string>
+	<string name="result_sem_mapa">Mapa indisponível</string>
+	<string name="result_sem_resultado">Nenhuma rota encontrada</string>
 	
 	
 	<!-- Cidades -->

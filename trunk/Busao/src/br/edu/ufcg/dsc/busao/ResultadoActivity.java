@@ -19,6 +19,8 @@ import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DigitalClock;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +29,7 @@ import android.view.View;
 public class ResultadoActivity extends Activity {
 	private HTTPModuleFacade service;
 	private String campoBusca = "";
+	private Double lat1, long1, lat2, long2;
 	private Map<String, String> resultado;
 	private Spinner spinnerRotas;
 	private ArrayAdapter<CharSequence> featuresAdapter;
@@ -35,32 +38,63 @@ public class ResultadoActivity extends Activity {
 	private View bodyResult;
 	public String atualURLMap = "";
 	public String idRota = "";
+	private ImageView iconeFavoritos;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.loading_result);
-		 new Thread(new Runnable() {
-			 public void run() {
-					Bundle b = getIntent().getExtras();
-					campoBusca = b.getString("paramBusca");
-					Log.i("Campo", campoBusca);
-					service = HTTPModuleFacade.getInstance();
-					Log.i("Tempo", service.getCityValorTarifa());
-					//problems
-					//resultado = service.searchRoute(campoBusca);
-					//Log.i("Resultado", resultado.toString());
-
-					//showDialog aqui
+		Bundle b = getIntent().getExtras();
+		campoBusca = b.getString("paramBusca");
+		service = HTTPModuleFacade.getInstance();
+		if(campoBusca == null){
+			lat1 = b.getDouble("lat1");
+			long1 = b.getDouble("long1");
+			lat2 = b.getDouble("lat2");
+			long2 = b.getDouble("long2");
+			resultado = service.searchRouteBetweenTwoPoints(lat1, long1, lat2, long2);
+		}else{
+			resultado = service.searchRoute(campoBusca);
+		}
+		Log.i("Campo", campoBusca);
+		
+		Log.i("Tempo", service.getCityValorTarifa());
+		// problems
+		
+		Log.i("Resultadooo", resultado.toString());
 					
-				}
-		    }).start();
-		resultado = new HashMap<String, String>();
-		resultado.put("15", "202-Ramadinha");
-		resultado.put("16", "202");
-		resultado.put("17", "202-A");
-
+		if(resultado.size() == 0){
+			Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.result_sem_resultado), Toast.LENGTH_SHORT);
+			toast.show();
+			finish();
+		}
 		showDialog(1);
+		
+		iconeFavoritos = (ImageView) bodyResult.findViewById(R.id.image_favoritos);
+		iconeFavoritos.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				switch (R.drawable.estrela_cinza) { //mudar isso para pegar a atual imagem carregada
+				case R.drawable.estrela_cinza:
+					iconeFavoritos.setImageResource(R.drawable.estrela_amarela);
+					//insere dados
+					break;
+				case R.drawable.estrela_amarela:
+					iconeFavoritos.setImageResource(R.drawable.estrela_cinza);
+					//remove dados
+					break;
+
+				default:
+					break;
+				}
+				
+				
+			}
+		});
 	 
+//		DigitalClock relogio = (DigitalClock) bodyResult.findViewById(R.id.digital_clock);
+//		relogio.set
 		 
 	}
 	
@@ -114,7 +148,7 @@ public class ResultadoActivity extends Activity {
 						mapIntent.setData(uri1);
 						startActivity(Intent.createChooser(mapIntent, idRota));				
 					}else{
-						Toast toast = Toast.makeText(getApplicationContext(), "Rota Indisponivel", Toast.LENGTH_SHORT);
+						Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.result_sem_mapa) , Toast.LENGTH_SHORT);
 						toast.show();
 					}
 				}
@@ -177,6 +211,7 @@ public class ResultadoActivity extends Activity {
 		textMinutos.setText(service.getRouteTimeWait(idRota));
 		this.atualURLMap = service.getRouteUrlRota(idRota);
 		Log.i("atualizandoDados", idRota);
+		Log.i("URLRota", atualURLMap);
 	}
 
 }
