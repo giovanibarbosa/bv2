@@ -51,6 +51,7 @@ public class CustomHorizontalScrollView extends HorizontalScrollView implements 
 		this.maxItem = a.getInteger(R.styleable.CustomHorizontalScrollView_maxItem, 4);
 		Log.i("Width", ""+widthContext);
 		this.setOnTouchListener(this);
+		this.setHorizontalScrollBarEnabled(false);
 	//	instanciaBolinhas();
     }
 

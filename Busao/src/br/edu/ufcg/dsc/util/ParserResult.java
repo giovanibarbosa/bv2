@@ -93,33 +93,35 @@ public class ParserResult {
 	}
 	
 	public static Map<String, String> parseIdName(String str) {
-		if(str.equals("null")) return new HashMap<String, String>();
-		str = str.replace("[{\"", "").replace("\"}]", "");
-		Map<String, String> mapaResultado = new HashMap<String, String>();
-		String [] separaLinhas = str.split(",");
-		for (String s : separaLinhas){
-			s = s.replaceAll("\"", "");
-			String[] fields = s.split(":");
-			mapaResultado.put(fields[0], fields[1]);
-		}
-		return mapaResultado;
-		
 //		if(str.equals("null")) return new HashMap<String, String>();
-//		str = str.replace("[{\"", "").replace("\"}]", ""); //mudar para ""
+//		str = str.replace("[{\"", "").replace("\"}]", "");
 //		Map<String, String> mapaResultado = new HashMap<String, String>();
-//		String[] separaLinhas = str.split("\"},"); //mudar para ""
-//		for (String string : separaLinhas) {
-//			string = string.replace("{\"","");//mudar ""
-//			String separado = "\",\"";//Mudar para ""
-//			String[] resultado = string.split(separado);
-//			List<String> mapa = new ArrayList<String>();
-//			for (String string2 : resultado) {
-//				String[] valores = string2.split("\":\"");//mudar para ""
-//				mapa.add(valores[1]);
-//			}
-//			mapaResultado.put(mapa.get(0), mapa.get(1));
+//		String [] separaLinhas = str.split(",");
+//		for (String s : separaLinhas){
+//			s = s.replaceAll("\"", "");
+//			String[] fields = s.split(":");
+//			mapaResultado.put(fields[0], fields[1]);
 //		}
 //		return mapaResultado;
+		
+		if(str.equals("null")) return new HashMap<String, String>();
+		str = str.replace("[{\"", "").replace("\"}]", ""); //mudar para ""
+		Map<String, String> mapaResultado = new HashMap<String, String>();
+		String strVirgula = "\"},";
+		str = str.replace(strVirgula, "@");
+		String[] separaLinhas = str.split("@"); //mudar para ""
+		for (String string : separaLinhas) {
+			string = string.replace("{\"","");//mudar ""
+			String separado = "\",\"";//Mudar para ""
+			String[] resultado = string.split(separado);
+			List<String> mapa = new ArrayList<String>();
+			for (String string2 : resultado) {
+				String[] valores = string2.split("\":\"");//mudar para ""
+				mapa.add(valores[1]);
+			}
+			mapaResultado.put(mapa.get(0), mapa.get(1));
+		}
+		return mapaResultado;
 	}
 	
 	public static void main(String[] args) {

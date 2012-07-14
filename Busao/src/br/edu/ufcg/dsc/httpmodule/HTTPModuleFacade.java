@@ -136,6 +136,18 @@ public class HTTPModuleFacade {
 			mapa = RouteRequest.searchRoute(getIdCity(), nome);
 		} catch (Exception e) {
 			mapa = new HashMap<String, String>();
+			e.printStackTrace();
+		}
+		return mapa;
+	}
+	
+	public Map<String, String> searchRouteBetweenTwoPoints(double lat1, double long1, double lat2, double long2){
+		Map<String, String> mapa;
+		try {
+			mapa = RouteRequest.getRoutesBetweenPoints(getIdCity(), lat1, long1, lat2, long2, 300);
+		} catch (Exception e) {
+			mapa = new HashMap<String, String>();
+			e.printStackTrace();
 		}
 		return mapa;
 	}

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent" android:layout_height="match_parent">
+	android:layout_width="match_parent" android:layout_height="match_parent"
+	android:background="@drawable/background">
 	<Spinner android:layout_height="wrap_content" android:id="@+id/spinner_rotas"
 		android:layout_width="wrap_content" android:layout_alignParentTop="true"
-		android:layout_alignParentLeft="true" android:layout_alignParentRight="true"
-		android:layout_margin="10dp"></Spinner>
+		android:layout_alignParentLeft="true" android:layout_margin="10dp" android:layout_toLeftOf="@+id/image_favoritos"></Spinner>
 	<ImageView android:id="@+id/image_timer"
 		android:layout_height="wrap_content" android:layout_width="wrap_content"
 		android:src="@drawable/timer" android:layout_below="@+id/spinner_rotas"
@@ -14,22 +14,10 @@
 		android:layout_width="wrap_content" android:layout_alignTop="@+id/image_timer"
 		android:layout_centerHorizontal="true" android:layout_marginTop="30dp"
 		android:textColor="#000000"></TextView>
-	<TextView android:textColor="#000000" android:id="@+id/text_minutos"
-		android:layout_height="wrap_content" android:text="@string/minutos"
-		android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall"
-		android:layout_above="@+id/text_hora_atual"
-		android:layout_centerHorizontal="true"></TextView>
-	<TextView android:textColor="#000000" android:id="@+id/text_hora_atual"
-		android:layout_height="wrap_content" android:text="12:00"
-		android:layout_width="wrap_content" android:textStyle="bold"
-		android:textAppearance="?android:attr/textAppearanceMedium"
-		android:layout_below="@+id/text_tempo_restante"
-		android:layout_alignLeft="@+id/text_faltam"></TextView>
-	<TextView android:textSize="70sp" android:id="@+id/text_tempo_restante"
-		android:text="0" android:textColor="#000000" android:layout_height="wrap_content"
-		android:textStyle="bold" android:layout_width="wrap_content"
-		android:layout_alignTop="@+id/text_faltam"
-		android:layout_centerHorizontal="true"></TextView>
+	<TextView android:textColor="#000000" android:textAppearance="?android:attr/textAppearanceSmall" android:id="@+id/text_minutos" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/minutos" android:layout_alignBottom="@+id/text_tempo_restante" android:layout_centerHorizontal="true"></TextView>
+	<TextView android:textStyle="bold" android:textColor="#000000" android:id="@+id/text_tempo_restante" android:layout_width="wrap_content" android:textSize="70sp" android:layout_height="wrap_content" android:text="0" android:layout_alignTop="@+id/text_faltam" android:layout_centerHorizontal="true"></TextView>
+	<DigitalClock android:id="@+id/digital_clock" android:textColor="#000000" android:textStyle="bold" android:text="DigitalClock" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@+id/text_minutos" android:layout_centerHorizontal="true"></DigitalClock>
+	<ImageView android:id="@+id/image_favoritos" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/estrela_cinza" android:layout_alignTop="@+id/spinner_rotas" android:layout_alignParentRight="true" android:layout_marginRight="10dp" android:layout_alignBottom="@+id/spinner_rotas"></ImageView>
 
 
 </RelativeLayout>
