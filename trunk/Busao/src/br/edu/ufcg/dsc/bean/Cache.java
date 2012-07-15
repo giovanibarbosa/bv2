@@ -10,6 +10,15 @@ public class Cache {
 	private static Empresa empresa;
 	private static PontoTuristico pontoTuristico;
 	private static List<Anuncio> anuncios;
+	private static Time horario;
+	
+	public static Time getHorario() {
+		return horario;
+	}
+
+	public static void setHorario(Time horario) {
+		Cache.horario = horario;
+	}
 
 	public static List<Anuncio> getAnuncios() {
 		return anuncios;
@@ -114,8 +123,5 @@ public class Cache {
 		}
 		throw new Exception("Anuncio nao existe");
 	}
-	
-
-	
 	
 }

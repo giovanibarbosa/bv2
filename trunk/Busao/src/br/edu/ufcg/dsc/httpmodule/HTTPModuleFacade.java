@@ -3,6 +3,8 @@ package br.edu.ufcg.dsc.httpmodule;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import br.edu.ufcg.dsc.bean.Cache;
 /**
  * Fachada que permite a camada de negocio acessar a camada de banco de dados.
  * 
@@ -172,7 +174,42 @@ public class HTTPModuleFacade {
 	public static void getCoordenada(String adr) throws Exception{
 		RouteRequest.getCoordenada(adr);
 	}
+	
+	// ======================================================================================================================================
+	// TIME
+	// ======================================================================================================================================
+	
+	public String getRouteTimeDifferenceBetweenBusPath(String rotaid){
+		return getDataTime(rotaid, "difEntreOnibus");
+	}
+	
+	public String getRouteStartTimePath(String rotaid){
+		return getDataTime(rotaid, "horaInicio");
+	}
+	
+	public String getRouteEndTimePath(String rotaid){
+		return getDataTime(rotaid, "horaFim");
+	}
 
+	public String getRouteTotalTimePath(String rotaid){
+		return getDataTime(rotaid, "tempoPerTotal");
+	}
+	
+	public String getRouteNumberBusPath(String rotaid){
+		return getDataTime(rotaid,"numOnibus");
+	}
+	
+	public String getRouteDaysPath(String rotaid){
+		return getDataTime(rotaid, "dias");
+	}
 
+	private String getDataTime(String rotaid, String campo){
+		try {
+			return TimeRequest.getDataRouteTime(rotaid, campo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
 	
 }

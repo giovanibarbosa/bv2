@@ -31,7 +31,6 @@ public class CityRequest extends HTTPModule {
 
 	private static Cidade getObjectCity(Map<String, String> mapeamento) {
 		return new Cidade(mapeamento);
-
 	}
 
 	/**
