@@ -55,7 +55,7 @@ public class BuscarActivity extends MapActivity {
 	View viewInflateFavoritos;
 	
 	private String buscaLinha;
-	private ImageView pesquisaOnibus;
+	private ImageView pesquisaOnibus, pesquisaDoisPontos;
 	
 	MapView mapView;
 	private List<Overlay> listOfOverlays;
@@ -69,6 +69,7 @@ public class BuscarActivity extends MapActivity {
 	private ArrayList<RouteListView> rotas;
 	private AdapterRouteListView adapterListView;
 	private ListView listView;
+	private com.google.android.maps.MyLocationOverlay ondeEstou;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -99,6 +100,7 @@ public class BuscarActivity extends MapActivity {
 		pesquisaOnibus.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
+				Log.i("clicou", "Clicouu");
 				telaConsultar = new Intent(BuscarActivity.this, ResultadoActivity.class);
 				Bundle b = new Bundle();
 				b.putString("paramBusca", paramBusca.getText().toString());
@@ -162,6 +164,31 @@ public class BuscarActivity extends MapActivity {
 		case 2:
 			//R.layout.buscar_onibus
 			mapView = (MapView)findViewById(R.id.mapView);
+			pesquisaDoisPontos = (ImageView) findViewById(R.id.image_botao_pesquisar_pontos);
+			pesquisaDoisPontos.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					if(mapaPontosSelecionado.size() == 0){
+						Toast.makeText(BuscarActivity.this, getString(R.string.sem_ponto_selecionado), Toast.LENGTH_LONG).show();
+						return;
+					}else if(mapaPontosSelecionado.size() == 2){
+						Log.i("mapa1", ""+mapaPontosSelecionado);
+						mapaPontosSelecionado.put("latitudeTo", -35.09); //latitude gps
+						mapaPontosSelecionado.put("longitudeTo", -35.09); //longitude gps
+						
+					}
+					Log.i("mapa2", ""+mapaPontosSelecionado);
+						telaConsultar = new Intent(BuscarActivity.this, ResultadoActivity.class);
+						Bundle b = new Bundle();
+						b.putDouble("lat1", mapaPontosSelecionado.get("latitudeFrom"));
+						b.putDouble("long1", mapaPontosSelecionado.get("longitudeFrom"));
+						b.putDouble("lat2", mapaPontosSelecionado.get("latitudeTo"));
+						b.putDouble("long2", mapaPontosSelecionado.get("longitudeTo"));
+						telaConsultar.putExtras(b);				
+						startActivity(telaConsultar);					
+					
+				}
+			});
 			zoomMap();
 			onCreateMap();
 			setMapCenter();
@@ -348,9 +375,11 @@ public class BuscarActivity extends MapActivity {
 	public void onCreateMap(){
 		
 		if (mapView != null){
-	        MyLocationOverlay mapOverlay = new MyLocationOverlay();
+	        MyLocationOverlayLocal mapOverlay = new MyLocationOverlayLocal();
+	        ondeEstou = new com.google.android.maps.MyLocationOverlay(this, mapView);
 	        listOfOverlays = mapView.getOverlays();
 	        listOfOverlays.clear();
+	        listOfOverlays.add(ondeEstou);
 	        listOfOverlays.add(mapOverlay);  
 	        
 	        mapView.invalidate();
@@ -385,6 +414,7 @@ public class BuscarActivity extends MapActivity {
 				mapaPontosSelecionado.put("longitudeFrom", longi);
 			}
 		}
+		Log.i("pontos", mapaPontosSelecionado.toString());
 		//atualizaMapa();
 	}
 	
@@ -423,7 +453,7 @@ public class BuscarActivity extends MapActivity {
         
     }
 	
-	class MyLocationOverlay extends com.google.android.maps.Overlay {
+	class MyLocationOverlayLocal extends com.google.android.maps.Overlay {
 
 		 @Override
 	     public boolean onTouchEvent(MotionEvent event, MapView mapView) {          	

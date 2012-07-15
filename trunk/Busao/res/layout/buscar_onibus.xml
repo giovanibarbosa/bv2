@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/background"
-    android:orientation="vertical" android:gravity="right">
+    android:gravity="right">
     
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -11,25 +11,12 @@
         android:layout_marginTop="200dp"
         android:layout_marginLeft="90dp"
         android:orientation="horizontal"
-        android:gravity="right">
-
-        <EditText
-            android:id="@+id/paramBusca"
-            android:layout_width="132dp"
-            android:layout_height="55dp"
-            android:layout_marginLeft="40dp"
-            android:textSize="10dp"
-            android:gravity="center" android:layout_alignBottom="@+id/search"/>
-
-        <ImageView
-            android:id="@+id/search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/paramBusca"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:src="@drawable/botao_seach_normal_digitando" />
+        android:gravity="right" android:id="@+id/relativeLayout1">
         
     </RelativeLayout>
+    <ImageView android:layout_margin="10dp" android:layout_width="wrap_content" android:src="@drawable/botao_seach_normal_digitando" android:layout_height="wrap_content" android:id="@+id/search" android:layout_centerVertical="true" android:layout_alignParentRight="true" android:layout_marginRight="16dp"></ImageView>
+    <EditText android:layout_width="132dp" android:id="@+id/paramBusca" android:gravity="center" android:textSize="10dp" android:layout_height="40dp" android:layout_centerVertical="true" android:layout_toLeftOf="@+id/search">
+        <requestFocus></requestFocus>
+    </EditText>
         
 </RelativeLayout>

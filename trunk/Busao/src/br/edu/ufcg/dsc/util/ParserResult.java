@@ -14,7 +14,7 @@ public class ParserResult {
 	 * @return Todas as cidades em uma so string
 	 */
 	public static Map<String, String> parse(String str) {
-		if(str.equals("null")) return new HashMap<String, String>();
+		if(str.equals("null") || str.equals("[]")) return new HashMap<String, String>();
 		//elimina sujeira
 		Map<String, String> mapaResultado = new HashMap<String, String>();
 		str = str.replace("[{\"", "").replace("\"}]", ""); //mudar para ""
@@ -28,7 +28,7 @@ public class ParserResult {
 	}
 	
 	public static List<Map<String, String>> parseAll(String str) {
-		if(str.equals("null")) return null;
+		if(str.equals("null") || str.equals("[]")) return null;
 		Map<String, String> mapaResultado;
 		List<Map<String, String>> listaTuplas = new ArrayList<Map<String,String>>();
 		str = str.substring(2, str.length()-2);
@@ -74,7 +74,7 @@ public class ParserResult {
 	}
 	
 	public static List<String> parseOnlyName(String str) {
-		if(str.equals("null")) return new ArrayList<String>();
+		if(str.equals("null")  || str.equals("[]")) return new ArrayList<String>();
 		//[{"nome":"Campina Grande"},{"nome":"Jo"}]
 		//elimina sujeira
 		List<String> listaNomes = new ArrayList<String>();
@@ -104,7 +104,7 @@ public class ParserResult {
 //		}
 //		return mapaResultado;
 		
-		if(str.equals("null")) return new HashMap<String, String>();
+		if(str.equals("null")  || str.equals("[]")) return new HashMap<String, String>();
 		str = str.replace("[{\"", "").replace("\"}]", ""); //mudar para ""
 		Map<String, String> mapaResultado = new HashMap<String, String>();
 		String strVirgula = "\"},";

@@ -11,6 +11,7 @@ import br.edu.ufcg.dsc.httpmodule.HTTPModuleFacade;
 import br.edu.ufcg.dsc.util.AdapterRouteListView;
 import br.edu.ufcg.dsc.util.CustomBuilder;
 import br.edu.ufcg.dsc.util.RouteListView;
+import br.edu.ufcg.dsc.util.ThreadedClass;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -18,6 +19,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.widget.AdapterView;
@@ -47,37 +50,64 @@ public class ResultadoActivity extends Activity {
 	private ArrayList<RouteListView> rotas;
 	private AdapterRouteListView adapterListView;
 	private ListView listView;
+	ThreadedClass m_t = null; 
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.loading_result);
-		Bundle b = getIntent().getExtras();
-		campoBusca = b.getString("paramBusca");
-		service = HTTPModuleFacade.getInstance();
-		if(campoBusca == null){
-			lat1 = b.getDouble("lat1");
-			long1 = b.getDouble("long1");
-			lat2 = b.getDouble("lat2");
-			long2 = b.getDouble("long2");
-			resultado = service.searchRouteBetweenTwoPoints(lat1, long1, lat2, long2);
-		}else{
-			resultado = service.searchRoute(campoBusca);
-		}
-		Log.i("Campo", campoBusca);
+
+		m_t = new ThreadedClass(myHandler); 
+        m_t.Start(); 
+	//	showDialog(1);
 		
-		Log.i("Tempo", service.getCityValorTarifa());  //Isso ta certo ???!?!?!?!?!?!? Valor Tarifa ???!??!?!?!?!
-		// problems
+
+	 
+//		DigitalClock relogio = (DigitalClock) bodyResult.findViewById(R.id.digital_clock);
+//		relogio.set
+		 
+	}
+	
+	private Handler myHandler = new Handler() {
 		
-		Log.i("Resultadooo", resultado.toString());
-					
-		if(resultado.size() == 0){
-			Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.result_sem_resultado), Toast.LENGTH_SHORT);
-			toast.show();
-			finish();
-		}
-		showDialog(1);
+		  @Override
+		  public void handleMessage(Message msg) {
+
+			  switch (msg.what) {
+		      default:
+		        if (!isFinishing()) {
+				Bundle b = getIntent().getExtras();
+				campoBusca = b.getString("paramBusca");
+				service = HTTPModuleFacade.getInstance();
+				if(campoBusca == null){
+					lat1 = b.getDouble("lat1");
+					long1 = b.getDouble("long1");
+					lat2 = b.getDouble("lat2");
+					long2 = b.getDouble("long2");
+					resultado = service.searchRouteBetweenTwoPoints(lat1, long1, lat2, long2);
+				}else{
+					resultado = service.searchRoute(campoBusca);
+				}
+				Log.i("Campo", ""+campoBusca);
+				
+				// problems
+				
+				Log.i("Resultadooo", resultado.toString());
+							
+				if(resultado.size() == 0){
+					Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.result_sem_resultado), Toast.LENGTH_SHORT);
+					toast.show();
+					finish();
+				}
+		        showDialog(1);
+		        create();
+		    }
+			  }
+		  }
 		
+		};
+	
+	private void create(){
 		datasource = new RotaDataSource(this);
 		iconeFavoritos = (ImageView) bodyResult.findViewById(R.id.image_favoritos);
 		iconeFavoritos.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +144,7 @@ public class ResultadoActivity extends Activity {
 					//adapterListView = new AdapterRouteListView(context, rotas);
 					//listView.setAdapter(adapterListView);
 				
-					Toast.makeText(ResultadoActivity.this, R.string.add_rota, Toast.LENGTH_LONG).show();
+					Toast.makeText(ResultadoActivity.this, getString(R.string.add_rota), Toast.LENGTH_LONG).show();
 					
 					datasource.close();
 					break;
@@ -130,16 +160,6 @@ public class ResultadoActivity extends Activity {
 				
 			}
 		});
-	 
-//		DigitalClock relogio = (DigitalClock) bodyResult.findViewById(R.id.digital_clock);
-//		relogio.set
-		 
-	}
-	
-	protected void onPostExecute(Object result) {
-	    if (!isFinishing()) {
-	        showDialog(1);
-	    }
 	}
 	
 	@Override

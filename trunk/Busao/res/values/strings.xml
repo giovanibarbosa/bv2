@@ -112,6 +112,7 @@
     <string name="dialog_comment_placeholder">Write something&#8230;</string>
     <string name="dialog_post_to_wall_title">Post to Wall</string>
     <string name="dialog_post_to_wall_placeholder">Say something about this&#8230;</string>
+    <string name="sem_ponto_selecionado">Insira ao menos um ponto para prosseguir com a pesquisa</string>
 	
     <!-- LIST ROUTE -->
     
