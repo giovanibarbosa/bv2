@@ -102,7 +102,10 @@ public class ResultadoActivity extends Activity {
 					}
 					
 					Rota r = null;
-					r = datasource.createRota("", "", "", 0, "", "", 0, 0, ""); //Onde pego os dados da rota?
+					r = datasource.createRota(campoBusca, service.getRouteCor(idRota), atualURLMap, Integer.parseInt(service.getRouteTimeWait(idRota)), 
+							service.getRouteStartTimePath(idRota), service.getRouteEndTimePath(idRota), Integer.parseInt(service.getRouteTotalTimePath(idRota)), 
+							Integer.parseInt(service.getRouteNumberBusPath(idRota)), service.getRouteDaysPath(idRota));
+					
 					rotas.add(new RouteListView(r.getRoutename(), r.getColour(), r.getUrlRoute(), (int) r.getDifBetweenBus(), 
 							r.getStartTime(), r.getEndTime(), (int)r.getTimePerTotal(), (int) r.getNumBus()));
 

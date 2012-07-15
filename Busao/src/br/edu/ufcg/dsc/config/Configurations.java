@@ -222,8 +222,36 @@ public class Configurations {
 		return getServerPath() + "touristpoint/getAllTouristPointByCity.php?city=" + idCity + "&atribute=id, nome, latitude, longitude, descricao";
 	}
 
-	public String getRouteHorarioPath(String id) {
-		return getServerPath() + "route/getRouteHorarioData.php?id=" + id;
+	public String getRouteHorarioPath(String id, String dia) {
+		return getServerPath() + "route/getRouteHorarioData.php?id=" + id + "$filterDay=" + dia;
+	}
+	
+	// ======================================================================================================================================
+	// TIME
+	// ======================================================================================================================================
+	
+	public String getRouteTimeDifferenceBetweenBusPath(String id){
+		return getServerPath() + "route/getRouteHorarioData.php?id=" + id + "&atribute=difEntreOnibus";
+	}
+	
+	public String getRouteStartTimePath(String id){
+		return getServerPath() + "route/getRouteHorarioData.php?id=" + id + "&atribute=horaInicio";
+	}
+	
+	public String getRouteEndTimePath(String id){
+		return getServerPath() + "route/getRouteHorarioData.php?id=" + id + "&atribute=horaFim";
 	}
 
+	public String getRouteTotalTimePath(String id){
+		return getServerPath() + "route/getRouteHorarioData.php?id=" + id + "&atribute=tempoPerTotal";
+	}
+	
+	public String getRouteNumberBusPath(String id){
+		return getServerPath() + "route/getRouteHorarioData.php?id=" + id + "&atribute=numOnibus";
+	}
+	
+	public String getRouteDaysPath(String id){
+		return getServerPath() + "route/getRouteHorarioData.php?id=" + id + "&atribute=dias";
+	}
+	
 }
