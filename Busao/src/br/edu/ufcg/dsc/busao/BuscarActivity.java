@@ -188,6 +188,7 @@ public class BuscarActivity extends MapActivity {
 
 			//SE CLICAR EM UM ITEM MOSTRAR A ROTA
 			
+			//SE PRESSIONAR O ITEM, APAGA
 			rotaDataSource.close();
 			break;
 		default :
