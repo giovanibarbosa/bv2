@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,26 @@ public class MenuActivity extends Activity {
 		setActionsRowLogo();
 		service = HTTPModuleFacade.getInstance();
 		
+		Bundle b = getIntent().getExtras();
+		if(b != null){
+			int rowClicada = b.getInt("row");
+			Log.i("row", ""+rowClicada);		
+			switch (rowClicada) {
+			case R.layout.menu_localidade:
+				rowLocalidade.performClick();
+				break;
+			case R.layout.menu_turismo:
+				rowTurismo.performClick();
+				break;
+			
+			case R.layout.menu_ajuda:
+				rowAjuda.performClick();
+				break;
+
+			default:
+				break;
+			}
+		}
 	}
 	
 	@Override

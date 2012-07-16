@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +18,7 @@ import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,8 +26,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +39,7 @@ import br.edu.ufcg.dsc.dao.Rota;
 import br.edu.ufcg.dsc.dao.RotaDataSource;
 import br.edu.ufcg.dsc.httpmodule.HTTPModuleFacade;
 import br.edu.ufcg.dsc.util.AdapterRouteListView;
+import br.edu.ufcg.dsc.util.CustomBuilder;
 import br.edu.ufcg.dsc.util.PontoAdapter;
 import br.edu.ufcg.dsc.util.PontoTuristico;
 import br.edu.ufcg.dsc.util.RouteListView;
@@ -85,7 +92,6 @@ public class BuscarActivity extends MapActivity {
 		setActionsRows(rowLocalidade, R.layout.menu_localidade);
 		setActionsRows(rowTurismo, R.layout.menu_turismo);
 		setActionsRows(rowAjuda, R.layout.menu_ajuda);
-		setActionRowBuscar();
 		setActionsRowLogo();
 		pesquisaOnibus = (ImageView) findViewById(R.id.search);
 		
@@ -276,31 +282,22 @@ public class BuscarActivity extends MapActivity {
 		row.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				limpaRows();
-
-				row.setBackgroundDrawable(getResources().getDrawable(R.drawable.transparencia));
-				RelativeLayout myLayout = (RelativeLayout) findViewById(R.id.include1);
-				myLayout.removeAllViews();
-				myLayout.addView(getLayoutInflater().inflate(layout, null));
-				myLayout.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-				setAlteracoesTela(layout);
+				Intent menuPrincipal = new Intent(BuscarActivity.this,
+						MenuActivity.class);
+				Bundle b = new Bundle();
+				b.putInt("row", layout);
+				menuPrincipal.putExtras(b);	
+				BuscarActivity.this.startActivity(menuPrincipal);
+				BuscarActivity.this.finish();
 			}
 		});
 	}
 	
-	private void setActionRowBuscar(){
-		rowBuscar.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				BuscarActivity.this.startActivity(getIntent());
-			}
-		});
-	}
 	
 	private void setActionsRowLogo() {
 		rowLogoBusao.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				showDialog(R.layout.about);
+				showDialog(2);
 			}
 		});
 	}
@@ -328,6 +325,38 @@ public class BuscarActivity extends MapActivity {
 				showDialog(R.layout.popup_escolher_cidade);
 			}
 		});
+	}
+	
+	@Override
+	protected Dialog onCreateDialog( int id )
+	{
+		Dialog dialog = null;
+		ContextThemeWrapper ctw = new ContextThemeWrapper( this, R.style.MyTheme );
+		CustomBuilder builder = null;
+		switch (id) {
+		case 2:
+			builder = new CustomBuilder( ctw, R.layout.about );
+			builder.setTitle("");
+			builder.setIcon(null);
+			builder.setCancelable( false );
+			builder.setNegativeButton(getString(R.string.botao_voltar), new DialogInterface.OnClickListener()
+						{
+							@Override
+							public void onClick( DialogInterface dialog, int which )
+							{
+								dialog.dismiss();
+							}
+						} );
+			break;
+
+		default:
+			break;
+		}
+		dialog = builder.create();
+		if ( dialog == null ){
+			dialog = super.onCreateDialog( id );
+		}
+		return dialog;
 	}
 	
 	private void criaListView() {
