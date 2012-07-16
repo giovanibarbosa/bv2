@@ -31,26 +31,38 @@ public class RotaDataSource {
 	
 	public Rota createRota (String routeName, String colour, String url, Integer difEntreOnibus,
 			String starTime, String endTime, Integer perTotal, Integer numOnibus, String dias){
-		ContentValues values = new ContentValues();
-		values.put(RotaSQLiteHelper.COLUMN_ROUTE_NAME, routeName);
-		values.put(RotaSQLiteHelper.COLUMN_COLOUR, colour);
-		values.put(RotaSQLiteHelper.COLUMN_URL_ROUTE, url);
-		values.put(RotaSQLiteHelper.COLUMN_DIF, difEntreOnibus);
-		values.put(RotaSQLiteHelper.COLUMN_START_TIME, starTime);
-		values.put(RotaSQLiteHelper.COLUMN_END_TIME, endTime);
-		values.put(RotaSQLiteHelper.COLUMN_PER_TOTAL, perTotal);
-		values.put(RotaSQLiteHelper.COLUMN_NUM_ONIBUS, numOnibus);
-		values.put(RotaSQLiteHelper.COLUMN_DAYS, dias);
 		
-		long insertId = database.insert(RotaSQLiteHelper.TABLE_ROUTE, null,values);
+		Cursor cursor1 = database.query(RotaSQLiteHelper.TABLE_ROUTE,
+				allColumns, RotaSQLiteHelper.COLUMN_ROUTE_NAME + " = " + routeName, null, null, null, null);
 		
-		Cursor cursor = database.query(RotaSQLiteHelper.TABLE_ROUTE,
-				allColumns, RotaSQLiteHelper.COLUMN_ID + " = " + insertId, null,
-				null, null, null);
+		if (!cursor1.moveToFirst()){ // check if there is data
+			
+			ContentValues values = new ContentValues();
+			values.put(RotaSQLiteHelper.COLUMN_ROUTE_NAME, routeName);
+			values.put(RotaSQLiteHelper.COLUMN_COLOUR, colour);
+			values.put(RotaSQLiteHelper.COLUMN_URL_ROUTE, url);
+			values.put(RotaSQLiteHelper.COLUMN_DIF, difEntreOnibus);
+			values.put(RotaSQLiteHelper.COLUMN_START_TIME, starTime);
+			values.put(RotaSQLiteHelper.COLUMN_END_TIME, endTime);
+			values.put(RotaSQLiteHelper.COLUMN_PER_TOTAL, perTotal);
+			values.put(RotaSQLiteHelper.COLUMN_NUM_ONIBUS, numOnibus);
+			values.put(RotaSQLiteHelper.COLUMN_DAYS, dias);
+			
+			long insertId = database.insert(RotaSQLiteHelper.TABLE_ROUTE, null,values);
+			
+			Cursor cursor = database.query(RotaSQLiteHelper.TABLE_ROUTE,
+					allColumns, RotaSQLiteHelper.COLUMN_ID + " = " + insertId, null,
+					null, null, null);
+			
+			cursor.close();
+			cursor.moveToFirst();
+			return cursorToRota(cursor);
+		} else {
+			//Rota ja cadastrada
+			cursor1.close();
+			return null;
+		}
 		
-		cursor.moveToFirst();
-		
-		return cursorToRota(cursor);
 	}
 	
 	public void deleteRota(Rota rota) {

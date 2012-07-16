@@ -121,6 +121,7 @@
     <string name="hora_inicio">Hora Inicio: </string>
     <string name="hora_fim">Hora Fim: </string>
     <string name="add_rota">Rota adicionada com sucesso!</string>
+    <string name="rota_ja_existe">Rota ja esta cadastrada</string>
     
 </resources>
 
