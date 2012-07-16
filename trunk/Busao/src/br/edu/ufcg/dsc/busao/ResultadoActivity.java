@@ -267,7 +267,7 @@ public class ResultadoActivity extends Activity {
 		this.idRota = idRota;
 		TextView textMinutos = (TextView) bodyResult.findViewById(R.id.text_tempo_restante);
 		textMinutos.setText(service.getRouteTimeWait(idRota));
-		this.atualURLMap = service.getRouteUrlRota(idRota);
+		this.atualURLMap = "http://busaoapp.com/service/"+service.getRouteUrlRota(idRota);
 		Log.i("atualizandoDados", idRota);
 		Log.i("URLRota", atualURLMap);
 	}

@@ -87,14 +87,6 @@ public class BuscarActivity extends MapActivity {
 		setActionsRows(rowAjuda, R.layout.menu_ajuda);
 		setActionRowBuscar();
 		setActionsRowLogo();
-		setActionsBotao(botaoBuscarOnibus, 1);
-		setActionsBotao(botaoBuscarPonto, 2);
-		setActionsBotao(botaoRotasFavoritas, 3);
-		
-		service = HTTPModuleFacade.getInstance();
-		
-		paramBusca = (EditText) findViewById(R.id.paramBusca);
-		
 		pesquisaOnibus = (ImageView) findViewById(R.id.search);
 		
 		pesquisaOnibus.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +100,15 @@ public class BuscarActivity extends MapActivity {
 				startActivity(telaConsultar);
 			}
 		});
+		setActionsBotao(botaoBuscarOnibus, 1);
+		setActionsBotao(botaoBuscarPonto, 2);
+		setActionsBotao(botaoRotasFavoritas, 3);
+		
+		service = HTTPModuleFacade.getInstance();
+		
+		paramBusca = (EditText) findViewById(R.id.paramBusca);
+		
+
 	}
 	
 	private void instanciarBotoes() {
@@ -157,12 +158,24 @@ public class BuscarActivity extends MapActivity {
 	
 	private void setAlteracoesBuscar(int id){
 		switch (id) {
-		case 1:
-			//R.layout.menu_localidade
+		case 1:	
+			pesquisaOnibus = (ImageView) findViewById(R.id.search);
+			paramBusca = (EditText) findViewById(R.id.paramBusca);
+			pesquisaOnibus.setOnClickListener(new View.OnClickListener() {				
+				public void onClick(View v) {
+					Log.i("clicoudentro", "Clicouu");
+					telaConsultar = new Intent(BuscarActivity.this, ResultadoActivity.class);
+					Bundle b = new Bundle();
+					b.putString("paramBusca", paramBusca.getText().toString());
+					telaConsultar.putExtras(b);				
+					startActivity(telaConsultar);
+				}
+			});
 			break;		
 			
 		case 2:
 			//R.layout.buscar_onibus
+			if(mapView != null){
 			mapView = (MapView)findViewById(R.id.mapView);
 			pesquisaDoisPontos = (ImageView) findViewById(R.id.image_botao_pesquisar_pontos);
 			pesquisaDoisPontos.setOnClickListener(new View.OnClickListener() {
@@ -192,6 +205,7 @@ public class BuscarActivity extends MapActivity {
 			zoomMap();
 			onCreateMap();
 			setMapCenter();
+			}
 			break;
 			
 		case 3:
