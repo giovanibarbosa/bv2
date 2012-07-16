@@ -68,6 +68,12 @@ public class ResultadoActivity extends Activity {
 		 
 	}
 	
+	@Override
+	protected void onResume() {
+		Log.i("voltou", "voltou");
+		super.onResume();
+	}
+	
 	private Handler myHandler = new Handler() {
 		
 		  @Override

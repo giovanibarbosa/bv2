@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -43,6 +44,8 @@ public class MenuActivity extends Activity {
 	private Spinner featuresSelection;
 	private List<CharSequence> featuresList;
 	private ArrayAdapter<CharSequence> featuresAdapter;
+	private View bodyResult;
+	private Spinner spinnerCidades;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +63,7 @@ public class MenuActivity extends Activity {
 		setActionsRows(rowTurismo, R.layout.menu_turismo);
 		setActionsRows(rowAjuda, R.layout.menu_ajuda);
 		setActionsRowLogo();
-		service = HTTPModuleFacade.getInstance("1", "0", "0");
-
-		//cria o spinner na tela
-        featuresList = new ArrayList<CharSequence>();
-        featuresAdapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, featuresList);       
-		featuresAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		service = HTTPModuleFacade.getInstance();
 		
 	}
 	
@@ -138,22 +136,7 @@ public class MenuActivity extends Activity {
 			setActionAlterarCidade(botaoAlterarCidade);
 			TextView textTarifa = (TextView) findViewById(R.id.text_preco_tarifa);
 			textTarifa.setText(textTarifa.getText() + " " + service.getCityValorTarifa());
-			
-//			featuresSelection = (Spinner) findViewById(R.id.spinner_cidade);		
-//			featuresSelection.setAdapter(featuresAdapter);
-			
 			cidadesApp = service.getAllCitys();
-			
-//			if(cidadesApp.size() > 0){
-//				
-//				featuresAdapter.clear();
-//				for (String idCidadeEncontrada : cidadesApp.values()) {
-//					featuresAdapter.add(idCidadeEncontrada);	
-//				}
-//				
-//				featuresSelection.setEnabled(true);
-//			}
-			
 			break;		
 			
 		case R.layout.buscar_onibus:
@@ -284,38 +267,6 @@ public class MenuActivity extends Activity {
 							}
 						} );
 			break;
-		
-		case 3:
-			builder = new CustomBuilder( ctw, R.layout.result );
-			builder.setTitle(getString(R.string.result_result));
-			builder.setIcon(null);
-			builder.setCancelable( false );
-			builder.setNegativeButton(getString(R.string.result_voltar), new DialogInterface.OnClickListener()
-						{
-							@Override
-							public void onClick( DialogInterface dialog, int which )
-							{
-								dialog.dismiss();
-							}
-						} );
-			builder.setPositiveButton(getString(R.string.result_ok), new DialogInterface.OnClickListener()
-			{
-				@Override
-				public void onClick( DialogInterface dialog, int which )
-				{
-					dialog.dismiss();
-				}
-			} );
-			builder.setNeutralButton(getString(R.string.result_mapa), new DialogInterface.OnClickListener()
-			{
-				@Override
-				public void onClick( DialogInterface dialog, int which )
-				{
-					//abrir mapa
-					dialog.dismiss();
-				}
-			} );
-			break;
 
 		default:
 			break;
@@ -323,6 +274,40 @@ public class MenuActivity extends Activity {
 		dialog = builder.create();
 		if ( dialog == null ){
 			dialog = super.onCreateDialog( id );
+		}
+		
+		if(id == 1){
+			bodyResult = builder.getTemplateBody();
+			//Identifica o Spinner no layout
+			spinnerCidades = (Spinner) bodyResult.findViewById(R.id.spinner_cidade);
+			//Cria um ArrayAdapter usando um padrão de layout da classe R do android, passando o ArrayList nomes
+			ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
+					new ArrayList(cidadesApp.values()));
+			ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
+			spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			spinnerCidades.setAdapter(spinnerArrayAdapter);
+			
+			//Método do Spinner para capturar o item selecionado
+			spinnerCidades.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+				
+				private String nome;
+				
+				@Override
+				public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
+					//pega nome pela posição
+					nome = parent.getItemAtPosition(posicao).toString();
+					//imprime um Toast na tela com o nome que foi selecionado
+					//Toast.makeText(ResultadoActivity.this, "Nome Selecionado: " + nome, Toast.LENGTH_LONG).show();
+//				String idRota = getKeyByValue(cidadesApp, nome);
+//				atualizaDados(idRota);
+				}
+				
+				@Override
+				public void onNothingSelected(AdapterView<?> parent) {
+					
+				}
+			});
+			
 		}
 		return dialog;
 	}
