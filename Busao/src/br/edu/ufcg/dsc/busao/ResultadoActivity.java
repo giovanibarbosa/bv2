@@ -136,15 +136,15 @@ public class ResultadoActivity extends Activity {
 							service.getRouteStartTimePath(idRota), service.getRouteEndTimePath(idRota), Integer.parseInt(service.getRouteTotalTimePath(idRota)), 
 							Integer.parseInt(service.getRouteNumberBusPath(idRota)), service.getRouteDaysPath(idRota));
 					
-					rotas.add(new RouteListView(r.getRoutename(), r.getColour(), r.getUrlRoute(), (int) r.getDifBetweenBus(), 
-							r.getStartTime(), r.getEndTime(), (int)r.getTimePerTotal(), (int) r.getNumBus()));
-
-					
-					//Da null !!! Tem que ajeitar, aquela parada de mudar de layout e ele reconhecer o id
-					//adapterListView = new AdapterRouteListView(context, rotas);
-					//listView.setAdapter(adapterListView);
-				
-					Toast.makeText(ResultadoActivity.this, getString(R.string.add_rota), Toast.LENGTH_LONG).show();
+					if (r == null){
+						//Rota ja tem lá
+						Toast.makeText(ResultadoActivity.this, getString(R.string.rota_ja_existe), Toast.LENGTH_LONG).show();
+					} else {
+						rotas.add(new RouteListView(r.getRoutename(), r.getColour(), r.getUrlRoute(), (int) r.getDifBetweenBus(), 
+								r.getStartTime(), r.getEndTime(), (int)r.getTimePerTotal(), (int) r.getNumBus()));
+						
+						Toast.makeText(ResultadoActivity.this, getString(R.string.add_rota), Toast.LENGTH_LONG).show();
+					}
 					
 					datasource.close();
 					break;
@@ -156,8 +156,6 @@ public class ResultadoActivity extends Activity {
 				default:
 					break;
 				}
-				
-				
 			}
 		});
 	}
