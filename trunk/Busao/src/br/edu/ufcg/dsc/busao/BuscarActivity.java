@@ -175,37 +175,48 @@ public class BuscarActivity extends MapActivity {
 			
 		case 2:
 			//R.layout.buscar_onibus
-			if(mapView != null){
-			mapView = (MapView)findViewById(R.id.mapView);
-			pesquisaDoisPontos = (ImageView) findViewById(R.id.image_botao_pesquisar_pontos);
-			pesquisaDoisPontos.setOnClickListener(new View.OnClickListener() {
-				
-				public void onClick(View v) {
-					if(mapaPontosSelecionado.size() == 0){
-						Toast.makeText(BuscarActivity.this, getString(R.string.sem_ponto_selecionado), Toast.LENGTH_LONG).show();
-						return;
-					}else if(mapaPontosSelecionado.size() == 2){
-						Log.i("mapa1", ""+mapaPontosSelecionado);
-						mapaPontosSelecionado.put("latitudeTo", -35.09); //latitude gps
-						mapaPontosSelecionado.put("longitudeTo", -35.09); //longitude gps
-						
-					}
-					Log.i("mapa2", ""+mapaPontosSelecionado);
-						telaConsultar = new Intent(BuscarActivity.this, ResultadoActivity.class);
-						Bundle b = new Bundle();
-						b.putDouble("lat1", mapaPontosSelecionado.get("latitudeFrom"));
-						b.putDouble("long1", mapaPontosSelecionado.get("longitudeFrom"));
-						b.putDouble("lat2", mapaPontosSelecionado.get("latitudeTo"));
-						b.putDouble("long2", mapaPontosSelecionado.get("longitudeTo"));
-						telaConsultar.putExtras(b);				
-						startActivity(telaConsultar);					
-					
-				}
-			});
-			zoomMap();
-			onCreateMap();
-			setMapCenter();
+			if (mapView == null) {
+				mapView = (MapView) findViewById(R.id.mapView);
 			}
+				pesquisaDoisPontos = (ImageView) findViewById(R.id.image_botao_pesquisar_pontos);
+				pesquisaDoisPontos
+						.setOnClickListener(new View.OnClickListener() {
+
+							public void onClick(View v) {
+								if (mapaPontosSelecionado.size() == 0) {
+									Toast.makeText(
+											BuscarActivity.this,
+											getString(R.string.sem_ponto_selecionado),
+											Toast.LENGTH_LONG).show();
+									return;
+								} else if (mapaPontosSelecionado.size() == 2) {
+									Log.i("mapa1", "" + mapaPontosSelecionado);
+									mapaPontosSelecionado.put("latitudeTo",
+											-35.09); // latitude gps
+									mapaPontosSelecionado.put("longitudeTo",
+											-35.09); // longitude gps
+
+								}
+								Log.i("mapa2", "" + mapaPontosSelecionado);
+								telaConsultar = new Intent(BuscarActivity.this,
+										ResultadoActivity.class);
+								Bundle b = new Bundle();
+								b.putDouble("lat1", mapaPontosSelecionado
+										.get("latitudeFrom"));
+								b.putDouble("long1", mapaPontosSelecionado
+										.get("longitudeFrom"));
+								b.putDouble("lat2",
+										mapaPontosSelecionado.get("latitudeTo"));
+								b.putDouble("long2", mapaPontosSelecionado
+										.get("longitudeTo"));
+								telaConsultar.putExtras(b);
+								startActivity(telaConsultar);
+
+							}
+						});
+				zoomMap();
+				onCreateMap();
+				setMapCenter();
 			break;
 			
 		case 3:
@@ -389,7 +400,7 @@ public class BuscarActivity extends MapActivity {
 	public void onCreateMap(){
 		
 		if (mapView != null){
-	        MyLocationOverlayLocal mapOverlay = new MyLocationOverlayLocal();
+	        MyLocationOverlay mapOverlay = new MyLocationOverlay();
 	        ondeEstou = new com.google.android.maps.MyLocationOverlay(this, mapView);
 	        listOfOverlays = mapView.getOverlays();
 	        listOfOverlays.clear();
@@ -467,7 +478,7 @@ public class BuscarActivity extends MapActivity {
         
     }
 	
-	class MyLocationOverlayLocal extends com.google.android.maps.Overlay {
+	class MyLocationOverlay extends com.google.android.maps.Overlay {
 
 		 @Override
 	     public boolean onTouchEvent(MotionEvent event, MapView mapView) {          	
@@ -488,7 +499,7 @@ public class BuscarActivity extends MapActivity {
 			 }
 
 	         //verify
-			 if(endTime - startTime > 1000 && listOfOverlays.size() < 3){
+			 if(endTime - startTime > 1000 && listOfOverlays.size() < 4){
 			 	GeoPoint p = mapView.getProjection().fromPixels((int) event.getX(),(int) event.getY());
 	              
 			 	MapOverlay novo = new MapOverlay(p);
