@@ -185,6 +185,8 @@ public class BuscarActivity extends MapActivity {
 			//R.layout.buscar_onibus
 			if (mapView == null) {
 				mapView = (MapView) findViewById(R.id.mapView);
+				zoomMap();
+				onCreateMap();
 			}
 				pesquisaDoisPontos = (ImageView) findViewById(R.id.image_botao_pesquisar_pontos);
 				pesquisaDoisPontos
@@ -221,9 +223,7 @@ public class BuscarActivity extends MapActivity {
 								startActivity(telaConsultar);
 
 							}
-						});
-				zoomMap();
-				onCreateMap();
+						});						
 				setMapCenter();
 			break;
 			
@@ -499,17 +499,14 @@ public class BuscarActivity extends MapActivity {
 	}
 	
 	public void onCreateMap(){
-		
-		if (mapView != null){
 	        MyLocationOverlay mapOverlay = new MyLocationOverlay();
 	        ondeEstou = new com.google.android.maps.MyLocationOverlay(this, mapView);
 	        listOfOverlays = mapView.getOverlays();
-	        listOfOverlays.clear();
+	       // listOfOverlays.clear();
 	        listOfOverlays.add(ondeEstou);
 	        listOfOverlays.add(mapOverlay);  
 	        
 	        mapView.invalidate();
-		}
 	}
 
 	public void atualizaBotoes(){
