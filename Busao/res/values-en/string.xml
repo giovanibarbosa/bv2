@@ -109,5 +109,6 @@ and also notable for its tropical climate, and one of the capitals best quality 
     <string name="hora_fim">End Time: </string>
     <string name="add_rota">route successfully added!</string>
     <string name="rota_ja_existe">Route is already registered</string>
+    <string name="delete_rota">Route successfully deleted!</string>
 	
 </resources>

@@ -16,6 +16,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -75,7 +76,8 @@ public class BuscarActivity extends MapActivity {
 	private RotaDataSource rotaDataSource;
 	private ArrayList<RouteListView> rotas;
 	private AdapterRouteListView adapterListView;
-	private ListView listView;
+	private ListView listView, list;
+	private List<PontoTuristico> pontos;
 	private com.google.android.maps.MyLocationOverlay ondeEstou;
 
 	@Override
@@ -230,28 +232,77 @@ public class BuscarActivity extends MapActivity {
 			rotaDataSource = new RotaDataSource(this);
 			rotaDataSource.open();
 			
-			List<Rota> values = rotaDataSource.getAllRoutes();
-			
 			listView = (ListView) findViewById(R.id.tela_consulta_listView);
 			
-			rotas = new ArrayList<RouteListView>();
-			
-			for (Rota rota : values) {
-				rotas.add(new RouteListView(rota.getRoutename(), rota.getColour(), rota.getUrlRoute(), (int) rota.getDifBetweenBus(),
-						rota.getStartTime(), rota.getEndTime(), (int) rota.getTimePerTotal(), (int) rota.getNumBus()));
-			}
-			
-			adapterListView = new AdapterRouteListView(this, rotas);
-			listView.setAdapter(adapterListView);
-
-			//SE CLICAR EM UM ITEM MOSTRAR A ROTA
+			refreshList();
 			
 			//SE PRESSIONAR O ITEM, APAGA
-			rotaDataSource.close();
+			listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+	            public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long id) {
+	                // TODO Auto-generated method stub
+	            	
+	            	String routename = adapterListView.getItem(pos).getRoutename(); 
+	            	rotaDataSource.open();
+	            	rotaDataSource.deleteRota(routename); //Ja que nao tem 2 rotas com o mesmo nome cadastradas, pode apagar pelo nome
+	            	rotaDataSource.close();
+	            	refreshList();
+	            	Toast.makeText(BuscarActivity.this, R.string.delete_rota, Toast.LENGTH_LONG).show();
+	                return true;
+	            }
+	        }); 
+
+			//SE CLICAR EM UM ITEM MOSTRAR A ROTA
+			listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1,	int pos, long id) {
+					String rota = adapterListView.getItem(pos).getUrlRoute();
+					System.out.println(rota);
+					
+					Log.i("url", rota);
+					
+					if(!rota.equals("")){
+						Uri uri1 = Uri.parse(rota);					
+						Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri1);
+						mapIntent.setData(uri1);
+						
+						rotaDataSource.open();
+						
+						long idRota = rotaDataSource.getIdFromRoute(adapterListView.getItem(pos).getRoutename());
+						
+						if ((int) idRota != 0){
+							startActivity(Intent.createChooser(mapIntent, idRota+""));				
+						} else {
+							Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.result_sem_mapa) , Toast.LENGTH_SHORT);
+						}
+						
+					}else{
+						Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.result_sem_mapa) , Toast.LENGTH_SHORT);
+						toast.show();
+					}
+				}
+			});
+			
 			break;
 		default :
 			break;
 		}
+	}
+	
+	private void refreshList(){
+		List<Rota> values = rotaDataSource.getAllRoutes();
+		
+		rotas = new ArrayList<RouteListView>();
+		
+		for (Rota rota : values) {
+			rotas.add(new RouteListView(rota.getRoutename(), rota.getColour(), rota.getUrlRoute(), (int) rota.getDifBetweenBus(),
+					rota.getStartTime(), rota.getEndTime(), (int) rota.getTimePerTotal(), (int) rota.getNumBus()));
+		}
+		
+		adapterListView = new AdapterRouteListView(this, rotas);
+		listView.setAdapter(adapterListView);
+		rotaDataSource.close();
 	}
 	
 	private void limpaBotoes() {
@@ -312,6 +363,27 @@ public class BuscarActivity extends MapActivity {
 			
 		case R.layout.menu_turismo:
 			criaListView();
+			
+			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1,	int pos, long id) {
+
+					String latitude = pontos.get(pos).getLatitude();
+					String longitude = pontos.get(pos).getLongitude();
+					
+					Intent telaConsultar = new Intent(BuscarActivity.this,ResultadoActivity.class);
+					Bundle b = new Bundle();
+					b.putDouble("lat1", Double.parseDouble(latitude));
+					b.putDouble("long1", Double.parseDouble(longitude));
+					b.putDouble("lat2", 0.0);
+					b.putDouble("long2", 0.0);
+					
+					telaConsultar.putExtras(b);
+					startActivity(telaConsultar);
+	            }
+	        }); 
+			
 		default :
 			break;
 		}
@@ -360,8 +432,8 @@ public class BuscarActivity extends MapActivity {
 	}
 	
 	private void criaListView() {
-		ListView list = (ListView) findViewById(R.id.turismo_list);;
-		List<PontoTuristico> pontos = new ArrayList<PontoTuristico>();
+		list = (ListView) findViewById(R.id.turismo_list);;
+		pontos = new ArrayList<PontoTuristico>();
 		PontoAdapter adapter;
 		int imagem = 0;
 		List<Map<String, String>> pontosTuri = service.getAllTuristicPoint();
