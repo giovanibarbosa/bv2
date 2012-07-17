@@ -13,6 +13,24 @@ public class Rota {
 	private long numBus;
 	private String days;
 	
+	public Rota(long id, String routename, String colour, String urlRoute,
+			long difBetweenBus, String startTime, String endTime,
+			long timePerTotal, long numBus, String days) {
+		super();
+		this.id = id;
+		this.routename = routename;
+		this.colour = colour;
+		this.urlRoute = urlRoute;
+		this.difBetweenBus = difBetweenBus;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.timePerTotal = timePerTotal;
+		this.numBus = numBus;
+		this.days = days;
+	}
+
+	public Rota() {}
+
 	public long getId() {
 		return id;
 	}

@@ -3,6 +3,8 @@ package br.edu.ufcg.dsc.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.conn.routing.RouteTracker;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -69,6 +71,22 @@ public class RotaDataSource {
 		long id = rota.getId();
 		System.out.println("Comment deleted with id: " + id);
 		database.delete(RotaSQLiteHelper.TABLE_ROUTE, RotaSQLiteHelper.COLUMN_ID + " = " + id, null);
+	}
+	
+	public void deleteRota(String routename) {
+		database.delete(RotaSQLiteHelper.TABLE_ROUTE, RotaSQLiteHelper.COLUMN_ROUTE_NAME + " = " + routename, null);
+	}
+	
+	public long getIdFromRoute(String routename){
+		String[] strArray = new String[]{RotaSQLiteHelper.COLUMN_ID};
+		Cursor cursor = database.query(RotaSQLiteHelper.TABLE_ROUTE,
+				strArray, RotaSQLiteHelper.COLUMN_ROUTE_NAME + " = " + routename, null,null, null, null);
+		
+		if (cursor.moveToFirst()){
+			return cursor.getLong(0);
+		}
+		
+		return 0; 
 	}
 	
 	public List<Rota> getAllRoutes() {
