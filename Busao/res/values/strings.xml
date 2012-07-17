@@ -42,6 +42,10 @@
 	
 	<string name="open">abrir</string>
 
+
+
+    <!-- Pesquisa -->
+    <string name="dados_fornecidos">*Dados fornecidos pela STTP-Trans</string>
 	
 	<!-- Menu Ajuda -->
 	<string name="ajuda_pre">pré-requisitos</string>

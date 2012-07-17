@@ -9,6 +9,7 @@ import java.util.Map;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -23,6 +24,7 @@ import android.view.ContextThemeWrapper;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -79,6 +81,7 @@ public class BuscarActivity extends MapActivity {
 	private ListView listView, list;
 	private List<PontoTuristico> pontos;
 	private com.google.android.maps.MyLocationOverlay ondeEstou;
+	private InputMethodManager imm;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -95,6 +98,10 @@ public class BuscarActivity extends MapActivity {
 		setActionsRows(rowTurismo, R.layout.menu_turismo);
 		setActionsRows(rowAjuda, R.layout.menu_ajuda);
 		setActionsRowLogo();
+		paramBusca = (EditText) findViewById(R.id.paramBusca);
+		imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		paramBusca.clearFocus();
+		imm.hideSoftInputFromWindow(paramBusca.getWindowToken(), 0); 
 		pesquisaOnibus = (ImageView) findViewById(R.id.search);
 		
 		pesquisaOnibus.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +121,7 @@ public class BuscarActivity extends MapActivity {
 		
 		service = HTTPModuleFacade.getInstance();
 		
-		paramBusca = (EditText) findViewById(R.id.paramBusca);
+		
 		
 
 	}
@@ -169,6 +176,8 @@ public class BuscarActivity extends MapActivity {
 		case 1:	
 			pesquisaOnibus = (ImageView) findViewById(R.id.search);
 			paramBusca = (EditText) findViewById(R.id.paramBusca);
+			paramBusca.clearFocus();
+			imm.hideSoftInputFromWindow(paramBusca.getWindowToken(), 0); 
 			pesquisaOnibus.setOnClickListener(new View.OnClickListener() {				
 				public void onClick(View v) {
 					Log.i("clicoudentro", "Clicouu");
