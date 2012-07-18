@@ -81,6 +81,7 @@ public class BuscarActivity extends MapActivity {
 	private ListView listView, list;
 	private List<PontoTuristico> pontos;
 	private com.google.android.maps.MyLocationOverlay ondeEstou;
+	private List<Rota> values;
 	private InputMethodManager imm;
 
 	@Override
@@ -254,7 +255,18 @@ public class BuscarActivity extends MapActivity {
 			
 			listView = (ListView) findViewById(R.id.tela_consulta_listView);
 			
-			refreshList();
+			values = rotaDataSource.getAllRoutes();
+			
+			rotas = new ArrayList<RouteListView>();
+			
+			for (Rota rota : values) {
+				rotas.add(new RouteListView(rota.getRoutename(), rota.getColour(), rota.getUrlRoute(), (int) rota.getDifBetweenBus(),
+						rota.getStartTime(), rota.getEndTime(), (int) rota.getTimePerTotal(), (int) rota.getNumBus()));
+			}
+			
+			adapterListView = new AdapterRouteListView(this, rotas);
+			listView.setAdapter(adapterListView);
+			rotaDataSource.close();
 			
 			//SE PRESSIONAR O ITEM, APAGA
 			listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -265,8 +277,21 @@ public class BuscarActivity extends MapActivity {
 	            	String routename = adapterListView.getItem(pos).getRoutename(); 
 	            	rotaDataSource.open();
 	            	rotaDataSource.deleteRota(routename); //Ja que nao tem 2 rotas com o mesmo nome cadastradas, pode apagar pelo nome
+	            	
+	            	values = rotaDataSource.getAllRoutes();
+	    			
+	    			rotas = new ArrayList<RouteListView>();
+	    			
+	    			for (Rota rota : values) {
+	    				rotas.add(new RouteListView(rota.getRoutename(), rota.getColour(), rota.getUrlRoute(), (int) rota.getDifBetweenBus(),
+	    						rota.getStartTime(), rota.getEndTime(), (int) rota.getTimePerTotal(), (int) rota.getNumBus()));
+	    			}
+	            	
+	    			adapterListView = new AdapterRouteListView(BuscarActivity.this, rotas);
+	    			listView.setAdapter(adapterListView);
+	    			
 	            	rotaDataSource.close();
-	            	refreshList();
+
 	            	Toast.makeText(BuscarActivity.this, R.string.delete_rota, Toast.LENGTH_LONG).show();
 	                return true;
 	            }
@@ -308,21 +333,6 @@ public class BuscarActivity extends MapActivity {
 		default :
 			break;
 		}
-	}
-	
-	private void refreshList(){
-		List<Rota> values = rotaDataSource.getAllRoutes();
-		
-		rotas = new ArrayList<RouteListView>();
-		
-		for (Rota rota : values) {
-			rotas.add(new RouteListView(rota.getRoutename(), rota.getColour(), rota.getUrlRoute(), (int) rota.getDifBetweenBus(),
-					rota.getStartTime(), rota.getEndTime(), (int) rota.getTimePerTotal(), (int) rota.getNumBus()));
-		}
-		
-		adapterListView = new AdapterRouteListView(this, rotas);
-		listView.setAdapter(adapterListView);
-		rotaDataSource.close();
 	}
 	
 	private void limpaBotoes() {

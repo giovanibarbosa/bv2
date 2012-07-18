@@ -35,7 +35,7 @@ public class RotaDataSource {
 			String starTime, String endTime, Integer perTotal, Integer numOnibus, String dias){
 		
 		Cursor cursor1 = database.query(RotaSQLiteHelper.TABLE_ROUTE,
-				allColumns, RotaSQLiteHelper.COLUMN_ROUTE_NAME + " = " + routeName, null, null, null, null);
+				allColumns, RotaSQLiteHelper.COLUMN_ROUTE_NAME + " = '" + routeName + "'", null, null, null, null);
 		
 		if (!cursor1.moveToFirst()){ // check if there is data
 			
@@ -56,9 +56,10 @@ public class RotaDataSource {
 					allColumns, RotaSQLiteHelper.COLUMN_ID + " = " + insertId, null,
 					null, null, null);
 			
-			cursor.close();
 			cursor.moveToFirst();
-			return cursorToRota(cursor);
+			Rota newRota = cursorToRota(cursor);
+			cursor.close();
+			return newRota;
 		} else {
 			//Rota ja cadastrada
 			cursor1.close();
@@ -74,19 +75,33 @@ public class RotaDataSource {
 	}
 	
 	public void deleteRota(String routename) {
-		database.delete(RotaSQLiteHelper.TABLE_ROUTE, RotaSQLiteHelper.COLUMN_ROUTE_NAME + " = " + routename, null);
+		database.delete(RotaSQLiteHelper.TABLE_ROUTE, RotaSQLiteHelper.COLUMN_ROUTE_NAME + " = '" + routename + "'", null);
 	}
 	
 	public long getIdFromRoute(String routename){
 		String[] strArray = new String[]{RotaSQLiteHelper.COLUMN_ID};
 		Cursor cursor = database.query(RotaSQLiteHelper.TABLE_ROUTE,
-				strArray, RotaSQLiteHelper.COLUMN_ROUTE_NAME + " = " + routename, null,null, null, null);
+				strArray, RotaSQLiteHelper.COLUMN_ROUTE_NAME + " = '" + routename + "'", null,null, null, null);
 		
 		if (cursor.moveToFirst()){
 			return cursor.getLong(0);
 		}
 		
 		return 0; 
+	}
+	
+	public boolean favouriteRoute(String routeName){
+		
+		Cursor cursor;
+		
+		try {
+			cursor = database.query(RotaSQLiteHelper.TABLE_ROUTE,	allColumns, RotaSQLiteHelper.COLUMN_ROUTE_NAME + " = '" + routeName + "'", null, null, null, null);
+			boolean contem = cursor.moveToFirst(); //True if data
+			cursor.close();
+			return contem;
+		} catch (Exception e){
+			return false;
+		}
 	}
 	
 	public List<Rota> getAllRoutes() {
