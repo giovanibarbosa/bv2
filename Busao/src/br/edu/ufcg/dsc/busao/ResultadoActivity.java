@@ -209,6 +209,7 @@ public class ResultadoActivity extends Activity {
 						Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.result_sem_mapa) , Toast.LENGTH_SHORT);
 						toast.show();
 					}
+					
 				}
 			} );
 
@@ -261,7 +262,6 @@ public class ResultadoActivity extends Activity {
  
 			}
 		});
-
 		return dialog;
 	}
 	
@@ -281,6 +281,21 @@ public class ResultadoActivity extends Activity {
 		this.atualURLMap = "http://busaoapp.com/service/"+service.getRouteUrlRota(idRota);
 		Log.i("atualizandoDados", idRota);
 		Log.i("URLRota", atualURLMap);
+	}
+
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+
+		Log.i("OnPause", "Pause");
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		// Remove o Listener para não ficar atualizando mesmo depois de sair
+		Log.i("OnDestroy", "Destroy");
 	}
 
 }
