@@ -61,10 +61,6 @@ public class ResultadoActivity extends Activity {
         m_t.Start(); 
 	//	showDialog(1);
 		
-
-	 
-//		DigitalClock relogio = (DigitalClock) bodyResult.findViewById(R.id.digital_clock);
-//		relogio.set
 		 
 	}
 	

@@ -17,7 +17,9 @@ public class HTTPModuleFacade {
 	private UserData user;
 	private static HTTPModuleFacade instance = null;
 
-	
+	public UserData getUser(){
+		return user;
+	}
 	public static HTTPModuleFacade getInstance(String idCity, String latitude, String longitude){
 		if(instance == null)
 			instance = new HTTPModuleFacade(idCity, latitude, longitude);
