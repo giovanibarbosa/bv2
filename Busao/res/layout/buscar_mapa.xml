@@ -13,6 +13,26 @@
 	<LinearLayout android:id="@+id/zoom" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:layout_alignParentBottom="true"
 		android:layout_centerHorizontal="true" />
-	<ImageView android:layout_width="wrap_content" android:src="@drawable/botao_seach_normal_digitando" android:layout_height="wrap_content" android:id="@+id/image_botao_pesquisar_pontos" android:layout_centerVertical="true" android:layout_alignParentRight="true" android:layout_margin="10dp"></ImageView>
+	
+	<ImageView 
+	    android:layout_width="wrap_content" 
+	    android:src="@drawable/botao_seach_normal_digitando" 
+	    android:layout_height="wrap_content" 
+	    android:id="@+id/image_botao_pesquisar_pontos" 
+	    android:layout_centerVertical="true" 
+	    android:layout_alignParentBottom="true"
+	    android:layout_alignParentRight="true" 
+	    android:layout_margin="10dp"></ImageView>
 
+	<ImageView 
+	    android:layout_width="wrap_content" 
+	    android:src="@drawable/clear_points" 
+	    android:layout_height="wrap_content" 
+	    android:layout_alignParentBottom="true"
+	    android:id="@+id/image_botao_limpar_pontos" 
+	    android:layout_centerVertical="true" 
+	    android:layout_alignParentLeft="true" 
+	    android:layout_margin="10dp"></ImageView>
+	
+	
 </RelativeLayout>

@@ -42,9 +42,6 @@ public class MenuActivity extends Activity {
 	ImageView botaoAlterarCidade, botaoSearch,botaoFace,botaoTwitter;
 	HTTPModuleFacade service;
 	private Map<String, String> cidadesApp = new HashMap<String, String>();
-	private Spinner featuresSelection;
-	private List<CharSequence> featuresList;
-	private ArrayAdapter<CharSequence> featuresAdapter;
 	private View bodyResult;
 	private Spinner spinnerCidades;
 	private ListView list;
@@ -54,6 +51,7 @@ public class MenuActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setTextFont();
 		MultiDirectionSlidingDrawer drawer = (MultiDirectionSlidingDrawer) findViewById(R.id.drawer);
 		drawer.open();
