@@ -138,7 +138,7 @@ public class ResultadoActivity extends Activity {
 					}
 					
 					Rota r = null;
-					r = datasource.createRota(campoBusca, service.getRouteCor(idRota), atualURLMap, Integer.parseInt(service.getRouteTimeWait(idRota)), 
+					r = datasource.createRota(spinnerRotas.getSelectedItem().toString(), service.getRouteCor(idRota), atualURLMap, Integer.parseInt(service.getRouteTimeWait(idRota)), 
 							service.getRouteStartTimePath(idRota), service.getRouteEndTimePath(idRota), Integer.parseInt(service.getRouteTotalTimePath(idRota)), 
 							Integer.parseInt(service.getRouteNumberBusPath(idRota)), service.getRouteDaysPath(idRota));
 					
@@ -245,6 +245,17 @@ public class ResultadoActivity extends Activity {
 				nome = parent.getItemAtPosition(posicao).toString();
 				//imprime um Toast na tela com o nome que foi selecionado
 				//Toast.makeText(ResultadoActivity.this, "Nome Selecionado: " + nome, Toast.LENGTH_LONG).show();
+				
+				datasource.open();
+				
+				if(datasource.favouriteRoute(nome)){
+					iconeFavoritos.setImageResource(R.drawable.estrela_amarela);
+				} else {
+					iconeFavoritos.setImageResource(R.drawable.estrela_cinza);
+				}
+
+				datasource.close();
+				
 				String idRota = getKeyByValue(resultado, nome);
 				atualizaDados(idRota);
 			}
