@@ -17,6 +17,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.Typeface;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,7 +56,7 @@ import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 
-public class BuscarActivity extends MapActivity {
+public class BuscarActivity extends MapActivity implements LocationListener{
 	
 	TableRow rowLocalidade, rowBuscar, rowTurismo, rowAjuda, rowLogoBusao;
 	ImageView botaoAlterarCidade;
@@ -83,12 +86,12 @@ public class BuscarActivity extends MapActivity {
 	private com.google.android.maps.MyLocationOverlay ondeEstou;
 	private List<Rota> values;
 	private InputMethodManager imm;
+	private MapController controlador;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_buscar);
-		setTextFont();
 		instanciarRows();
 		instanciarBotoes();
 		selectRowBuscar();
@@ -116,6 +119,7 @@ public class BuscarActivity extends MapActivity {
 				startActivity(telaConsultar);
 			}
 		});
+		
 		setActionsBotao(botaoBuscarOnibus, 1);
 		setActionsBotao(botaoBuscarPonto, 2);
 		setActionsBotao(botaoRotasFavoritas, 3);
@@ -195,8 +199,8 @@ public class BuscarActivity extends MapActivity {
 			//R.layout.buscar_onibus
 			if (mapView == null) {
 				mapView = (MapView) findViewById(R.id.mapView);
-				zoomMap();
-				onCreateMap();
+				controlador = mapView.getController();
+				zoomMap();				
 			}
 
 				limparOverlays = (ImageView) findViewById(R.id.image_botao_limpar_pontos);
@@ -205,6 +209,7 @@ public class BuscarActivity extends MapActivity {
 					
 					@Override
 					public void onClick(View v) {
+						Log.i("limpou","limpou");
 						limparDados();			
 					}
 				});
@@ -221,11 +226,16 @@ public class BuscarActivity extends MapActivity {
 											Toast.LENGTH_LONG).show();
 									return;
 								} else if (mapaPontosSelecionado.size() == 2) {
-									Log.i("mapa1", "" + mapaPontosSelecionado);
+									double latitude = Double.parseDouble(service.getUser().getLatitude());
+									double longitude = Double.parseDouble(service.getUser().getLongitude());
+									if(ondeEstou.getMyLocation() != null){
+										latitude = ondeEstou.getMyLocation().getLatitudeE6()/1E6;
+										longitude = ondeEstou.getMyLocation().getLongitudeE6()/1E6;
+									}									
 									mapaPontosSelecionado.put("latitudeTo",
-											-35.09); // latitude gps
+											latitude); // latitude gps
 									mapaPontosSelecionado.put("longitudeTo",
-											-35.09); // longitude gps
+											longitude); // longitude gps
 
 								}
 								Log.i("mapa2", "" + mapaPontosSelecionado);
@@ -244,7 +254,8 @@ public class BuscarActivity extends MapActivity {
 								startActivity(telaConsultar);
 
 							}
-						});						
+						});			
+				onCreateMap();
 				setMapCenter();
 			break;
 			
@@ -382,52 +393,8 @@ public class BuscarActivity extends MapActivity {
 			}
 		});
 	}
-	
-	private void setAlteracoesTela(int id){
-		switch (id) {
-		case R.layout.menu_localidade:
-			//alterar os dados...
-			botaoAlterarCidade = (ImageView) findViewById(R.id.botao_alterar_cidade);
-			setActionAlterarCidade(botaoAlterarCidade);
-			break;		
-			
-		case R.layout.menu_turismo:
-			criaListView();
-			
-			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-				
-				@Override
-				public void onItemClick(AdapterView<?> arg0, View arg1,	int pos, long id) {
 
-					String latitude = pontos.get(pos).getLatitude();
-					String longitude = pontos.get(pos).getLongitude();
-					
-					Intent telaConsultar = new Intent(BuscarActivity.this,ResultadoActivity.class);
-					Bundle b = new Bundle();
-					b.putDouble("lat1", Double.parseDouble(latitude));
-					b.putDouble("long1", Double.parseDouble(longitude));
-					b.putDouble("lat2", 0.0);
-					b.putDouble("long2", 0.0);
-					
-					telaConsultar.putExtras(b);
-					startActivity(telaConsultar);
-	            }
-	        }); 
-			
-		default :
-			break;
-		}
-	}
-	
-	private void setActionAlterarCidade(ImageView botao){
-		if(botao == null) return;
-		botao.setOnClickListener(new View.OnClickListener() {
 
-			public void onClick(View v) {
-				showDialog(R.layout.popup_escolher_cidade);
-			}
-		});
-	}
 	
 	@Override
 	protected Dialog onCreateDialog( int id )
@@ -460,53 +427,8 @@ public class BuscarActivity extends MapActivity {
 		}
 		return dialog;
 	}
-	
-	private void criaListView() {
-		list = (ListView) findViewById(R.id.turismo_list);;
-		pontos = new ArrayList<PontoTuristico>();
-		PontoAdapter adapter;
-		int imagem = 0;
-		List<Map<String, String>> pontosTuri = service.getAllTuristicPoint();
-		for (Map<String, String> map : pontosTuri) {
-			
-			if (map.get("nome").equalsIgnoreCase("Parque do Povo")){
-				imagem = R.drawable.pt_cg_pp;
-			} else if (map.get("nome").equalsIgnoreCase("Tropeiros da Borborema")){
-				imagem = R.drawable.pt_cg_tropeiros;
-			} else if (map.get("nome").equalsIgnoreCase("Acude Velho")){
-				imagem = R.drawable.pt_cg_acudevelho;
-			} else if (map.get("nome").equalsIgnoreCase("Jackson do Pandeiro")){
-				imagem = R.drawable.pt_cg_jackson;
-			} else { //imagem default
-				imagem = R.drawable.pt_default;
-			}
-			
-			pontos.add(new PontoTuristico(map.get("id"), map.get("nome"), map.get("latitude"), map.get("longitude"), map.get("descricao"), imagem));
-		}
-		adapter = new PontoAdapter(this,pontos);
-		list.setAdapter(adapter);
-	}
-	
-	private void limpaRows(){
-		rowLocalidade.setBackgroundDrawable(null);
-		rowBuscar.setBackgroundDrawable(null);
-		rowTurismo.setBackgroundDrawable(null);
-		rowAjuda.setBackgroundDrawable(null);
-	}
-	
-	private void setTextFont(){
-		//set Font
-		TextView textLocalidade = (TextView) findViewById(R.id.textLocalidade);  
-		TextView textBuscar = (TextView) findViewById(R.id.textBuscar);  
-		TextView textTurismo = (TextView) findViewById(R.id.textTurismo);  
-		TextView textAjuda = (TextView) findViewById(R.id.textAjuda);  
-		TextView textAlterarCidade = (TextView) findViewById(R.id.text_alterar_cidade);  
-		Typeface font = Typeface.createFromAsset(getAssets(), "font.TTF");  
-		textLocalidade.setTypeface(font);
-		textBuscar.setTypeface(font);
-		textTurismo.setTypeface(font);
-		textAjuda.setTypeface(font);
-	}
+
+
 
 	@Override
 	protected boolean isRouteDisplayed() {
@@ -532,30 +454,14 @@ public class BuscarActivity extends MapActivity {
 	        MyLocationOverlay mapOverlay = new MyLocationOverlay();
 	        ondeEstou = new com.google.android.maps.MyLocationOverlay(this, mapView);
 	        listOfOverlays = mapView.getOverlays();
-	       // listOfOverlays.clear();
+	        listOfOverlays.clear();
 	        listOfOverlays.add(ondeEstou);
 	        listOfOverlays.add(mapOverlay);  
 	        
-	        mapView.invalidate();
+	      //  mapView.invalidate();
 	}
 
-	public void atualizaBotoes(){
-		//TODO
-//		if(mapaPontosSelecionado.size() == 4){
-//			botaoPesquisar.setAlpha(255);
-//			botaoPesquisar.setEnabled(true);
-//		}else{
-//			botaoPesquisar.setAlpha(50);
-//			botaoPesquisar.setEnabled(false);
-//		}
-//		if(mapaPontosSelecionado.size() > 0){
-//			botaoLimpar.setAlpha(255);
-//			botaoLimpar.setEnabled(true);
-//		}else{
-//			botaoLimpar.setAlpha(50);
-//			botaoLimpar.setEnabled(false);
-//		}
-	}
+
 	
 	public void inserePontoSelecionado(double lat, double longi){
 		if(mapaPontosSelecionado.size()< 4){
@@ -637,6 +543,62 @@ public class BuscarActivity extends MapActivity {
 
 	         return false;
 	    }     
+	}
+
+	@Override
+	public void onLocationChanged(Location loc) {
+		int latitude = (int) (loc.getLatitude() * 1E6);
+		int longitude = (int) (loc.getLongitude() * 1E6);
+		GeoPoint ponto = new GeoPoint(latitude, longitude);
+
+		controlador.animateTo(ponto);
+		controlador.setZoom(15);
+		mapView.invalidate();
+	}
+
+	@Override
+	public void onProviderDisabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onProviderEnabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private LocationManager getLocationManager() {
+		return (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		// Registra o Listener
+		if(ondeEstou != null)
+		ondeEstou.enableMyLocation();
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		// Remove o listener
+		if(ondeEstou != null)
+		ondeEstou.disableMyLocation();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		// Remove o Listener para não ficar atualizando mesmo depois de sair
+		getLocationManager().removeUpdates(this);
 	}
 	
 }
