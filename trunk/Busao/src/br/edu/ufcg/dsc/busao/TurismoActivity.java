@@ -9,6 +9,7 @@ import br.edu.ufcg.dsc.httpmodule.HTTPModuleFacade;
 import br.edu.ufcg.dsc.util.PontoAdapter;
 import br.edu.ufcg.dsc.util.PontoTuristico;
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -22,12 +23,19 @@ public class TurismoActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu_turismo);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		list = (ListView) findViewById(R.id.turismo_list);
 		createListView();
 	
 		service = HTTPModuleFacade.getInstance("1", "0", "0");
 	}
 
+	@Override
+	protected void onResume(){
+		super.onResume();
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+	}
+	
 	private void createListView() {
 		pontos = new ArrayList<PontoTuristico>();
 		int imagem = 0;

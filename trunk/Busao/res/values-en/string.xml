@@ -18,7 +18,7 @@
 	<string name="menu_ajuda">help</string>
 	<string name="compartilhar">share</string> 
     
-	<string name="bem_vindo_desc">The BUSÂO it´s an application that gives to user 
+	<string name="bem_vindo_desc">The BUSÃO it´s an application that gives to user 
 	    the perspective  of time to the next bus. In adition, informs the routes 
 	    for the tourism point and allow share with social networks. Enjoy !!!!!</string>
 	
@@ -104,7 +104,7 @@ and also notable for its tropical climate, and one of the capitals best quality 
 	    <!-- LIST ROUTE -->
     
     <string name="num_onibus">Number of Bus: </string>
-    <string name="dif_onibus">Diference between bus: </string>
+    <string name="dif_onibus">Dif. between bus: </string>
     <string name="hora_inicio">Start Time: </string>
     <string name="hora_fim">End Time: </string>
     <string name="add_rota">route successfully added!</string>

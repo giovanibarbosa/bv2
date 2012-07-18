@@ -65,7 +65,7 @@ public class BuscarActivity extends MapActivity {
 	View viewInflateFavoritos;
 	
 	private String buscaLinha;
-	private ImageView pesquisaOnibus, pesquisaDoisPontos;
+	private ImageView pesquisaOnibus, pesquisaDoisPontos, limparOverlays;
 	
 	MapView mapView;
 	private List<Overlay> listOfOverlays;
@@ -197,6 +197,17 @@ public class BuscarActivity extends MapActivity {
 				zoomMap();
 				onCreateMap();
 			}
+
+				limparOverlays = (ImageView) findViewById(R.id.image_botao_limpar_pontos);
+				
+				limparOverlays.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						limparDados();			
+					}
+				});
+			
 				pesquisaDoisPontos = (ImageView) findViewById(R.id.image_botao_pesquisar_pontos);
 				pesquisaDoisPontos
 						.setOnClickListener(new View.OnClickListener() {
