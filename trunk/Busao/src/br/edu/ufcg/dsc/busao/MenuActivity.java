@@ -14,6 +14,8 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -45,8 +47,27 @@ public class MenuActivity extends Activity {
 	private View bodyResult;
 	private Spinner spinnerCidades;
 	private ListView list;
-	private List<PontoTuristico> pontos ;
-	
+	private List<PontoTuristico> pontos;
+	private static ImageView bolinha0 ;
+	private static ImageView bolinha1;
+	private static ImageView bolinha2;
+	private static ImageView bolinha3;
+	public static Handler myHandler = new Handler() {
+		
+		  @Override
+		  public void handleMessage(Message msg) {
+
+			  switch (msg.what) {
+		      default:
+		        Log.i("Menu", ""+msg.what);
+		        atualBolinhas(msg.what);
+		        break;
+			  }
+		  }
+		  
+		
+		};
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -55,7 +76,8 @@ public class MenuActivity extends Activity {
 		setTextFont();
 		MultiDirectionSlidingDrawer drawer = (MultiDirectionSlidingDrawer) findViewById(R.id.drawer);
 		drawer.open();
-
+		instanciaBolinhas();
+		atualBolinhas(0);
 		//scroll.setItemWidth(width);
 		instanciarRows();
 		setActionsRows(rowLocalidade, R.layout.menu_localidade);
@@ -85,6 +107,42 @@ public class MenuActivity extends Activity {
 			default:
 				break;
 			}
+		}
+	}
+	
+
+	private void instanciaBolinhas() {
+		bolinha0 = (ImageView) findViewById(R.id.image_bolinha_0);
+		bolinha1 = (ImageView) findViewById(R.id.image_bolinha_1);
+		bolinha2 = (ImageView) findViewById(R.id.image_bolinha_2);
+		bolinha3 = (ImageView) findViewById(R.id.image_bolinha_3);
+		
+	}
+	
+	private static void fadeBolinhas(int valor){
+		bolinha0.setAlpha(valor);
+		bolinha1.setAlpha(valor);
+		bolinha2.setAlpha(valor);
+		bolinha3.setAlpha(valor);
+	}
+	
+	public static void atualBolinhas(int id){
+		fadeBolinhas(50);
+		switch (id) {
+		case 0:
+			bolinha0.setAlpha(255);
+			break;
+		case 1:
+			bolinha1.setAlpha(255);
+			break;
+		case 2:
+			bolinha2.setAlpha(255);
+			break;
+		case 3:
+			bolinha3.setAlpha(255);
+			break;
+		default:
+			break;
 		}
 	}
 	

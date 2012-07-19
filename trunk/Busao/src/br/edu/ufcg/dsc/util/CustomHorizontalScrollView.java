@@ -13,6 +13,7 @@ import android.view.View.OnTouchListener;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import br.edu.ufcg.dsc.R;
+import br.edu.ufcg.dsc.busao.MenuActivity;
 
 public class CustomHorizontalScrollView extends HorizontalScrollView implements OnTouchListener, OnGestureListener {
 
@@ -32,7 +33,8 @@ public class CustomHorizontalScrollView extends HorizontalScrollView implements 
 	private boolean flingDisable = true;
 	private Activity act;
 	
-	ImageView bolinha0, bolinha1, bolinha2, bolinha3;
+
+	private ThreadedClassScroll m_t;
 
 	public CustomHorizontalScrollView(Context context) {
 		super(context);
@@ -51,45 +53,11 @@ public class CustomHorizontalScrollView extends HorizontalScrollView implements 
 		Log.i("Width", ""+widthContext);
 		this.setOnTouchListener(this);
 		this.setHorizontalScrollBarEnabled(false);
-	//	instanciaBolinhas();
+	//	
+
     }
 
 
-	private void instanciaBolinhas() {
-		bolinha0 = (ImageView) findViewById(R.id.image_bolinha_0);
-		bolinha1 = (ImageView) findViewById(R.id.image_bolinha_1);
-		bolinha2 = (ImageView) findViewById(R.id.image_bolinha_2);
-		bolinha3 = (ImageView) findViewById(R.id.image_bolinha_3);
-		
-	}
-	
-	private void fadeBolinhas(int valor){
-		instanciaBolinhas();
-		bolinha0.setAlpha(valor);
-		bolinha1.setAlpha(valor);
-		bolinha2.setAlpha(valor);
-		bolinha3.setAlpha(valor);
-	}
-	
-	private void atualBolinhas(int id){
-		fadeBolinhas(50);
-		switch (id) {
-		case 0:
-			bolinha0.setAlpha(255);
-			break;
-		case 1:
-			bolinha1.setAlpha(255);
-			break;
-		case 2:
-			bolinha2.setAlpha(255);
-			break;
-		case 3:
-			bolinha3.setAlpha(255);
-			break;
-		default:
-			break;
-		}
-	}
 
 	public CustomHorizontalScrollView(Context context, int maxItem, int itemWidth) {
 		this(context);
@@ -143,6 +111,8 @@ public class CustomHorizontalScrollView extends HorizontalScrollView implements 
 					activeItem = activeItem - 1;
 			}
 			System.out.println("horizontal : " + activeItem);
+			m_t = new ThreadedClassScroll(MenuActivity.myHandler, activeItem); 
+	        m_t.Start(); 
 			//atualBolinhas(activeItem);
 			scrollTo = activeItem * itemWidth;
 			this.smoothScrollTo(scrollTo, 0);
