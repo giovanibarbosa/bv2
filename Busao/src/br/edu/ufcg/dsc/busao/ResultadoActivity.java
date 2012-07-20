@@ -204,7 +204,9 @@ public class ResultadoActivity extends Activity {
 						Uri uri1 = Uri.parse(urlRota);					
 						Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri1);
 						mapIntent.setData(uri1);
-						startActivity(Intent.createChooser(mapIntent, idRota));				
+						startActivity(Intent.createChooser(mapIntent, idRota));	
+						finish();
+						//return;
 					}else{
 						Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.result_sem_mapa) , Toast.LENGTH_SHORT);
 						toast.show();
