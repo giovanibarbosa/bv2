@@ -48,7 +48,12 @@
 	<string name="ajuda_texto_onibus">To search for a specific bus line (get menu> bus), select a desired row and their data will be displayed.</string>
 	<string name="ajuda_texto_rotas">In the search menu > routes, mark the two points on the map you want (this may be one of your current location) and if there is a bus line that passes through these points, your data will be displayed.</string>
 	<string name="ajuda_texto_mapas">In search > maps can be viewed routes marked as favorites.</string>
-
+	<string name="ajuda_rotas_favoritas">routes favorites</string>
+	<string name="ajuda_pontos_turisticos">places to visit</string>
+	<string name="ajuda_texto_rotas_favoritas">Bookmark routes of your interest. Check the same as a favorite on the results screen. In the search menu> favourites,
+		click on the route and see your route without the need for research. To remove the route of your favorite routes, press the item for a few seconds</string>
+	<string name="ajuda_texto_pontos_turisticos">In tourist menu, press the tourism point of your interest and BUSÃO list routes/lines that pass through 
+	    this location. Share this information click on facebook and twitter icon</string>
 	
 	<!-- Popup Resultado -->
 	<string name="result_faltam">Missing</string>
