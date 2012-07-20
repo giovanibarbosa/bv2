@@ -53,10 +53,15 @@
 	<string name="ajuda_onibus">buscar ônibus</string>
 	<string name="ajuda_mapas">mapas</string>
 	<string name="ajuda_texto_pre_requisitos">É necessário que seu aparelho tenha acesso a Internet e GPS.</string>
-	<string name="ajuda_texto_onibus">Para pesquisar por uma linha de ônibus específica (menu buscar > ônibus), selecione uma linha desejada e serao exibidos seus dados.</string>
+	<string name="ajuda_texto_onibus">Para pesquisar por uma linha de ônibus específica (menu buscar > linha), selecione uma linha desejada e serao exibidos seus dados.</string>
 	<string name="ajuda_texto_rotas">No menu buscar > rotas, marque no mapa os dois pontos desejados (podendo um destes ser sua localização atual) e se houver alguma linha de ônibus que passe por estes pontos, serão exibidos seus dados.</string>
 	<string name="ajuda_texto_mapas">Em buscar > mapas, poderão ser visualizadas as rotas marcadas como favoritas.</string>
-
+	<string name="ajuda_rotas_favoritas">favoritar rotas</string>
+	<string name="ajuda_pontos_turisticos">pontos turisticos</string>
+	<string name="ajuda_texto_rotas_favoritas">Para favoritar rotas de seu interesse, marque a mesma como favorita na tela de resultados. No menu buscar > favoritos, 
+	    clique na rota e veja seu percurso sem necessidade de pesquisa. Para apagar a rota de suas rotas favoritas, pressione o item por alguns segundos</string>
+	<string name="ajuda_texto_pontos_turisticos">No menu turismo, pressione por alguns segundos o ponto turistico desejado e BUSÃO listara as rotas que passam
+	    pelo local. Compartilhe a informação clicando nos icones do facebook e twitter</string>
 	
 	<!-- Popup Resultado -->
 	<string name="result_faltam">Faltam</string>

@@ -51,6 +51,14 @@
 	<string name="ajuda_texto_rotas">Dans le menu de recherche> itinéraires, marquer les deux points sur la carte que vous souhaitez (ce peut être l un de votre position actuelle) et si il ya une ligne de bus qui passe à travers ces points, vos données seront affichées.</string>
 	<string name="ajuda_texto_mapas">En cherchant> cartes peuvent être consultés itinéraires balisés en tant que favori.</string>
 
+	<string name="ajuda_rotas_favoritas">favoris routes</string>
+	<string name="ajuda_pontos_turisticos">des visites guidées</string>
+	<string name="ajuda_texto_rotas_favoritas">Routes à mettre en signet vos intérêts, cochez la même en tant que favori sur l écran des résultats. Dans le menu de 
+	    recherche> signets, Cliquez sur l itinéraire et de voir votre itinéraire sans la nécessité pour la recherche. Pour supprimer l itinéraire de leurs 
+	    itinéraires préférés, appuyez sur l article pour quelques secondes</string>
+	<string name="ajuda_texto_pontos_turisticos">Menu du tourisme, appuyez et maintenez le point désiré BUSÃO et lister les routes qui passent
+			le site. Partager les informations en cliquant sur les icônes de facebook et twitter</string>
+	
 	
 	<!-- Popup Resultado -->
 	<string name="result_faltam">insuffisant</string>
