@@ -231,25 +231,30 @@ public class MenuActivity extends Activity {
 		case R.layout.menu_turismo:
 			criaListView();
 			
-			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-				
+
+			list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
 				@Override
-				public void onItemClick(AdapterView<?> arg0, View arg1,	int pos, long id) {
+				public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+						int pos, long id) {
 
 					String latitude = pontos.get(pos).getLatitude();
 					String longitude = pontos.get(pos).getLongitude();
-					
-					Intent telaConsultar = new Intent(MenuActivity.this,ResultadoActivity.class);
+
+					Intent telaConsultar = new Intent(MenuActivity.this,
+							ResultadoActivity.class);
 					Bundle b = new Bundle();
 					b.putDouble("lat1", Double.parseDouble(latitude));
 					b.putDouble("long1", Double.parseDouble(longitude));
 					b.putDouble("lat2", 0.0);
 					b.putDouble("long2", 0.0);
-					
+
 					telaConsultar.putExtras(b);
 					startActivity(telaConsultar);
-	            }
-	        }); 
+					return true;
+				}
+
+			});
 		default :
 			break;
 		}
