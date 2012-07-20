@@ -159,6 +159,8 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 				case 2:
 					if(viewInflateMapa == null)
 						viewInflateMapa = getLayoutInflater().inflate(R.layout.buscar_mapa, null);
+					if(mapaPontosSelecionado != null)
+						mapaPontosSelecionado.clear();
 					myLayout.addView(viewInflateMapa);
 					break;
 				case 3:
@@ -458,7 +460,7 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 	        listOfOverlays.add(ondeEstou);
 	        listOfOverlays.add(mapOverlay);  
 	        
-	      //  mapView.invalidate();
+	        mapView.invalidate();
 	}
 
 
