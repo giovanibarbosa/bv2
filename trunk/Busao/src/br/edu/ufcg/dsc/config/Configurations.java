@@ -68,11 +68,11 @@ public class Configurations {
 	 * @param latitude 
 	 */
 	public String getRoutesPath(String idRota, String latitude, String longitude) {
-		return getServerPath() + "route/getRouteData.php?id=" + idRota +"&coordinates="+latitude+","+longitude ;
+		return getServerPath() + "route/getRouteData.php?id=" + idRota +"&from="+latitude+","+longitude ;
 	}
 
 	public String getRoutesPathSmall(String idRota, String latitude, String longitude) {
-		return getServerPath() + "route/getRouteData.php?id=" + idRota +"&coordinates="+latitude+","+longitude+"&atribute=id, nome, url" ;
+		return getServerPath() + "route/getRouteData.php?id=" + idRota +"&from="+latitude+","+longitude+"&atribute=id, nome, url" ;
 	}
 
 	/**

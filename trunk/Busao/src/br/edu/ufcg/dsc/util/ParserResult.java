@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import br.edu.ufcg.dsc.exception.NoReturnDataException;
+
 
 public class ParserResult {
 	
@@ -12,9 +14,10 @@ public class ParserResult {
 	 * Trata a string proveniente do banco de dados
 	 * @param str A string vinda do bd
 	 * @return Todas as cidades em uma so string
+	 * @throws NoReturnDataException 
 	 */
-	public static Map<String, String> parse(String str) {
-		if(str.equals("null") || str.equals("[]")) return new HashMap<String, String>();
+	public static Map<String, String> parse(String str) throws NoReturnDataException {
+		if(str.equals("null") || str.equals("[]"))  throw new NoReturnDataException("Nenhum dado");
 		//elimina sujeira
 		Map<String, String> mapaResultado = new HashMap<String, String>();
 		str = str.replace("[{\"", "").replace("\"}]", ""); //mudar para ""
@@ -27,8 +30,8 @@ public class ParserResult {
 		return mapaResultado;
 	}
 	
-	public static List<Map<String, String>> parseAll(String str) {
-		if(str.equals("null") || str.equals("[]")) return null;
+	public static List<Map<String, String>> parseAll(String str) throws NoReturnDataException {
+		if(str.equals("null") || str.equals("[]"))  throw new NoReturnDataException("Nenhum dado");
 		Map<String, String> mapaResultado;
 		List<Map<String, String>> listaTuplas = new ArrayList<Map<String,String>>();
 		str = str.substring(2, str.length()-2);
@@ -54,27 +57,11 @@ public class ParserResult {
 		}
 		
 		return listaTuplas;
-		
-//		if(str.equals("null")) return null;
-//		List<Map<String, String>> listaTuplas = new ArrayList<Map<String,String>>();
-//		str = str.replace("[{\"", "").replace("\"}]", ""); //mudar para ""
-//		String[] separaLinhas = str.split("\"},"); //mudar para ""
-//		for (String string : separaLinhas) {
-//			string = string.replace("{\"", "");//mudar ""
-//			Map<String, String> mapaResultado = new HashMap<String, String>();
-//			String separado = "\",\"";//Mudar para ""
-//			String[] resultado = string.split(separado);
-//			for (String string2 : resultado) {
-//				String[] valores = string2.split("\":\"");//mudar para ""
-//				mapaResultado.put(valores[0], valores[1]);
-//			}
-//			listaTuplas.add(mapaResultado);
-//		}
-//		return listaTuplas;
+
 	}
 	
-	public static List<String> parseOnlyName(String str) {
-		if(str.equals("null")  || str.equals("[]")) return new ArrayList<String>();
+	public static List<String> parseOnlyName(String str) throws NoReturnDataException {
+		if(str.equals("null")  || str.equals("[]"))  throw new NoReturnDataException("Nenhum dado");
 		//[{"nome":"Campina Grande"},{"nome":"Jo"}]
 		//elimina sujeira
 		List<String> listaNomes = new ArrayList<String>();
@@ -92,19 +79,8 @@ public class ParserResult {
 		return listaNomes;
 	}
 	
-	public static Map<String, String> parseIdName(String str) {
-//		if(str.equals("null")) return new HashMap<String, String>();
-//		str = str.replace("[{\"", "").replace("\"}]", "");
-//		Map<String, String> mapaResultado = new HashMap<String, String>();
-//		String [] separaLinhas = str.split(",");
-//		for (String s : separaLinhas){
-//			s = s.replaceAll("\"", "");
-//			String[] fields = s.split(":");
-//			mapaResultado.put(fields[0], fields[1]);
-//		}
-//		return mapaResultado;
-		
-		if(str.equals("null")  || str.equals("[]")) return new HashMap<String, String>();
+	public static Map<String, String> parseIdName(String str) throws NoReturnDataException {		
+		if(str.equals("null")  || str.equals("[]")) throw new NoReturnDataException("Nenhum dado");
 		str = str.replace("[{\"", "").replace("\"}]", ""); //mudar para ""
 		Map<String, String> mapaResultado = new HashMap<String, String>();
 		String strVirgula = "\"},";
@@ -124,7 +100,7 @@ public class ParserResult {
 		return mapaResultado;
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NoReturnDataException {
 		String str = "[{\"id\":\"15\",\"nome\":\"202-Ramadinha\"},{\"id\":\"16\",\"nome\":\"202\"},{\"id\":\"17\",\"nome\":\"202-A\"}]";
 		Map<String, String> map = parseIdName(str);
 			for (String string : map.keySet()) {

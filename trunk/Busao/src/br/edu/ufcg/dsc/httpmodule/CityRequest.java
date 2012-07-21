@@ -5,6 +5,7 @@ import java.util.Map;
 import br.edu.ufcg.dsc.bean.Cache;
 import br.edu.ufcg.dsc.bean.Cidade;
 import br.edu.ufcg.dsc.config.Configurations;
+import br.edu.ufcg.dsc.exception.NoReturnDataException;
 import br.edu.ufcg.dsc.util.ParserResult;
 
 /**
@@ -17,7 +18,7 @@ import br.edu.ufcg.dsc.util.ParserResult;
  */
 public class CityRequest extends HTTPModule {
 
-	public static String getDataCity(String id, String campo) throws Exception{
+	public static String getDataCity(String id, String campo) throws NoReturnDataException, Exception{
 		if(!Cache.isAtualCidade(id)){
 			String result = getResult(Configurations.getInstance().getCityData() + id);
 			Map<String, String> mapeamento = ParserResult.parse(result);

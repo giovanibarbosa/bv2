@@ -47,34 +47,28 @@ public class HTTPModuleFacade {
 	}
 
 	//CITY
-	public String getCityNome(){
+	public String getCityNome() throws Exception{
 		return getDataCity("nome");
 	}
 	
-	public String getCityEstadoId(){
+	public String getCityEstadoId() throws Exception{
 		return getDataCity("estado_id");
 	}
 	
-	public String getCityValorTarifa(){
+	public String getCityValorTarifa() throws Exception{
 		return getDataCity("valorTarifa");
 	}
 	
-	public String getCityLatitude(){
+	public String getCityLatitude() throws Exception{
 		return getDataCity("latitude");
 	}
 	
-	public String getCityLongitude(){
+	public String getCityLongitude() throws Exception{
 		return getDataCity("longitude");
 	}
 	
-	private String getDataCity(String campo){
-		try {
-			return CityRequest.getDataCity(getIdCity(), campo);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return "";
-		}
+	private String getDataCity(String campo) throws Exception{
+		return CityRequest.getDataCity(getIdCity(), campo);
 	}
 	
 	public String getIdCity() {
@@ -101,31 +95,31 @@ public class HTTPModuleFacade {
 	}
 
 	//ROTA
-	public String getRouteNome(String id){
+	public String getRouteNome(String id) throws Exception{
 		return getRouteData(id, "nome");
 	}
-	public String getRouteEmpresaId(String id){
+	public String getRouteEmpresaId(String id) throws Exception{
 		return getRouteData(id, "Empresa_id");
 	}
-	public String getRouteVia(String id){
+	public String getRouteVia(String id) throws Exception{
 		return getRouteData(id, "via");
 	}
-	public String getRouteCor(String id){
+	public String getRouteCor(String id) throws Exception{
 		return getRouteData(id, "cor");
 	}
-	public String getRouteUrlRota(String id){
+	public String getRouteUrlRota(String id) throws Exception{
 		return getRouteData(id, "url");
 	}
 
-	public String getRouteDirecao(String id){
+	public String getRouteDirecao(String id) throws Exception{
 		return getRouteData(id, "direcao");
 	}
 	
-	public String getRouteTimeWait(String id){
+	public String getRouteTimeWait(String id) throws Exception{
 		return getRouteData(id, "timeWait");
 	}
 	
-	public boolean isRunning(String id){
+	public boolean isRunning(String id) throws Exception{
 		String timeWait = getRouteData(id, "timeWait");
 		if(!timeWait.equals("-1")){
 			return true;
@@ -134,37 +128,22 @@ public class HTTPModuleFacade {
 		}
 	}
 
-	public Map<String, String> searchRoute(String nome){
+	public Map<String, String> searchRoute(String nome) throws Exception {
 		Map<String, String> mapa;
-		try {
-			mapa = RouteRequest.searchRoute(getIdCity(), nome);
-		} catch (Exception e) {
-			mapa = new HashMap<String, String>();
-			e.printStackTrace();
-		}
+		mapa = RouteRequest.searchRoute(getIdCity(), nome);
 		return mapa;
 	}
 	
-	public Map<String, String> searchRouteBetweenTwoPoints(double lat1, double long1, double lat2, double long2){
+	public Map<String, String> searchRouteBetweenTwoPoints(double lat1, double long1, double lat2, double long2) throws Exception{
 		Map<String, String> mapa;
-		try {
-			mapa = RouteRequest.getRoutesBetweenPoints(getIdCity(), lat1, long1, lat2, long2, 300);
-		} catch (Exception e) {
-			mapa = new HashMap<String, String>();
-			e.printStackTrace();
-		}
+		mapa = RouteRequest.getRoutesBetweenPoints(getIdCity(), lat1, long1, lat2, long2, 300);
 		return mapa;
 	}
 	
-	private String getRouteData(String id, String campo){
-		try {
+	private String getRouteData(String id, String campo) throws Exception{
 			String latitude = user.getLatitude();
 			String longitude = user.getLongitude();
 			return RouteRequest.getDataRoute(id, campo,latitude, longitude);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "";
-		}
 	}
 
 
@@ -181,37 +160,32 @@ public class HTTPModuleFacade {
 	// TIME
 	// ======================================================================================================================================
 	
-	public String getRouteTimeDifferenceBetweenBusPath(String rotaid){
+	public String getRouteTimeDifferenceBetweenBusPath(String rotaid) throws Exception{
 		return getDataTime(rotaid, "difEntreOnibus");
 	}
 	
-	public String getRouteStartTimePath(String rotaid){
+	public String getRouteStartTimePath(String rotaid) throws Exception{
 		return getDataTime(rotaid, "horaInicio");
 	}
 	
-	public String getRouteEndTimePath(String rotaid){
+	public String getRouteEndTimePath(String rotaid) throws Exception{
 		return getDataTime(rotaid, "horaFim");
 	}
 
-	public String getRouteTotalTimePath(String rotaid){
+	public String getRouteTotalTimePath(String rotaid) throws Exception{
 		return getDataTime(rotaid, "tempoPerTotal");
 	}
 	
-	public String getRouteNumberBusPath(String rotaid){
+	public String getRouteNumberBusPath(String rotaid) throws Exception{
 		return getDataTime(rotaid,"numOnibus");
 	}
 	
-	public String getRouteDaysPath(String rotaid){
+	public String getRouteDaysPath(String rotaid) throws Exception{
 		return getDataTime(rotaid, "dias");
 	}
 
-	private String getDataTime(String rotaid, String campo){
-		try {
-			return TimeRequest.getDataRouteTime(rotaid, campo);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "";
-		}
+	private String getDataTime(String rotaid, String campo) throws Exception{
+		return TimeRequest.getDataRouteTime(rotaid, campo);
 	}
 	
 }

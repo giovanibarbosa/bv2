@@ -10,6 +10,10 @@
     <!-- Loading -->
     <string name="progress_msg">loading</string>
     
+    <!-- Exceptions -->
+    <string name="sem_conexao">Sem conexão</string>
+    <string name="nenhum_dado_retornado">Nenhum dado retornado</string>
+    
     <!-- Menu principal -->
 	<string name="bem_vindo">bem vindo!</string>
 	<string name="menu_localidade">localidade</string>
@@ -46,6 +50,9 @@
 
     <!-- Pesquisa -->
     <string name="dados_fornecidos">*Dados fornecidos pela STTP-Trans</string>
+    <string name="informacao">informação</string>
+    <string name="indisponivel">indisponível</string>
+    
 	
 	<!-- Menu Ajuda -->
 	<string name="ajuda_pre">pré-requisitos</string>
