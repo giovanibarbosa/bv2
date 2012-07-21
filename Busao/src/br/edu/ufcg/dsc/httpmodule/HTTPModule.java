@@ -78,17 +78,13 @@ public class HTTPModule {
 	 * @throws Exception
 	 */
 	public static String getResult(String url) throws Exception {
-		BufferedReader rd = new BufferedReader(new InputStreamReader(HTTPModule.getInputStreamFromUrl(url)), 4096);
+		BufferedReader rd = new BufferedReader(new InputStreamReader(
+				HTTPModule.getInputStreamFromUrl(url)), 4096);
 		String line;
 		StringBuilder sb = new StringBuilder();
-		try {
-			while ((line = rd.readLine()) != null) {
-				sb.append(line);
-			}
-
-		} catch (Exception e) {
+		while ((line = rd.readLine()) != null) {
+			sb.append(line);
 		}
-		
 		rd.close();
 		String contentOfMyInputStream = sb.toString();
 		return contentOfMyInputStream;

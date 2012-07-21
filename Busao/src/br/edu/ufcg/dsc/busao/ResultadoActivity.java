@@ -1,12 +1,14 @@
 package br.edu.ufcg.dsc.busao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import br.edu.ufcg.dsc.R;
 import br.edu.ufcg.dsc.dao.Rota;
 import br.edu.ufcg.dsc.dao.RotaDataSource;
+import br.edu.ufcg.dsc.exception.NoReturnDataException;
 import br.edu.ufcg.dsc.httpmodule.HTTPModuleFacade;
 import br.edu.ufcg.dsc.util.AdapterRouteListView;
 import br.edu.ufcg.dsc.util.CustomBuilder;
@@ -86,9 +88,9 @@ public class ResultadoActivity extends Activity {
 					long1 = b.getDouble("long1");
 					lat2 = b.getDouble("lat2");
 					long2 = b.getDouble("long2");
-					resultado = service.searchRouteBetweenTwoPoints(lat1, long1, lat2, long2);
+					resultado = searchRouteBetweenTwoPoints(lat1, long1, lat2, long2);
 				}else{
-					resultado = service.searchRoute(campoBusca);
+					resultado = searchRoute(campoBusca);
 				}
 				Log.i("Campo", ""+campoBusca);
 				
@@ -97,8 +99,6 @@ public class ResultadoActivity extends Activity {
 				Log.i("Resultadooo", resultado.toString());
 							
 				if(resultado.size() == 0){
-					Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.result_sem_resultado), Toast.LENGTH_SHORT);
-					toast.show();
 					finish();
 				}
 		        showDialog(1);
@@ -134,9 +134,18 @@ public class ResultadoActivity extends Activity {
 					}
 					
 					Rota r = null;
-					r = datasource.createRota(spinnerRotas.getSelectedItem().toString(), service.getRouteCor(idRota), atualURLMap, Integer.parseInt(service.getRouteTimeWait(idRota)), 
-							service.getRouteStartTimePath(idRota), service.getRouteEndTimePath(idRota), Integer.parseInt(service.getRouteTotalTimePath(idRota)), 
-							Integer.parseInt(service.getRouteNumberBusPath(idRota)), service.getRouteDaysPath(idRota));
+					//ver depois
+					try {
+						r = datasource.createRota(spinnerRotas.getSelectedItem().toString(), service.getRouteCor(idRota), atualURLMap, Integer.parseInt(service.getRouteTimeWait(idRota)), 
+								service.getRouteStartTimePath(idRota), service.getRouteEndTimePath(idRota), Integer.parseInt(service.getRouteTotalTimePath(idRota)), 
+								Integer.parseInt(service.getRouteNumberBusPath(idRota)), service.getRouteDaysPath(idRota));
+					} catch (NumberFormatException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					
 					if (r == null){
 						//Rota ja tem lá
@@ -278,9 +287,20 @@ public class ResultadoActivity extends Activity {
 	
 	private void atualizaDados(String idRota){
 		this.idRota = idRota;
-		TextView textMinutos = (TextView) bodyResult.findViewById(R.id.text_tempo_restante);
-		textMinutos.setText(service.getRouteTimeWait(idRota));
-		this.atualURLMap = "http://busaoapp.com/service/"+service.getRouteUrlRota(idRota);
+		TextView textTempo = (TextView) bodyResult.findViewById(R.id.text_tempo_restante);
+		TextView textFaltam = (TextView) bodyResult.findViewById(R.id.text_faltam);
+		TextView textMinutos = (TextView) bodyResult.findViewById(R.id.text_minutos);
+		textTempo.setText("");
+		int tempo = Integer.parseInt(getRouteTimeWait(idRota));
+		if(tempo < 0){
+			textFaltam.setText(getString(R.string.indisponivel));
+			textMinutos.setText("");
+		}else{
+			textFaltam.setText(getString(R.string.result_faltam));
+			textMinutos.setText(getString(R.string.result_minutos));
+			textTempo.setText(tempo);
+		}		
+		this.atualURLMap = "http://busaoapp.com/service/"+getRouteUrlRota(idRota);
 		Log.i("atualizandoDados", idRota);
 		Log.i("URLRota", atualURLMap);
 	}
@@ -298,6 +318,78 @@ public class ResultadoActivity extends Activity {
 		super.onDestroy();
 		// Remove o Listener para não ficar atualizando mesmo depois de sair
 		Log.i("OnDestroy", "Destroy");
+	}
+	
+	public Map<String, String> searchRouteBetweenTwoPoints(double lat1, double long1, double lat2, double long2){
+		try {
+			return service.searchRouteBetweenTwoPoints(lat1, long1, lat2, long2);
+		} catch (NoReturnDataException no) {
+			 Toast.makeText(ResultadoActivity.this,
+			 getString(R.string.nenhum_dado_retornado),
+			 Toast.LENGTH_LONG).show();
+			no.printStackTrace();
+			return new HashMap<String, String>();
+		} catch (Exception e) {
+			 Toast.makeText(ResultadoActivity.this,
+					 getString(R.string.sem_conexao),
+					 Toast.LENGTH_LONG).show();
+					e.printStackTrace();
+					return new HashMap<String, String>();
+		}
+	}
+	
+	public Map<String, String> searchRoute(String campoBusca){
+		try {
+			return service.searchRoute(campoBusca);
+		} catch (NoReturnDataException no) {
+			 Toast.makeText(ResultadoActivity.this,
+			 getString(R.string.nenhum_dado_retornado),
+			 Toast.LENGTH_LONG).show();
+			no.printStackTrace();
+			return new HashMap<String, String>();
+		} catch (Exception e) {
+			 Toast.makeText(ResultadoActivity.this,
+					 getString(R.string.sem_conexao),
+					 Toast.LENGTH_LONG).show();
+					e.printStackTrace();
+					return new HashMap<String, String>();
+		}
+	}
+	
+	public String getRouteTimeWait(String idRota){
+		try {
+			return service.getRouteTimeWait(idRota);
+		} catch (NoReturnDataException no) {
+			 Toast.makeText(ResultadoActivity.this,
+			 getString(R.string.nenhum_dado_retornado),
+			 Toast.LENGTH_LONG).show();
+			no.printStackTrace();
+			return "";
+		} catch (Exception e) {
+			 Toast.makeText(ResultadoActivity.this,
+					 getString(R.string.sem_conexao),
+					 Toast.LENGTH_LONG).show();
+					e.printStackTrace();
+					return "";
+		}
+	}
+	
+	public String getRouteUrlRota(String idRota){
+		try {
+			return service.getRouteUrlRota(idRota);
+		} catch (NoReturnDataException no) {
+			 Toast.makeText(ResultadoActivity.this,
+			 getString(R.string.nenhum_dado_retornado),
+			 Toast.LENGTH_LONG).show();
+			no.printStackTrace();
+			return "";
+		} catch (Exception e) {
+			 Toast.makeText(ResultadoActivity.this,
+					 getString(R.string.sem_conexao),
+					 Toast.LENGTH_LONG).show();
+					e.printStackTrace();
+					return "";
+		}
 	}
 
 }
