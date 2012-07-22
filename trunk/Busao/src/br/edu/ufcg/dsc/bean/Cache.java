@@ -112,6 +112,14 @@ public class Cache {
 			return false;
 		}
 	}
+	
+	public static boolean isAtualHorario(String id){
+		try {
+			return horario != null ? horario.get("rotaId").equals(id) : false;
+		} catch (NotKeyException e) {
+			return false;
+		}
+	}
 
 	public static Anuncio getAnuncio(String id) throws Exception {
 		Iterator<Anuncio> itAnuncio = anuncios.iterator();
