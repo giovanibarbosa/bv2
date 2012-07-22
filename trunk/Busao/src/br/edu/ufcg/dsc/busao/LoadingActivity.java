@@ -91,7 +91,7 @@ public class LoadingActivity extends Activity {
 
 				"Longitud = " + longitude;
 				Log.i("mudou localização", Text);
-
+				
 //				Toast.makeText(getApplicationContext(),
 //
 //				Text,
