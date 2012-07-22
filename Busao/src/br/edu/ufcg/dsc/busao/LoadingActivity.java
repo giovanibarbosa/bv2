@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +21,8 @@ import android.widget.Toast;
 public class LoadingActivity extends Activity {
 	private HTTPModuleFacade service;
 	private ThreadedClass m_t;
+	double latitude = 0;
+	double longitude = 0;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,6 +42,7 @@ public class LoadingActivity extends Activity {
 
 	}
 	
+
 	private Handler myHandler = new Handler() {
 		
 		  @Override
@@ -46,21 +50,12 @@ public class LoadingActivity extends Activity {
 
 			  switch (msg.what) {
 		      default:
-		  		LocationManager LM = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-				String bestProvider = LM.getBestProvider(new Criteria(),true);
-				//System.out.println("*************"+LM.getBestProvider(new Criteria(),true));
-				Log.i("best", bestProvider);
-				Location l = LM.getLastKnownLocation(bestProvider);
-				double latitude = 0;
-				double longitude = 0;
-				if(l != null){
-					Log.i("lat", ""+l.getLatitude());
-					Log.i("long", ""+l.getLongitude());
-					latitude = l.getLatitude();
-					longitude = l.getLongitude();
-				}
-				
-				//pegar gps
+		  		LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+				LocationListener mlocListener = new MyLocationListener();
+
+				mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0,
+						mlocListener);
 				service = HTTPModuleFacade.getInstance("1", latitude+"", longitude+"");
 				// checa as atualizações necessárias,
 				// depois passa para a tela de menu
@@ -71,10 +66,84 @@ public class LoadingActivity extends Activity {
 		  }
 		
 		};
+		
+		/* Class My Location Listener */
+
+		public class MyLocationListener implements LocationListener
+
+		{
+
+			@Override
+			public void onLocationChanged(Location loc)
+
+			{
+
+				double latitude = loc.getLatitude()/1E6;
+
+				double longitude = loc.getLongitude()/1E6;
+				
+				service.getUser().setLatitude(""+latitude);
+				service.getUser().setLongitude(""+longitude);
+
+				String Text = "My current location is: " +
+
+				"Latitud = " + latitude +
+
+				"Longitud = " + longitude;
+				Log.i("mudou localização", Text);
+
+//				Toast.makeText(getApplicationContext(),
+//
+//				Text,
+//
+//				Toast.LENGTH_SHORT).show();
+
+			}
+
+			@Override
+			public void onProviderDisabled(String provider)
+
+			{
+
+				Toast.makeText(getApplicationContext(),
+
+				"Gps Disabled",
+
+				Toast.LENGTH_SHORT).show();
+
+			}
+
+			@Override
+			public void onProviderEnabled(String provider)
+
+			{
+
+				Toast.makeText(getApplicationContext(),
+
+				"Gps Enabled",
+
+				Toast.LENGTH_SHORT).show();
+
+			}
+
+			@Override
+			public void onStatusChanged(String provider, int status, Bundle extras)
+
+			{
+
+			}
+
+		}/* End of Class MyLocationListener */
 	
+		
+		
 	@Override
 	protected void onResume(){
 		super.onResume();
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 	}
+	
+	
 }
+
+
