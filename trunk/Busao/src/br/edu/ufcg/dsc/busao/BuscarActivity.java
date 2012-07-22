@@ -125,10 +125,6 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 		setActionsBotao(botaoRotasFavoritas, 3);
 		
 		service = HTTPModuleFacade.getInstance();
-		
-		
-		
-
 	}
 	
 	private void instanciarBotoes() {
@@ -211,8 +207,8 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 					
 					@Override
 					public void onClick(View v) {
-						Log.i("limpou","limpou");
 						limparDados();			
+//						mapView = (MapView) findViewById(R.id.mapView);
 					}
 				});
 			

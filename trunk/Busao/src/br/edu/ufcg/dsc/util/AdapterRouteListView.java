@@ -44,11 +44,7 @@ public class AdapterRouteListView extends BaseAdapter {
 
         //atraves do layout pego pelo LayoutInflater, pegamos cada id relacionado ao item e definimos as informações.
         TextView nomeRota = ((TextView) view.findViewById(R.id.list_routeName));
-        if (item.getColour().length() > 0){
-        	nomeRota.setText(item.getRoutename() + " - " + item.getColour());
-        } else {
-        	nomeRota.setText(item.getRoutename());
-        }
+        nomeRota.setText(item.getRoutename());
         
         TextView numOnibus = ((TextView) view.findViewById(R.id.list_num));
         numOnibus.setText(numOnibus.getText() + " " + item.getNumBus());
