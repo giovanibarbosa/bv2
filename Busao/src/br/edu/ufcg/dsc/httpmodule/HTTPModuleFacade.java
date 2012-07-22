@@ -183,9 +183,9 @@ public class HTTPModuleFacade {
 	public String getRouteDaysPath(String rotaid) throws Exception{
 		return getDataTime(rotaid, "dias");
 	}
-
+	
 	private String getDataTime(String rotaid, String campo) throws Exception{
 		return TimeRequest.getDataRouteTime(rotaid, campo);
 	}
-	
+
 }

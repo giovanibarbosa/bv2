@@ -11,8 +11,7 @@ import br.edu.ufcg.dsc.util.ParserResult;
 public class TimeRequest extends HTTPModule {
 	
 	public static String getDataRouteTime(String rotaid, String campo) throws Exception {
-		if(Cache.isAtualRota(rotaid)){
-			
+		if(!Cache.isAtualHorario(rotaid)){
 			Calendar calendar = Calendar.getInstance();
 			int day = calendar.get(Calendar.DAY_OF_WEEK); // If current day is Sunday, day=1
 			
