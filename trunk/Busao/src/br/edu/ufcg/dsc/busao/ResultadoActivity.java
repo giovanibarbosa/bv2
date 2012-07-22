@@ -298,7 +298,7 @@ public class ResultadoActivity extends Activity {
 		}else{
 			textFaltam.setText(getString(R.string.result_faltam));
 			textMinutos.setText(getString(R.string.result_minutos));
-			textTempo.setText(tempo);
+			textTempo.setText(""+tempo);
 		}		
 		this.atualURLMap = "http://busaoapp.com/service/"+getRouteUrlRota(idRota);
 		Log.i("atualizandoDados", idRota);
