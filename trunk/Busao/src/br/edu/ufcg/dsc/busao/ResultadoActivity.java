@@ -118,8 +118,7 @@ public class ResultadoActivity extends Activity {
 			public void onClick(View v) {
 				switch (R.drawable.estrela_cinza) { //mudar isso para pegar a atual imagem carregada
 				case R.drawable.estrela_cinza:
-					iconeFavoritos.setImageResource(R.drawable.estrela_amarela);
-					
+
 					if(viewInflateFavoritos == null)
 						viewInflateFavoritos = getLayoutInflater().inflate(R.layout.list_routes, null);
 					
@@ -139,29 +138,30 @@ public class ResultadoActivity extends Activity {
 						r = datasource.createRota(spinnerRotas.getSelectedItem().toString(), service.getRouteCor(idRota), atualURLMap, Integer.parseInt(service.getRouteTimeWait(idRota)), 
 								service.getRouteStartTimePath(idRota), service.getRouteEndTimePath(idRota), Integer.parseInt(service.getRouteTotalTimePath(idRota)), 
 								Integer.parseInt(service.getRouteNumberBusPath(idRota)), service.getRouteDaysPath(idRota));
+						
+						if (r == null){
+							//Rota ja tem lá
+							Toast.makeText(ResultadoActivity.this, getString(R.string.rota_ja_existe), Toast.LENGTH_LONG).show();
+						} else {
+							rotas.add(new RouteListView(r.getRoutename(), r.getColour(), r.getUrlRoute(), (int) r.getDifBetweenBus(), 
+									r.getStartTime(), r.getEndTime(), (int)r.getTimePerTotal(), (int) r.getNumBus()));
+							
+							Toast.makeText(ResultadoActivity.this, getString(R.string.add_rota), Toast.LENGTH_LONG).show();
+							iconeFavoritos.setImageResource(R.drawable.estrela_amarela);
+						}
+						
 					} catch (NumberFormatException e) {
-						// TODO Auto-generated catch block
+						Toast.makeText(ResultadoActivity.this, R.string.erro_rota, Toast.LENGTH_LONG).show();
 						e.printStackTrace();
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
+						Toast.makeText(ResultadoActivity.this, R.string.erro_rota, Toast.LENGTH_LONG).show();
 						e.printStackTrace();
-					}
-					
-					if (r == null){
-						//Rota ja tem lá
-						Toast.makeText(ResultadoActivity.this, getString(R.string.rota_ja_existe), Toast.LENGTH_LONG).show();
-					} else {
-						rotas.add(new RouteListView(r.getRoutename(), r.getColour(), r.getUrlRoute(), (int) r.getDifBetweenBus(), 
-								r.getStartTime(), r.getEndTime(), (int)r.getTimePerTotal(), (int) r.getNumBus()));
-						
-						Toast.makeText(ResultadoActivity.this, getString(R.string.add_rota), Toast.LENGTH_LONG).show();
 					}
 					
 					datasource.close();
 					break;
 				case R.drawable.estrela_amarela:
-					iconeFavoritos.setImageResource(R.drawable.estrela_cinza);
-					//remove dados
+					Toast.makeText(ResultadoActivity.this, getString(R.string.rota_ja_existe), Toast.LENGTH_LONG).show();
 					break;
 
 				default:

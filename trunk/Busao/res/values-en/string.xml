@@ -115,5 +115,6 @@ and also notable for its tropical climate, and one of the capitals best quality 
     <string name="add_rota">route successfully added!</string>
     <string name="rota_ja_existe">Route is already registered</string>
     <string name="delete_rota">Route successfully deleted!</string>
+    <string name="erro_rota">An error occurred when trying save route</string>
 	
 </resources>
