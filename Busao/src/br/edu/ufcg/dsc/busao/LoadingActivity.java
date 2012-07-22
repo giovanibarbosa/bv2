@@ -53,8 +53,10 @@ public class LoadingActivity extends Activity {
 		  		LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 				LocationListener mlocListener = new MyLocationListener();
-
-				mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0,
+				String bestProvider = mlocManager.getBestProvider(new Criteria(),false);
+				Log.i("best", ""+bestProvider);
+				if(bestProvider != null)
+					mlocManager.requestLocationUpdates(bestProvider, 0, 0,
 						mlocListener);
 				service = HTTPModuleFacade.getInstance("1", latitude+"", longitude+"");
 				// checa as atualizações necessárias,
@@ -107,7 +109,7 @@ public class LoadingActivity extends Activity {
 
 				Toast.makeText(getApplicationContext(),
 
-				"Gps Disabled",
+				"Localização desabilitada",
 
 				Toast.LENGTH_SHORT).show();
 
@@ -120,7 +122,7 @@ public class LoadingActivity extends Activity {
 
 				Toast.makeText(getApplicationContext(),
 
-				"Gps Enabled",
+				"Localização habilitada",
 
 				Toast.LENGTH_SHORT).show();
 
