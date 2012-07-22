@@ -135,7 +135,7 @@ public class ResultadoActivity extends Activity {
 					Rota r = null;
 					//ver depois
 					try {
-						r = datasource.createRota(spinnerRotas.getSelectedItem().toString(), service.getRouteCor(idRota), atualURLMap, Integer.parseInt(service.getRouteTimeWait(idRota)), 
+						r = datasource.createRota(spinnerRotas.getSelectedItem().toString(), service.getRouteCor(idRota), atualURLMap, Integer.parseInt(service.getRouteTimeDifferenceBetweenBusPath(idRota)), 
 								service.getRouteStartTimePath(idRota), service.getRouteEndTimePath(idRota), Integer.parseInt(service.getRouteTotalTimePath(idRota)), 
 								Integer.parseInt(service.getRouteNumberBusPath(idRota)), service.getRouteDaysPath(idRota));
 						
