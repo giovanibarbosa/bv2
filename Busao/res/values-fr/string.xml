@@ -120,5 +120,6 @@
 	<string name="add_rota">itinéraire ajouté avec succès</string>
 	<string name="rota_ja_existe">itinéraire est déjà enregistré</string>
 	<string name="delete_rota">itinéraire supprimé avec succès!</string>
+	<string name="erro_rota">Une erreur s est produite lors de la tentative de sauvegarde itinéraire</string>
 	
 </resources>

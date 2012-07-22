@@ -139,6 +139,7 @@
     <string name="add_rota">Rota adicionada com sucesso!</string>
     <string name="rota_ja_existe">Rota ja esta cadastrada</string>
     <string name="delete_rota">Rota removida com sucesso!</string>
+    <string name="erro_rota">Um erro ocorreu ao tentar salvar a rota</string>
     
 </resources>
 
