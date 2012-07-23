@@ -43,5 +43,10 @@ public class CityRequest extends HTTPModule {
 		String result = getResult(Configurations.getInstance().getAllCityPath());
 		return ParserResult.parseIdName(result);
 	}
+	
+	public static String getEndereco(String latitude, String longitude) throws Exception{
+		String result = getResult(Configurations.getInstance().getAddress(latitude, longitude));
+		return result;
+	}
 
 }

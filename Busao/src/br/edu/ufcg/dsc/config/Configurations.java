@@ -253,5 +253,10 @@ public class Configurations {
 	public String getRouteDaysPath(String id){
 		return getServerPath() + "route/getRouteHorarioData.php?id=" + id + "&atribute=dias";
 	}
+
+	public String getAddress(String latitude, String longitude) {
+		// TODO Auto-generated method stub
+		return getServerPath() + "route/geoDecoder.php?codernadas="+ latitude+","+longitude;
+	}
 	
 }

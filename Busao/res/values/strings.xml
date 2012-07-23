@@ -45,7 +45,7 @@
 	 
 	
 	<string name="open">abrir</string>
-
+	<string name="atual_localizacao">Sua localização: </string>
 
 
     <!-- Pesquisa -->
