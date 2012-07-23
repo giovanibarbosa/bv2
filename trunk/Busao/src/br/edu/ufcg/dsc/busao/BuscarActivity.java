@@ -483,6 +483,7 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 			listOfOverlays.remove(1);
 		}
 		mapaPontosSelecionado.clear();
+		onCreateMap();
 		//atualizaBotoes();
 	}
 	

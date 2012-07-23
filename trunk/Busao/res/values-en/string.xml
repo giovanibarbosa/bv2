@@ -38,6 +38,7 @@
 	    social networks</string>
 	
 	<string name="open">open</string>
+	<string name="atual_localizacao">Your Location: </string>
 	
 	<!-- Menu Ajuda -->
 	<string name="ajuda_pre">pre-requisites</string>
