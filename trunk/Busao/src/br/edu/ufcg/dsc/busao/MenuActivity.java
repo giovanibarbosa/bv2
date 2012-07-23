@@ -212,6 +212,9 @@ public class MenuActivity extends Activity {
 		case R.layout.menu_localidade:
 			// alterar os dados...
 			String valorTarifa = getCityValorTarifa();
+			TextView endereco = (TextView) findViewById(R.id.endereco);
+			Log.i("endereco", service.getAtualEndrereco());
+			endereco.setText(getString(R.string.atual_localizacao) + " " + service.getAtualEndrereco());
 			botaoAlterarCidade = (ImageView) findViewById(R.id.botao_alterar_cidade);
 			setActionAlterarCidade(botaoAlterarCidade);
 			TextView textTarifa = (TextView) findViewById(R.id.text_preco_tarifa);

@@ -46,7 +46,21 @@ public class HTTPModuleFacade {
 		return true;
 	}
 
+
 	//CITY
+	
+	public String getAtualEndrereco(){
+		String latitude = user.getLatitude();
+		String longitude = user.getLongitude();
+		try {
+			if(latitude.equals("0") && longitude.equals("0"))
+				return "desconhecido";
+			return CityRequest.getEndereco(user.getLatitude(), user.getLongitude());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return "desconhecido";
+		}
+	}
 	public String getCityNome() throws Exception{
 		return getDataCity("nome");
 	}

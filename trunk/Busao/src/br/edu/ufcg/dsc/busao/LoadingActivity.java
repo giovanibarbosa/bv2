@@ -80,9 +80,9 @@ public class LoadingActivity extends Activity {
 
 			{
 
-				double latitude = loc.getLatitude()/1E6;
+				double latitude = loc.getLatitude();
 
-				double longitude = loc.getLongitude()/1E6;
+				double longitude = loc.getLongitude();
 				
 				service.getUser().setLatitude(""+latitude);
 				service.getUser().setLongitude(""+longitude);
