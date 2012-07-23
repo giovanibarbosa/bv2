@@ -23,6 +23,7 @@ public class LoadingActivity extends Activity {
 	private ThreadedClass m_t;
 	double latitude = 0;
 	double longitude = 0;
+	private LocationManager mlocManager;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,7 +51,7 @@ public class LoadingActivity extends Activity {
 
 			  switch (msg.what) {
 		      default:
-		  		LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		  		mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 				LocationListener mlocListener = new MyLocationListener();
 				String bestProvider = mlocManager.getBestProvider(new Criteria(),false);
@@ -93,7 +94,8 @@ public class LoadingActivity extends Activity {
 
 				"Longitud = " + longitude;
 				Log.i("mudou localização", Text);
-				
+				if(mlocManager != null)
+					mlocManager.removeUpdates(this);
 //				Toast.makeText(getApplicationContext(),
 //
 //				Text,
