@@ -40,7 +40,8 @@
 		Partager sur les réseaux sociaux</string>
 	 
 	<string name="open">ouvrir</string>
-
+	<string name="atual_localizacao">Votre Lieu: </string>
+	
 	<!-- Menu Ajuda -->
 	<string name="ajuda_pre">conditions préalables</string>
 	<string name="ajuda_rotas">rechercher des itinéraires de</string>
