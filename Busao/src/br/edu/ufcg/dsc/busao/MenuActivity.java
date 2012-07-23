@@ -44,7 +44,7 @@ public class MenuActivity extends Activity {
 	ViewGroup includePrincipal;
 	LinearLayout linearLayoutScrollView;
 	ImageView botaoAlterarCidade, botaoSearch, botaoFace, botaoTwitter;
-	HTTPModuleFacade service;
+	HTTPModuleFacade service = HTTPModuleFacade.getInstance();
 	private Map<String, String> cidadesApp = new HashMap<String, String>();
 	private View bodyResult;
 	private Spinner spinnerCidades;
@@ -87,7 +87,7 @@ public class MenuActivity extends Activity {
 		setActionsRows(rowTurismo, R.layout.menu_turismo);
 		setActionsRows(rowAjuda, R.layout.menu_ajuda);
 		setActionsRowLogo();
-		service = HTTPModuleFacade.getInstance();
+		
 
 		Bundle b = getIntent().getExtras();
 		if (b != null) {
