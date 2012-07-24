@@ -209,8 +209,8 @@ public class MenuActivity extends Activity {
 			// alterar os dados...
 			String valorTarifa = getCityValorTarifa();
 			TextView endereco = (TextView) findViewById(R.id.endereco);
-			String enderecoAtual = service.getAtualEndrereco();
-			endereco.setText(getString(R.string.atual_localizacao) + " " + enderecoAtual.substring(1, enderecoAtual.length()-1));
+			String enderecoAtual = service.getUser().getAddress();
+			endereco.setText(getString(R.string.atual_localizacao) + " " + enderecoAtual);
 			botaoAlterarCidade = (ImageView) findViewById(R.id.botao_alterar_cidade);
 			setActionAlterarCidade(botaoAlterarCidade);
 			TextView textTarifa = (TextView) findViewById(R.id.text_preco_tarifa);

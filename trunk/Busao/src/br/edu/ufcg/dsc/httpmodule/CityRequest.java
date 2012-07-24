@@ -46,7 +46,7 @@ public class CityRequest extends HTTPModule {
 	
 	public static String getEndereco(String latitude, String longitude) throws Exception{
 		String result = getResult(Configurations.getInstance().getAddress(latitude, longitude));
-		return result;
+		return result.replace("\"", "");
 	}
 
 }

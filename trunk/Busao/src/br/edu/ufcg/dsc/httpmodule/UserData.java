@@ -4,7 +4,16 @@ public class UserData {
 	private String idCity;
 	private String latitude;
 	private String longitude;
+	private String address = "";
 	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public UserData(String idCity, String latitude, String longitude){
 		this.idCity = idCity;
 		this.latitude = latitude;
