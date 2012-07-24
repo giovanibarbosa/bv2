@@ -6,7 +6,6 @@ import java.util.Map;
 
 import br.edu.ufcg.dsc.bean.Cache;
 import br.edu.ufcg.dsc.bean.Empresa;
-import br.edu.ufcg.dsc.bean.Rota;
 import br.edu.ufcg.dsc.config.Configurations;
 import br.edu.ufcg.dsc.util.ParserResult;
 /**

@@ -10,13 +10,11 @@ import br.edu.ufcg.dsc.dao.Rota;
 import br.edu.ufcg.dsc.dao.RotaDataSource;
 import br.edu.ufcg.dsc.exception.NoReturnDataException;
 import br.edu.ufcg.dsc.httpmodule.HTTPModuleFacade;
-import br.edu.ufcg.dsc.util.AdapterRouteListView;
 import br.edu.ufcg.dsc.util.CustomBuilder;
 import br.edu.ufcg.dsc.util.RouteListView;
 import br.edu.ufcg.dsc.util.ThreadedClass;
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -40,8 +38,6 @@ public class ResultadoActivity extends Activity {
 	private Double lat1, long1, lat2, long2;
 	private Map<String, String> resultado;
 	private Spinner spinnerRotas;
-	private ArrayAdapter<CharSequence> featuresAdapter;
-	private List<CharSequence> featuresList;
 	private String nome;
 	private View bodyResult;
 	public String atualURLMap = "";
@@ -50,7 +46,6 @@ public class ResultadoActivity extends Activity {
 	private RotaDataSource datasource;
 	private View viewInflateFavoritos;
 	private ArrayList<RouteListView> rotas;
-	private AdapterRouteListView adapterListView;
 	private ListView listView;
 	ThreadedClass m_t = null; 
 
@@ -58,12 +53,8 @@ public class ResultadoActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.loading_result);
-
 		m_t = new ThreadedClass(myHandler); 
         m_t.Start(); 
-	//	showDialog(1);
-		
-		 
 	}
 	
 	@Override
@@ -92,11 +83,6 @@ public class ResultadoActivity extends Activity {
 				}else{
 					resultado = searchRoute(campoBusca);
 				}
-				Log.i("Campo", ""+campoBusca);
-				
-				// problems
-				
-				Log.i("Resultadooo", resultado.toString());
 							
 				if(resultado.size() == 0){
 					finish();
@@ -207,7 +193,6 @@ public class ResultadoActivity extends Activity {
 				public void onClick( DialogInterface dialog, int which )
 				{
 					String urlRota = atualURLMap;
-					Log.i("url", urlRota);
 					
 					if(!urlRota.equals("")){
 						Uri uri1 = Uri.parse(urlRota);					
@@ -215,7 +200,6 @@ public class ResultadoActivity extends Activity {
 						mapIntent.setData(uri1);
 						startActivity(Intent.createChooser(mapIntent, idRota));	
 						finish();
-						//return;
 					}else{
 						Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.result_sem_mapa) , Toast.LENGTH_SHORT);
 						toast.show();
@@ -301,23 +285,18 @@ public class ResultadoActivity extends Activity {
 			textTempo.setText(""+tempo);
 		}		
 		this.atualURLMap = "http://busaoapp.com/service/"+getRouteUrlRota(idRota);
-		Log.i("atualizandoDados", idRota);
-		Log.i("URLRota", atualURLMap);
 	}
 
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-
-		Log.i("OnPause", "Pause");
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		// Remove o Listener para não ficar atualizando mesmo depois de sair
-		Log.i("OnDestroy", "Destroy");
 	}
 	
 	public Map<String, String> searchRouteBetweenTwoPoints(double lat1, double long1, double lat2, double long2){

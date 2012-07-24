@@ -1,6 +1,5 @@
 package br.edu.ufcg.dsc.busao;
 
-
 import br.edu.ufcg.dsc.R;
 import br.edu.ufcg.dsc.httpmodule.HTTPModuleFacade;
 import br.edu.ufcg.dsc.util.ThreadedClass;
@@ -29,18 +28,14 @@ public class LoadingActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.loading);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-
 		m_t = new ThreadedClass(myHandler); 
         m_t.Start(); 
-		
 		
 //		Intent telaConsultar = new Intent(LoadingActivity.this, BuscarActivity.class);
 //		Bundle b = new Bundle();
 //		b.putString("paramBusca", "202");
 //		telaConsultar.putExtras(b);				
 //		startActivity(telaConsultar);
-
 	}
 	
 
@@ -77,65 +72,31 @@ public class LoadingActivity extends Activity {
 		{
 
 			@Override
-			public void onLocationChanged(Location loc)
-
-			{
+			public void onLocationChanged(Location loc){
 
 				double latitude = loc.getLatitude();
-
 				double longitude = loc.getLongitude();
 				
 				service.getUser().setLatitude(""+latitude);
 				service.getUser().setLongitude(""+longitude);
 
-				String Text = "My current location is: " +
-
-				"Latitud = " + latitude +
-
-				"Longitud = " + longitude;
-				Log.i("mudou localização", Text);
 				if(mlocManager != null)
 					mlocManager.removeUpdates(this);
-//				Toast.makeText(getApplicationContext(),
-//
-//				Text,
-//
-//				Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			public void onProviderDisabled(String provider)	{
+				Toast.makeText(getApplicationContext(),	"Localização desabilitada",	Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			public void onProviderEnabled(String provider){
+				Toast.makeText(getApplicationContext(),"Localização habilitada",Toast.LENGTH_SHORT).show();
 
 			}
 
 			@Override
-			public void onProviderDisabled(String provider)
-
-			{
-
-				Toast.makeText(getApplicationContext(),
-
-				"Localização desabilitada",
-
-				Toast.LENGTH_SHORT).show();
-
-			}
-
-			@Override
-			public void onProviderEnabled(String provider)
-
-			{
-
-				Toast.makeText(getApplicationContext(),
-
-				"Localização habilitada",
-
-				Toast.LENGTH_SHORT).show();
-
-			}
-
-			@Override
-			public void onStatusChanged(String provider, int status, Bundle extras)
-
-			{
-
-			}
+			public void onStatusChanged(String provider, int status, Bundle extras){}
 
 		}/* End of Class MyLocationListener */
 	
@@ -146,8 +107,4 @@ public class LoadingActivity extends Activity {
 		super.onResume();
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 	}
-	
-	
 }
-
-

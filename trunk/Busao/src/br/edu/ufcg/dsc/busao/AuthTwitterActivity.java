@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -36,7 +35,6 @@ public class AuthTwitterActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-        Log.i(TAG, "Starting task to retrieve request token.");
         this.prefs = PreferenceManager.getDefaultSharedPreferences(this);
 	}
 	
@@ -48,8 +46,6 @@ public class AuthTwitterActivity extends Activity {
         webview.setVisibility(View.VISIBLE);
         setContentView(webview);
         
-        Log.i(TAG, "Retrieving request token from Google servers");
-
         try {
         	
 	        final OAuthHmacSigner signer = new OAuthHmacSigner();
@@ -68,7 +64,6 @@ public class AuthTwitterActivity extends Activity {
 			authorizeUrl.temporaryToken = tempCredentials.token;
 			String authorizationUrl = authorizeUrl.build();
 			
-	        
 	        /* WebViewClient must be set BEFORE calling loadUrl! */  
 	        webview.setWebViewClient(new WebViewClient() {  
 	

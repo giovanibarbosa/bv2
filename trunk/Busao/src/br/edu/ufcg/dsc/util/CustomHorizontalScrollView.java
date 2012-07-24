@@ -6,23 +6,18 @@ import android.content.res.TypedArray;
 import android.gesture.GestureOverlayView;
 import android.gesture.GestureOverlayView.OnGestureListener;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
 import br.edu.ufcg.dsc.R;
 import br.edu.ufcg.dsc.busao.MenuActivity;
 
 public class CustomHorizontalScrollView extends HorizontalScrollView implements OnTouchListener, OnGestureListener {
 
 	private static final int SWIPE_MIN_DISTANCE = 300;
-
 	private static final int SWIPE_THRESHOLD_VELOCITY = 300;
 	private static final int SWIPE_PAGE_ON_FACTOR = 10;
-
-
 	private int scrollTo = 0;
 	private int maxItem = 0;
 	private int activeItem = 0;
@@ -50,14 +45,9 @@ public class CustomHorizontalScrollView extends HorizontalScrollView implements 
 		//this.itemWidth = a.getInteger(R.styleable.CustomHorizontalScrollView_itemWidth, 320);
 		this.itemWidth = widthContext;
 		this.maxItem = a.getInteger(R.styleable.CustomHorizontalScrollView_maxItem, 4);
-		Log.i("Width", ""+widthContext);
 		this.setOnTouchListener(this);
 		this.setHorizontalScrollBarEnabled(false);
-	//	
-
     }
-
-
 
 	public CustomHorizontalScrollView(Context context, int maxItem, int itemWidth) {
 		this(context);
@@ -66,8 +56,6 @@ public class CustomHorizontalScrollView extends HorizontalScrollView implements 
 		this.setOnTouchListener(this);
 	}
 	
-	
-
 	public int getMaxItem() {
 		return maxItem;
 	}

@@ -2,9 +2,6 @@ package br.edu.ufcg.dsc.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.http.conn.routing.RouteTracker;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
