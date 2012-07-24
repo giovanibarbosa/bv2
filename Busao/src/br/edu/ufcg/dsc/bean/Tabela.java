@@ -10,6 +10,7 @@ public class Tabela {
 		this.campos = valores;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<String> getCampos(){
 		return (List<String>) campos.keySet();
 	}

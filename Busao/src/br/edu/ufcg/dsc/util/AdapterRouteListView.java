@@ -1,13 +1,11 @@
 package br.edu.ufcg.dsc.util;
 
 import java.util.ArrayList;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import br.edu.ufcg.dsc.R;
 
@@ -15,7 +13,6 @@ public class AdapterRouteListView extends BaseAdapter {
 
     private LayoutInflater mInflater;
     private ArrayList<RouteListView> itens;
-    private ImageView removeRoute, mapsRoute;
 
     public AdapterRouteListView(Context context, ArrayList<RouteListView> itens) {
         this.itens = itens; //Itens que preencheram o listview

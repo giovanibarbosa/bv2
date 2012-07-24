@@ -215,10 +215,7 @@ public class SocialFacebook {
 		mAsync.logout(context, new RequestAdapter() {
 			
 			public void onComplete(JSONObject jsonResponse, Object state) {
-				
-				Log.d(TAG, "Logout");
 				clearLoginInfo();
-				
 				listener.onComplete();
 			}
 			
@@ -928,11 +925,6 @@ public class SocialFacebook {
 
 	
 	
-	/** Private Methods **/
-	
-	private void facebookRequest(Activity activity, String graphPath, boolean needsLogin, RequestAdapter adapter) {
-		facebookRequest(activity, graphPath, new Bundle(), "GET", needsLogin, adapter);
-	}
 	
 	private void facebookRequest(Activity activity, String graphPath, Bundle params, boolean needsLogin, RequestAdapter adapter) {
 		facebookRequest(activity, graphPath, params, "GET", needsLogin, adapter);

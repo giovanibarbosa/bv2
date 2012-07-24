@@ -16,7 +16,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +60,6 @@ public class MenuActivity extends Activity {
 
 			switch (msg.what) {
 			default:
-				Log.i("Menu", "" + msg.what);
 				atualBolinhas(msg.what);
 				break;
 			}
@@ -92,7 +90,6 @@ public class MenuActivity extends Activity {
 		Bundle b = getIntent().getExtras();
 		if (b != null) {
 			int rowClicada = b.getInt("row");
-			Log.i("row", "" + rowClicada);
 			switch (rowClicada) {
 			case R.layout.menu_localidade:
 				rowLocalidade.performClick();
@@ -116,7 +113,6 @@ public class MenuActivity extends Activity {
 		bolinha1 = (ImageView) findViewById(R.id.image_bolinha_1);
 		bolinha2 = (ImageView) findViewById(R.id.image_bolinha_2);
 		bolinha3 = (ImageView) findViewById(R.id.image_bolinha_3);
-
 	}
 
 	private static void fadeBolinhas(int valor) {
@@ -213,8 +209,8 @@ public class MenuActivity extends Activity {
 			// alterar os dados...
 			String valorTarifa = getCityValorTarifa();
 			TextView endereco = (TextView) findViewById(R.id.endereco);
-			Log.i("endereco", service.getAtualEndrereco());
-			endereco.setText(getString(R.string.atual_localizacao) + " " + service.getAtualEndrereco());
+			String enderecoAtual = service.getAtualEndrereco();
+			endereco.setText(getString(R.string.atual_localizacao) + " " + enderecoAtual.substring(1, enderecoAtual.length()-1));
 			botaoAlterarCidade = (ImageView) findViewById(R.id.botao_alterar_cidade);
 			setActionAlterarCidade(botaoAlterarCidade);
 			TextView textTarifa = (TextView) findViewById(R.id.text_preco_tarifa);

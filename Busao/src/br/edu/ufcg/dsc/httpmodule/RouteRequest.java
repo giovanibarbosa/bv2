@@ -1,10 +1,6 @@
 package br.edu.ufcg.dsc.httpmodule;
 
-
-import java.util.List;
 import java.util.Map;
-
-
 import br.edu.ufcg.dsc.bean.Cache;
 import br.edu.ufcg.dsc.bean.Rota;
 import br.edu.ufcg.dsc.config.Configurations;
@@ -41,8 +37,6 @@ public class RouteRequest extends HTTPModule {
 		return new Rota(mapeamento);
 	}
 
-
-
 	/**
 	 * Retorna a(s) rota(s) que passam entre dois pontos selecionados
 	 * @param lat1 A latitude do primeiro ponto
@@ -70,8 +64,5 @@ public class RouteRequest extends HTTPModule {
 		String result = getResult(Configurations.getInstance().getGeoCoderPath() + address);
 		return result;
 	}
-	
-
-
 
 }

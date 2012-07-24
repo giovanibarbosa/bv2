@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,7 +15,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Point;
-import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -33,12 +31,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.Toast;
 import br.edu.ufcg.dsc.R;
 import br.edu.ufcg.dsc.dao.Rota;
@@ -46,8 +41,6 @@ import br.edu.ufcg.dsc.dao.RotaDataSource;
 import br.edu.ufcg.dsc.httpmodule.HTTPModuleFacade;
 import br.edu.ufcg.dsc.util.AdapterRouteListView;
 import br.edu.ufcg.dsc.util.CustomBuilder;
-import br.edu.ufcg.dsc.util.PontoAdapter;
-import br.edu.ufcg.dsc.util.PontoTuristico;
 import br.edu.ufcg.dsc.util.RouteListView;
 
 import com.google.android.maps.GeoPoint;
@@ -67,7 +60,6 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 	View viewInflateMapa;
 	View viewInflateFavoritos;
 	
-	private String buscaLinha;
 	private ImageView pesquisaOnibus, pesquisaDoisPontos, limparOverlays;
 	
 	MapView mapView;
@@ -82,7 +74,6 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 	private ArrayList<RouteListView> rotas;
 	private AdapterRouteListView adapterListView;
 	private ListView listView, list;
-	private List<PontoTuristico> pontos;
 	private com.google.android.maps.MyLocationOverlay ondeEstou;
 	private List<Rota> values;
 	private InputMethodManager imm;
@@ -111,7 +102,6 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 		pesquisaOnibus.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				Log.i("clicou", "Clicouu");
 				telaConsultar = new Intent(BuscarActivity.this, ResultadoActivity.class);
 				Bundle b = new Bundle();
 				b.putString("paramBusca", paramBusca.getText().toString());
@@ -173,7 +163,6 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 		});
 	}
 	
-	
 	private void setAlteracoesBuscar(int id){
 		switch (id) {
 		case 1:	
@@ -183,7 +172,6 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 			imm.hideSoftInputFromWindow(paramBusca.getWindowToken(), 0); 
 			pesquisaOnibus.setOnClickListener(new View.OnClickListener() {				
 				public void onClick(View v) {
-					Log.i("clicoudentro", "Clicouu");
 					telaConsultar = new Intent(BuscarActivity.this, ResultadoActivity.class);
 					Bundle b = new Bundle();
 					b.putString("paramBusca", paramBusca.getText().toString());
@@ -202,13 +190,11 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 			}
 
 				limparOverlays = (ImageView) findViewById(R.id.image_botao_limpar_pontos);
-				
 				limparOverlays.setOnClickListener(new OnClickListener() {
 					
 					@Override
 					public void onClick(View v) {
 						limparDados();			
-//						mapView = (MapView) findViewById(R.id.mapView);
 					}
 				});
 			
@@ -236,7 +222,6 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 											longitude); // longitude gps
 
 								}
-								Log.i("mapa2", "" + mapaPontosSelecionado);
 								telaConsultar = new Intent(BuscarActivity.this,
 										ResultadoActivity.class);
 								Bundle b = new Bundle();
@@ -314,8 +299,6 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 					String rota = adapterListView.getItem(pos).getUrlRoute();
 					System.out.println(rota);
 					
-					Log.i("url", rota);
-					
 					if(!rota.equals("")){
 						Uri uri1 = Uri.parse(rota);					
 						Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri1);
@@ -351,7 +334,6 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 		botaoBuscarOnibus.setEnabled(true);
 		botaoBuscarPonto.setEnabled(true);
 		botaoRotasFavoritas.setEnabled(true);
-		
 	}
 	
 	private void selectRowBuscar(){
@@ -449,18 +431,16 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 	}
 	
 	public void onCreateMap(){
-	        MyLocationOverlay mapOverlay = new MyLocationOverlay();
-	        ondeEstou = new com.google.android.maps.MyLocationOverlay(this, mapView);
-	        listOfOverlays = mapView.getOverlays();
-	        listOfOverlays.clear();
-	        listOfOverlays.add(ondeEstou);
-	        listOfOverlays.add(mapOverlay);  
+		MyLocationOverlay mapOverlay = new MyLocationOverlay();
+	    ondeEstou = new com.google.android.maps.MyLocationOverlay(this, mapView);
+	    listOfOverlays = mapView.getOverlays();
+	    listOfOverlays.clear();
+	    listOfOverlays.add(ondeEstou);
+	    listOfOverlays.add(mapOverlay);  
 	        
-	        mapView.invalidate();
+	    mapView.invalidate();
 	}
 
-
-	
 	public void inserePontoSelecionado(double lat, double longi){
 		if(mapaPontosSelecionado.size()< 4){
 			if (mapaPontosSelecionado.size() == 2){
@@ -471,8 +451,6 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 				mapaPontosSelecionado.put("longitudeFrom", longi);
 			}
 		}
-		Log.i("pontos", mapaPontosSelecionado.toString());
-		//atualizaMapa();
 	}
 	
 	public void limparDados(){
@@ -484,7 +462,6 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 		}
 		mapaPontosSelecionado.clear();
 		onCreateMap();
-		//atualizaBotoes();
 	}
 	
 	class MapOverlay extends Overlay{

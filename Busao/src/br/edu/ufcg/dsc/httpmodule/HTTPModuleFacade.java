@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import br.edu.ufcg.dsc.bean.Cache;
 /**
  * Fachada que permite a camada de negocio acessar a camada de banco de dados.
  * 
