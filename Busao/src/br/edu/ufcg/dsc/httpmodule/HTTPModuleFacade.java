@@ -48,16 +48,26 @@ public class HTTPModuleFacade {
 
 	//CITY
 	
-	public String getAtualEndrereco(){
-		String latitude = user.getLatitude();
-		String longitude = user.getLongitude();
+//	public String getAtualEndrereco(){
+//		String latitude = user.getLatitude();
+//		String longitude = user.getLongitude();
+//		try {
+//			if(latitude.equals("0") && longitude.equals("0"))
+//				return "desconhecido";
+//			return CityRequest.getEndereco(user.getLatitude(), user.getLongitude());
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			return "desconhecido";
+//		}
+//	}
+	
+	public void updateUserAddress(){
 		try {
-			if(latitude.equals("0") && longitude.equals("0"))
-				return "desconhecido";
-			return CityRequest.getEndereco(user.getLatitude(), user.getLongitude());
+			String addr = CityRequest.getEndereco(user.getLatitude(), user.getLongitude());
+			getUser().setAddress(addr);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			return "desconhecido";
+			e.printStackTrace();
 		}
 	}
 	public String getCityNome() throws Exception{
