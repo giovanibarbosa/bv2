@@ -81,8 +81,8 @@ public class LoadingActivity extends Activity {
 				service.getUser().setLongitude(""+longitude);
 				service.updateUserAddress();
 				Log.i("Localização atualizada", latitude +","+longitude);
-//				if(mlocManager != null)
-//					mlocManager.removeUpdates(this);
+				if(mlocManager != null)
+					mlocManager.removeUpdates(this);
 			}
 
 			@Override
