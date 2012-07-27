@@ -33,7 +33,7 @@ import android.widget.Toast;
 import android.view.View;
 
 public class ResultadoActivity extends Activity {
-	private HTTPModuleFacade service;
+	private HTTPModuleFacade service = HTTPModuleFacade.getInstance();;
 	private String campoBusca = "";
 	private Double lat1, long1, lat2, long2;
 	private Map<String, String> resultado;
@@ -73,7 +73,6 @@ public class ResultadoActivity extends Activity {
 		        if (!isFinishing()) {
 				Bundle b = getIntent().getExtras();
 				campoBusca = b.getString("paramBusca");
-				service = HTTPModuleFacade.getInstance();
 				if(campoBusca == null){
 					lat1 = b.getDouble("lat1");
 					long1 = b.getDouble("long1");
@@ -319,6 +318,7 @@ public class ResultadoActivity extends Activity {
 	
 	public Map<String, String> searchRoute(String campoBusca){
 		try {
+			Log.i("CampoBuscar", ""+campoBusca);
 			return service.searchRoute(campoBusca);
 		} catch (NoReturnDataException no) {
 			 Toast.makeText(ResultadoActivity.this,
