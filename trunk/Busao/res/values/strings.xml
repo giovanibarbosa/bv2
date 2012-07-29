@@ -22,25 +22,26 @@
 	<string name="menu_ajuda">ajuda</string>
 	<string name="compartilhar">compartilhar</string> 
     
-	<string name="bem_vindo_desc">O BUSÃO e um aplicativo que da uma perspectiva 
-	    ao usuario do tempo para a passagem do proximo onibus. Alem disso, informamos 
-	    as rotas que levam aos pontos turisticos, compartilhamento 
-	    de redes sociais e muito mais!!!! Aproveite !</string>
+	<string name="bem_vindo_desc">O BUSÃO é um aplicativo que da uma perspectiva ao 
+	usuário do tempo para a passagem do próximo ônibus. Além disso, 
+	informamos as rotas que levam aos pontos turísticos, compartilhamento 
+	de redes sociais e muito mais!!!! Aproveite !</string>
 	
-	<string name="localidade_desc">No menu localidade, você tera acesso as melhores 
-	    informacoes sobre a cidade em uso, como por exemplo o preco da tarifa do onibus.
-	    O BUSAO cobre varias cidades do Nordeste, o usuario podera modificar a cidade atual
-	    a qualquer momento. </string>
+	<string name="localidade_desc">No menu localidade, você terá acesso as melhores 
+	    informações sobre a cidade em uso, como por exemplo o preço da tarifa do ônibus.
+	    O BUSÃO cobre várias cidades do Nordeste, o usuário poderá modificar a cidade atual
+	    a qualquer momento.</string>
 	
-	<string name="buscar_desc">A busca do aplicativo ajuda o usuario a encontrar um onibus 
+	<string name="buscar_desc">A busca do aplicativo ajuda o usuário a encontrar um ônibus 
 	    ou procurar rotas que atendam as suas necessidades. A busca pode ser realizada por 
-	    linha especifica ou GPS</string>
+	    linha específica ou GPS</string>
 	    
-	<string name="turismo_desc">O BUSAO tambem informa as rotas de onibus que levam aos 
-	    pontos turisticos de cada cidade. Assim, voce tera mais tempo para aproveitar 
-	    as belezas arquitetonicas e culturais.</string>
+	<string name="turismo_desc">O BUSÃO também informa as rotas de ônibus que levam aos 
+	    pontos turísticos de cada cidade. Assim, você terá mais tempo para aproveitar 
+	    as belezas arquitetônicas e culturais.
+</string>
 	
-	<string name="compartilhar_desc">Escolha rotas com pontos turisticos e 
+	<string name="compartilhar_desc">Escolha rotas com pontos turísticos e 
 	    compartilhe com as redes sociais</string>
 	 
 	
@@ -49,7 +50,7 @@
 
 
     <!-- Pesquisa -->
-    <string name="dados_fornecidos">*Dados fornecidos pela STTP-Trans</string>
+    <string name="dados_fornecidos">*Dados da STTP-Trans</string>
     <string name="informacao">informação</string>
     <string name="indisponivel">indisponível</string>
     
@@ -60,14 +61,14 @@
 	<string name="ajuda_onibus">buscar ônibus</string>
 	<string name="ajuda_mapas">mapas</string>
 	<string name="ajuda_texto_pre_requisitos">É necessário que seu aparelho tenha acesso a Internet e GPS.</string>
-	<string name="ajuda_texto_onibus">Para pesquisar por uma linha de ônibus específica (menu buscar > linha), selecione uma linha desejada e serao exibidos seus dados.</string>
+	<string name="ajuda_texto_onibus">Para pesquisar por uma linha de ônibus específica (menu buscar > linha), selecione uma linha desejada e serão exibidos seus dados.</string>
 	<string name="ajuda_texto_rotas">No menu buscar > rotas, marque no mapa os dois pontos desejados (podendo um destes ser sua localização atual) e se houver alguma linha de ônibus que passe por estes pontos, serão exibidos seus dados.</string>
 	<string name="ajuda_texto_mapas">Em buscar > mapas, poderão ser visualizadas as rotas marcadas como favoritas.</string>
 	<string name="ajuda_rotas_favoritas">favoritar rotas</string>
-	<string name="ajuda_pontos_turisticos">pontos turisticos</string>
+	<string name="ajuda_pontos_turisticos">pontos turísticos</string>
 	<string name="ajuda_texto_rotas_favoritas">Para favoritar rotas de seu interesse, marque a mesma como favorita na tela de resultados. No menu buscar > favoritos, 
 	    clique na rota e veja seu percurso sem necessidade de pesquisa. Para apagar a rota de suas rotas favoritas, pressione o item por alguns segundos</string>
-	<string name="ajuda_texto_pontos_turisticos">No menu turismo, pressione por alguns segundos o ponto turistico desejado e BUSÃO listara as rotas que passam
+	<string name="ajuda_texto_pontos_turisticos">No menu turismo, pressione por alguns segundos o ponto turísticos desejado e o BUSÃO listará as rotas que passam
 	    pelo local. Compartilhe a informação clicando nos icones do facebook e twitter</string>
 	
 	<!-- Popup Resultado -->
@@ -87,16 +88,16 @@
 	
 	<!-- Cidades -->
 	
-	<string name="cidade_titulo_inicial">voce esta em</string>
+	<string name="cidade_titulo_inicial">você está em</string>
 	<string name="texto_tarifa">Preço da tarifa: R$</string>
 	
 	<string name="titulo_campinagrande">Campina Grande, Paraiba</string>
 	<string name="titulo_joaopessoa">Joao Pessoa, Paraiba</string>
 	
-	<string name="cidade_campinagrande">Considerada um dos principais polos indrustriais da Regiao Nordeste e o maior polo tecnologico da America Latina, 
-	    Campina Grande foi elevada a categoria de cidade em 11 de outubro de 1864. A cidade possui uma agenda cultural variada, destancando-se os festejos de Sao Joao, 
-	    que acontecem durante todo mes de junho, o Encontro da Nova Consciencia, um encontro ecumenico realizado durante o carnaval, alem do Festival de Inverno.
-		De acordo com o senso de 2010, a populacao gira em torno de 400 mil habitantes. E considerada a cidade mais dinamica do nordeste e a 6a cidade mais dinamica do Brasil.</string>
+	<string name="cidade_campinagrande">Considerada um dos principais polos industriais da Região Nordeste e o maior polo tecnológico da América Latina, 
+	    Campina Grande foi elevada a categoria de cidade em 11 de outubro de 1864. A cidade possui uma agenda cultural variada, destancando-se os festejos de São João, 
+	    que acontecem durante todo mês de junho, o Encontro da Nova Consciência, um encontro ecumênico realizado durante o carnaval, além do Festival de Inverno.
+		De acordo com o senso de 2010, a população gira em torno de 400 mil habitantes. É considerada a cidade mais dinâmica do nordeste e a 6a cidade mais dinâmica do Brasil.</string>
 		
 	<string name="cidade_joaopessoa">Capital do Estado da Paraiba, Joao Pessoa e conhecida como "Portal do Sol", devido ao fato de no município estar localizada a 
 	    Ponta do Seixas, que é o ponto mais oriental das Americas, o que faz a cidade ser conhecida como o lugar "onde o Sol nasce primeiro nas Americas". O municipio 
@@ -117,7 +118,7 @@
 	
 	<!-- MAPA -->
 	
-	<string name="obs_rotas">As informacoes aqui contidas sobre as rotas de onibus foram fornecidas pelos orgaos responsaveis de cada municipio</string>
+	<string name="obs_rotas">As informações aqui contidas sobre as rotas de ônibus foram fornecidas pelos órgãos responsáveis de cada município</string>
 	<string name="busca_label_onibus">Linha</string>
 	<string name="busca_label_rota">Rota</string>
 	<string name="busca_label_favoritos">Favoritos</string>
@@ -132,12 +133,12 @@
 	
     <!-- LIST ROUTE -->
     
-    <string name="num_onibus">Num Onibus: </string>
-    <string name="dif_onibus">Dif Onibus: </string>
-    <string name="hora_inicio">Hora Inicio: </string>
+    <string name="num_onibus">Num ônibus: </string>
+    <string name="dif_onibus">Dif ônibus: </string>
+    <string name="hora_inicio">Hora Início: </string>
     <string name="hora_fim">Hora Fim: </string>
     <string name="add_rota">Rota adicionada com sucesso!</string>
-    <string name="rota_ja_existe">Rota ja esta cadastrada</string>
+    <string name="rota_ja_existe">Rota já está cadastrada</string>
     <string name="delete_rota">Rota removida com sucesso!</string>
     <string name="erro_rota">Um erro ocorreu ao tentar salvar a rota</string>
     
