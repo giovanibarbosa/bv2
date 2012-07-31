@@ -147,10 +147,11 @@ public class PontoAdapter extends BaseAdapter {
 			this.prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		}
 
-		@Override
-		public void onClick(View v) {
+		@Override 
+		public void onClick(View v) { 
 			detectTwitterClients();
 			try{
+				// Tweet button handler
 				ComponentName targetComponent = getTwitterClientComponentName();
 				String tweet = "Eu conheci o " + ponto.getNome() + " pelo @busaoapp !!!";
 			    if(targetComponent != null) {
@@ -169,6 +170,7 @@ public class PontoAdapter extends BaseAdapter {
 
 		}
 		
+		// Build list of Known Twitter Clients
 		private void buildKnownTwitterClientsList() {
 		    knownTwitterClients = new HashMap<String, String>();
 		    knownTwitterClients.put("Twitter", "com.twitter.android.PostActivity");
@@ -180,6 +182,7 @@ public class PontoAdapter extends BaseAdapter {
 		    knownTwitterClients.put("Twicca", "jp.r246.twicca.statuses.Send");
 		}
 		 
+		// Detect Twitter Clients
 		public void detectTwitterClients() {
 		    buildKnownTwitterClientsList(); 
 		    foundTwitterClients = new HashMap<String, ActivityInfo>();
@@ -198,6 +201,7 @@ public class PontoAdapter extends BaseAdapter {
 		    }
 		}
 		
+		// Resolve the twitter client component name
 		public ComponentName getTwitterClientComponentName() {
 		    ComponentName result = null;
 		         
