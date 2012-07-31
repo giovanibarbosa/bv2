@@ -6,7 +6,7 @@
 	<com.google.android.maps.MapView
 		android:id="@+id/mapView" android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:enabled="true"
-		android:clickable="true" android:apiKey="0LJrtEp0Xf5kxcEpiEp_N6Xt-rSx55txf0pkTtQ" />
+		android:clickable="true" android:apiKey="0LJrtEp0Xf5nc_W7YLIAPgY9wmXiQtNN2ug3FWQ" />
 
 	<!-- Antiga: 0LJrtEp0Xf5nc_W7YLIAPgY9wmXiQtNN2ug3FWQ -->
 	<!-- Chave Julio: 0LJrtEp0Xf5lxYKrk46I1eHAuX6SGooPmCU6uww -->
