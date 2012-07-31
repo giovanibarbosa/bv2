@@ -123,4 +123,9 @@ and also notable for its tropical climate, and one of the capitals best quality 
     <string name="nenhum_app_twitter">Your device does not have any twitter application</string>
     <string name="error_ao_twittar">An error occurred when trying tweet</string>
     
+    <!-- FACEBOOK -->
+    
+    <string name="sucesso_facebook">Post Sent!</string>
+    <string name="error_facebook">An error occurred when trying post on facebook</string>
+    
 </resources>

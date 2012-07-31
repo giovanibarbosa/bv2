@@ -14,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -99,37 +100,39 @@ public class PontoAdapter extends BaseAdapter {
 
 		@Override
 		public void onClick(View v) {
-		    FbSimplePost post = new FbSimplePost();
-			post.setName("Eu conheci o " + ponto.getNome() + " pelo Busão!");
-			post.setCaption("busaoapp.com");
-			post.setDescription("O Busão é um aplicativo para Android, que fornece ao usuário o itinerário de rotas de ônibus de algumas cidades.");
-			post.setLink("http://www.busaoapp.com");
-			//post.setPicture("./res/drawable-hdpi/icon.png");
-			post.setActionName("Website do Busão");
-			post.setActionLink("http://www.busaoapp.com");
-			post.setMessage("Mensagem criado por Busão");
-			 
-			SocialFacebook.getInstance().publish((Activity)context, post, new NewObjectListener(){
+			
+			try{
+			    FbSimplePost post = new FbSimplePost();
+				post.setName("Eu conheci o " + ponto.getNome() + " pelo Busão!");
+				post.setCaption("busaoapp.com");
+				post.setDescription("O Busão é um aplicativo para Android, que fornece ao usuário o itinerário de rotas de ônibus de algumas cidades.");
+				post.setLink("http://www.busaoapp.com");
+				post.setActionName("Website do Busão");
+				post.setActionLink("http://www.busaoapp.com");
+				post.setMessage("Mensagem criado por Busão");
+				 
+				SocialFacebook.getInstance().publish((Activity)context, post, new NewObjectListener(){
 
-				@Override
-				public void onFail(Throwable thr) {
-					// TODO Auto-generated method stub
-					
-				}
+					@Override
+					public void onFail(Throwable thr) {
+						Toast.makeText(context, R.string.error_facebook, Toast.LENGTH_LONG).show();
+					}
 
-				@Override
-				public void onCancel() {
-					// TODO Auto-generated method stub
-					
-				}
+					@Override
+					public void onCancel() {
+						// TODO Auto-generated method stub
+					}
 
-				@Override
-				public void onComplete(String id) {
-					Toast.makeText(context, "Post enviado!", Toast.LENGTH_LONG).show();
-					
-				}
+					@Override
+					public void onComplete(String id) {
+						Toast.makeText(context, R.string.sucesso_facebook, Toast.LENGTH_LONG).show();
+					}
 				
-			});
+				});
+				
+			}catch(Exception e){
+				Toast.makeText(context, R.string.error_facebook, Toast.LENGTH_LONG).show();
+			}
 			
 		}
 

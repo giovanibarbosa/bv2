@@ -147,5 +147,9 @@
     <string name="nenhum_app_twitter">Seu aparelho nao possui nenhum aplicativo para realizar o tweet</string>
     <string name="error_ao_twittar">Um erro ocorreu ao tentar realizar o tweet</string>
     
+    <!-- FACEBOOK -->
+    
+    <string name="sucesso_facebook">Post Enviado!</string>
+    <string name="error_facebook">Um erro ocorreu ao tentar postar no facebook</string>
+    
 </resources>
-
