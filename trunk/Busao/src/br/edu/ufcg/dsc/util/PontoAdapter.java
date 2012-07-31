@@ -9,13 +9,14 @@ import br.com.indigo.android.facebook.SocialFacebook.NewObjectListener;
 import br.com.indigo.android.facebook.models.FbSimplePost;
 import br.edu.ufcg.dsc.R;
 
-import br.edu.ufcg.dsc.busao.AuthTwitterActivity;
-
 import android.app.Activity;
-
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -148,20 +149,27 @@ public class PontoAdapter extends BaseAdapter {
 
 		@Override
 		public void onClick(View v) {
-			if (!TwitterUtils.isAuthenticated(prefs)) {
-				Bundle b = new Bundle();
-				b.putString("ponto", ponto.getNome());
-				context.startActivity(new Intent().setClass(v.getContext(),
-						AuthTwitterActivity.class).putExtra("ponto", ponto.getNome()));
-			}
-			String tweet = "Eu conheci o " + ponto.getNome() + " pelo @busaoapp !!!";
-			try {
-				TwitterUtils.sendTweet(prefs, tweet);
-				Toast.makeText(context,	"Tweet enviado!", Toast.LENGTH_LONG).show();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try{
+			    Intent intentTwitter = new Intent(Intent.ACTION_SEND);
+			    String tweet = "Eu conheci o " + ponto.getNome() + " pelo @busaoapp !!!";
+			    intentTwitter.putExtra(Intent.EXTRA_TEXT,tweet);
+			    intentTwitter.setType("application/twitter");
+			    if (isIntentAvailable(v.getContext(),"application/twitter")){
+			    	v.getContext().startActivity(Intent.createChooser(intentTwitter,"Share with:"));
+			    } else {
+			       Toast.makeText(v.getContext(), "Cant twett", Toast.LENGTH_LONG).show();   
+			    }
+				
+			} catch(Exception e) {}
 
 		}
+		
+		public boolean isIntentAvailable(Context context, String action) {
+	        final PackageManager packageManager = context.getPackageManager();
+	        final Intent intent = new Intent(action);
+	        List<ResolveInfo> list =  packageManager.queryIntentActivities(intent,PackageManager.MATCH_DEFAULT_ONLY);
+	        return list.size() > 0;
+	    }
+
 	}
 }
