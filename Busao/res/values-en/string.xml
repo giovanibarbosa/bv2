@@ -125,6 +125,7 @@ and also notable for its tropical climate, and one of the capitals best quality 
     
     <!-- FACEBOOK -->
     
+    <string name="nenhum_app_facebook">Your device does not have facebook application</string>
     <string name="sucesso_facebook">Post Sent!</string>
     <string name="error_facebook">An error occurred when trying post on facebook</string>
     

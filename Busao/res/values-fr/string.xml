@@ -130,6 +130,7 @@
     
     <!-- FACEBOOK -->
     
+    <string name="nenhum_app_facebook">Votre appareil ne dispose pas de n importe quelle application facebook</string>
     <string name="sucesso_facebook">Post a envoye!</string>
     <string name="error_facebook">Une erreur s est produite lors de la tentative message sur facebook</string>
     
