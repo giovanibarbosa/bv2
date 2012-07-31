@@ -149,6 +149,7 @@
     
     <!-- FACEBOOK -->
     
+    <string name="nenhum_app_facebook">Seu aparelho nao possui o aplicativo do facebook</string>
     <string name="sucesso_facebook">Post Enviado!</string>
     <string name="error_facebook">Um erro ocorreu ao tentar postar no facebook</string>
     
