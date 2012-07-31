@@ -142,5 +142,10 @@
     <string name="delete_rota">Rota removida com sucesso!</string>
     <string name="erro_rota">Um erro ocorreu ao tentar salvar a rota</string>
     
+    <!-- TWITTER -->
+    
+    <string name="nenhum_app_twitter">Seu aparelho nao possui nenhum aplicativo para realizar o tweet</string>
+    <string name="error_ao_twittar">Um erro ocorreu ao tentar realizar o tweet</string>
+    
 </resources>
 

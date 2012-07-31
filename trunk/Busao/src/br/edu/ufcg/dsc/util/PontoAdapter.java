@@ -1,13 +1,8 @@
 package br.edu.ufcg.dsc.util;
 
+import java.util.HashMap;
 import java.util.List;
-
-import com.ecs.sample.TwitterUtils;
-
-import br.com.indigo.android.facebook.SocialFacebook;
-import br.com.indigo.android.facebook.SocialFacebook.NewObjectListener;
-import br.com.indigo.android.facebook.models.FbSimplePost;
-import br.edu.ufcg.dsc.R;
+import java.util.Map;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -17,7 +12,6 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +21,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import br.com.indigo.android.facebook.SocialFacebook;
+import br.com.indigo.android.facebook.SocialFacebook.NewObjectListener;
+import br.com.indigo.android.facebook.models.FbSimplePost;
+import br.edu.ufcg.dsc.R;
 
 public class PontoAdapter extends BaseAdapter {
 	private List<PontoTuristico> pontos;
@@ -139,8 +137,10 @@ public class PontoAdapter extends BaseAdapter {
 
 	private class TwitterClickListener implements OnClickListener {
 		private PontoTuristico ponto;
-		
+		private Map<String,String> knownTwitterClients;
+		private Map<String, ActivityInfo> foundTwitterClients;
 		private SharedPreferences prefs;
+		private String preferredTwitterClient;
 
 		public TwitterClickListener(PontoTuristico ponto) {
 			this.ponto = ponto;
@@ -149,27 +149,76 @@ public class PontoAdapter extends BaseAdapter {
 
 		@Override
 		public void onClick(View v) {
+			detectTwitterClients();
 			try{
-			    Intent intentTwitter = new Intent(Intent.ACTION_SEND);
-			    String tweet = "Eu conheci o " + ponto.getNome() + " pelo @busaoapp !!!";
-			    intentTwitter.putExtra(Intent.EXTRA_TEXT,tweet);
-			    intentTwitter.setType("application/twitter");
-			    if (isIntentAvailable(v.getContext(),"application/twitter")){
-			    	v.getContext().startActivity(Intent.createChooser(intentTwitter,"Share with:"));
+				ComponentName targetComponent = getTwitterClientComponentName();
+				String tweet = "Eu conheci o " + ponto.getNome() + " pelo @busaoapp !!!";
+			    if(targetComponent != null) {
+			        Intent intent = new Intent(Intent.ACTION_SEND);
+			        intent.setComponent(targetComponent);
+			        String intentType = (targetComponent.getClassName().contains("com.twidroid")) ? "application/twitter" : "text/plain";
+			        intent.setType(intentType);
+			        intent.putExtra(Intent.EXTRA_TEXT, tweet);
+			        v.getContext().startActivity(intent);
 			    } else {
-			       Toast.makeText(v.getContext(), "Cant twett", Toast.LENGTH_LONG).show();   
+			    	Toast.makeText(v.getContext(), R.string.nenhum_app_twitter, Toast.LENGTH_LONG).show();      
 			    }
-				
-			} catch(Exception e) {}
+			} catch(Exception e) {
+				Toast.makeText(v.getContext(), R.string.error_ao_twittar, Toast.LENGTH_LONG).show();
+			}
 
 		}
 		
-		public boolean isIntentAvailable(Context context, String action) {
-	        final PackageManager packageManager = context.getPackageManager();
-	        final Intent intent = new Intent(action);
-	        List<ResolveInfo> list =  packageManager.queryIntentActivities(intent,PackageManager.MATCH_DEFAULT_ONLY);
-	        return list.size() > 0;
-	    }
-
+		private void buildKnownTwitterClientsList() {
+		    knownTwitterClients = new HashMap<String, String>();
+		    knownTwitterClients.put("Twitter", "com.twitter.android.PostActivity");
+		    knownTwitterClients.put("UberSocial", "com.twidroid.activity.SendTweet");
+		    knownTwitterClients.put("TweetDeck", "com.tweetdeck.compose.ComposeActivity");
+		    knownTwitterClients.put("Seesmic", "com.seesmic.ui.Composer");
+		    knownTwitterClients.put("TweetCaster", "com.handmark.tweetcaster.ShareSelectorActivity");
+		    knownTwitterClients.put("Plume", "com.levelup.touiteur.appwidgets.TouiteurWidgetNewTweet");
+		    knownTwitterClients.put("Twicca", "jp.r246.twicca.statuses.Send");
+		}
+		 
+		public void detectTwitterClients() {
+		    buildKnownTwitterClientsList(); 
+		    foundTwitterClients = new HashMap<String, ActivityInfo>();
+		     
+		    Intent intent = new Intent(Intent.ACTION_SEND);
+		    intent.setType("text/plain");
+		    PackageManager pm = context.getPackageManager();
+		    List<ResolveInfo> activityList = pm.queryIntentActivities(intent, 0);
+		    int len = activityList.size();
+		    for (int i = 0; i < len; i++) {
+		        ResolveInfo app = (ResolveInfo) activityList.get(i);
+		        ActivityInfo activity = app.activityInfo;
+		        if (knownTwitterClients.containsValue(activity.name)) {
+		            foundTwitterClients.put(activity.name, activity);
+		        }
+		    }
+		}
+		
+		public ComponentName getTwitterClientComponentName() {
+		    ComponentName result = null;
+		         
+		    if (foundTwitterClients.size() > 0) {
+		        ActivityInfo tweetActivity = null;
+		        for(Map.Entry<String, ActivityInfo> entry : foundTwitterClients.entrySet()) {
+		            tweetActivity = entry.getValue();
+		            break;
+		        }
+		             
+		        if (preferredTwitterClient != null) {
+		            String activityName = knownTwitterClients.get(preferredTwitterClient);
+		            if(foundTwitterClients.containsKey(activityName)) {
+		                tweetActivity = foundTwitterClients.get(activityName);
+		            }
+		        }
+		         
+		        result = new ComponentName(tweetActivity.applicationInfo.packageName, tweetActivity.name);
+		    }
+		     
+		    return result;
+		}
 	}
 }
