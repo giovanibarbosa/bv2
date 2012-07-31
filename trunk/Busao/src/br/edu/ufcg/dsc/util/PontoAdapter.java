@@ -14,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -21,6 +22,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import br.com.indigo.android.facebook.SocialFacebook;
+import br.com.indigo.android.facebook.SocialFacebook.NewObjectListener;
+import br.com.indigo.android.facebook.models.FbSimplePost;
 import br.edu.ufcg.dsc.R;
 
 public class PontoAdapter extends BaseAdapter {
@@ -89,78 +93,47 @@ public class PontoAdapter extends BaseAdapter {
 
 	private class FaceClickListener implements OnClickListener {
 		private PontoTuristico ponto;
-		private Map<String,String> knownFacebookClients;
-		private Map<String, ActivityInfo> foundFacebookClients;
-		private String preferredFacebookClient;
-		
+
 		public FaceClickListener(PontoTuristico ponto) {
 			this.ponto = ponto;
 		}
 
 		@Override
 		public void onClick(View v) {
-			detectFacebookClients();
+			
 			try{
-				// Facebook button handler
-				ComponentName targetComponent = getFacebookClientComponentName();
-			    if(targetComponent != null) {
-			        Intent intent = new Intent(Intent.ACTION_SEND);
-			        intent.setComponent(targetComponent);
-			        String intentType = (targetComponent.getClassName().contains("com.facebook")) ? "application/facebook" : "text/plain";
-			        intent.setType(intentType);
-			        intent.putExtra(Intent.EXTRA_TEXT, "http://www.facebook.com/busaoapp");
-			        v.getContext().startActivity(intent);
-			    } else {
-			    	Toast.makeText(v.getContext(), R.string.nenhum_app_facebook, Toast.LENGTH_LONG).show();      
-			    }
+			    FbSimplePost post = new FbSimplePost();
+				post.setName("Eu conheci o " + ponto.getNome() + " pelo Busão!");
+				post.setCaption("busaoapp.com");
+				post.setDescription("O Busão é um aplicativo para Android, que fornece ao usuário o itinerário de rotas de ônibus de algumas cidades.");
+				post.setLink("http://www.busaoapp.com");
+				post.setActionName("Website do Busão");
+				post.setActionLink("http://www.busaoapp.com");
+				post.setMessage("Mensagem criado por Busão");
+				 
+				SocialFacebook.getInstance().publish((Activity)context, post, new NewObjectListener(){
+
+					@Override
+					public void onFail(Throwable thr) {
+						Toast.makeText(context, R.string.error_facebook, Toast.LENGTH_LONG).show();
+					}
+
+					@Override
+					public void onCancel() {
+						// TODO Auto-generated method stub
+					}
+
+					@Override
+					public void onComplete(String id) {
+						Toast.makeText(context, R.string.sucesso_facebook, Toast.LENGTH_LONG).show();
+					}
+				
+				});
 				
 			}catch(Exception e){
 				Toast.makeText(context, R.string.error_facebook, Toast.LENGTH_LONG).show();
 			}
 			
-		}
-		
-		// Detect Facebook Clients
-		public void detectFacebookClients() {
-		    knownFacebookClients = new HashMap<String, String>();
-		    knownFacebookClients.put("Facebook", "com.facebook.katana.ShareLinkActivity");  //So tem esse app do facebook
-		    foundFacebookClients = new HashMap<String, ActivityInfo>();
-		     
-		    Intent intent = new Intent(Intent.ACTION_SEND);
-		    intent.setType("text/plain");
-		    PackageManager pm = context.getPackageManager();
-		    List<ResolveInfo> activityList = pm.queryIntentActivities(intent, 0);
-		    int len = activityList.size();
-		    for (int i = 0; i < len; i++) {
-		        ResolveInfo app = (ResolveInfo) activityList.get(i);
-		        ActivityInfo activity = app.activityInfo;
-		        if (knownFacebookClients.containsValue(activity.name)) {
-		        	foundFacebookClients.put(activity.name, activity);
-		        }
-		    }
-		}
-		
-		public ComponentName getFacebookClientComponentName() {
-		    ComponentName result = null;
-		         
-		    if (foundFacebookClients.size() > 0) {
-		        ActivityInfo facebookActivity = null;
-		        for(Map.Entry<String, ActivityInfo> entry : foundFacebookClients.entrySet()) {
-		        	facebookActivity = entry.getValue();
-		           	break;
-		        }
-		             
-		        if (preferredFacebookClient != null) {
-		            String activityName = knownFacebookClients.get(preferredFacebookClient);
-		            if(foundFacebookClients.containsKey(activityName)) {
-		            	facebookActivity = foundFacebookClients.get(activityName);
-		            }
-		        }
-		         
-		        result = new ComponentName(facebookActivity.applicationInfo.packageName, facebookActivity.name);
-		    }
-		     
-		    return result;
 		}
 
 	}
@@ -256,3 +229,80 @@ public class PontoAdapter extends BaseAdapter {
 		}
 	}
 }
+//	private class FaceClickListener implements OnClickListener {
+//		private PontoTuristico ponto;
+//		private Map<String,String> knownFacebookClients;
+//		private Map<String, ActivityInfo> foundFacebookClients;
+//		private String preferredFacebookClient;
+//		
+//		public FaceClickListener(PontoTuristico ponto) {
+//			this.ponto = ponto;
+//		}
+//
+//		@Override
+//		public void onClick(View v) {
+//			detectFacebookClients();
+//			try{
+//				// Facebook button handler
+//				ComponentName targetComponent = getFacebookClientComponentName();
+//			    if(targetComponent != null) {
+//			        Intent intent = new Intent(Intent.ACTION_SEND);
+//			        intent.setComponent(targetComponent);
+//			        String intentType = (targetComponent.getClassName().contains("com.facebook")) ? "application/facebook" : "text/plain";
+//			        intent.setType(intentType);
+//			        intent.putExtra(Intent.EXTRA_TEXT, "http://www.facebook.com/busaoapp");
+//			        v.getContext().startActivity(intent);
+//			    } else {
+//			    	Toast.makeText(v.getContext(), R.string.nenhum_app_facebook, Toast.LENGTH_LONG).show();      
+//			    }
+//				
+//			}catch(Exception e){
+//				Toast.makeText(context, R.string.error_facebook, Toast.LENGTH_LONG).show();
+//			}
+//			
+//		}
+//		
+//		// Detect Facebook Clients
+//		public void detectFacebookClients() {
+//		    knownFacebookClients = new HashMap<String, String>();
+//		    knownFacebookClients.put("Facebook", "com.facebook.katana.ShareLinkActivity");  //So tem esse app do facebook
+//		    foundFacebookClients = new HashMap<String, ActivityInfo>();
+//		     
+//		    Intent intent = new Intent(Intent.ACTION_SEND);
+//		    intent.setType("text/plain");
+//		    PackageManager pm = context.getPackageManager();
+//		    List<ResolveInfo> activityList = pm.queryIntentActivities(intent, 0);
+//		    int len = activityList.size();
+//		    for (int i = 0; i < len; i++) {
+//		        ResolveInfo app = (ResolveInfo) activityList.get(i);
+//		        ActivityInfo activity = app.activityInfo;
+//		        if (knownFacebookClients.containsValue(activity.name)) {
+//		        	foundFacebookClients.put(activity.name, activity);
+//		        }
+//		    }
+//		}
+//		
+//		public ComponentName getFacebookClientComponentName() {
+//		    ComponentName result = null;
+//		         
+//		    if (foundFacebookClients.size() > 0) {
+//		        ActivityInfo facebookActivity = null;
+//		        for(Map.Entry<String, ActivityInfo> entry : foundFacebookClients.entrySet()) {
+//		        	facebookActivity = entry.getValue();
+//		           	break;
+//		        }
+//		             
+//		        if (preferredFacebookClient != null) {
+//		            String activityName = knownFacebookClients.get(preferredFacebookClient);
+//		            if(foundFacebookClients.containsKey(activityName)) {
+//		            	facebookActivity = foundFacebookClients.get(activityName);
+//		            }
+//		        }
+//		         
+//		        result = new ComponentName(facebookActivity.applicationInfo.packageName, facebookActivity.name);
+//		    }
+//		     
+//		    return result;
+//		}
+//
+//	}
