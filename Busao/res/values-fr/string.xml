@@ -123,8 +123,14 @@
 	<string name="delete_rota">itinéraire supprimé avec succès!</string>
 	<string name="erro_rota">Une erreur s est produite lors de la tentative de sauvegarde itinéraire</string>
 	
-	    <!-- TWITTER -->
+	<!-- TWITTER -->
 
     <string name="nenhum_app_twitter">Votre appareil ne dispose pas de n importe quelle application twitter</string>
     <string name="error_ao_twittar">Une erreur s est produite lors de la tentative Tweet</string>
+    
+    <!-- FACEBOOK -->
+    
+    <string name="sucesso_facebook">Post a envoye!</string>
+    <string name="error_facebook">Une erreur s est produite lors de la tentative message sur facebook</string>
+    
 </resources>
