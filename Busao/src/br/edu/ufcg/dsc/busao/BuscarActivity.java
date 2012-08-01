@@ -69,7 +69,7 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 	private long endTime=0;
 	private Intent telaConsultar;
 	private EditText paramBusca;
-	private HTTPModuleFacade service;
+	private HTTPModuleFacade service = HTTPModuleFacade.getInstance();
 	private RotaDataSource rotaDataSource;
 	private ArrayList<RouteListView> rotas;
 	private AdapterRouteListView adapterListView;
@@ -114,7 +114,6 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 		setActionsBotao(botaoBuscarPonto, 2);
 		setActionsBotao(botaoRotasFavoritas, 3);
 		
-		service = HTTPModuleFacade.getInstance();
 	}
 	
 	private void instanciarBotoes() {

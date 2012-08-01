@@ -9,5 +9,6 @@ public class Busao extends Application {
 		super.onCreate();
 		String[] permissions = {"publish_stream"}; // App permissions
 		SocialFacebook.getInstance(this, "151638851626681", "66758c81845cf49a4f243d8a0c74ab61", permissions);
+		//SocialFacebook.getInstance(this, "151638851626681", "66758c81845cf49a4f243d8a0c74ab61", permissions);
 	}
 }

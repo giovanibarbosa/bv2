@@ -106,7 +106,7 @@ public class PontoAdapter extends BaseAdapter {
 				post.setName("Eu conheci o " + ponto.getNome() + " pelo Busão!");
 				post.setCaption("busaoapp.com");
 				post.setDescription("O Busão é um aplicativo para Android, que fornece ao usuário o itinerário de rotas de ônibus de algumas cidades.");
-				post.setLink("http://www.busaoapp.com");
+				post.setLink("http://www.facebook.com/busaoapp");
 				post.setActionName("Website do Busão");
 				post.setActionLink("http://www.busaoapp.com");
 				post.setMessage("Mensagem criado por Busão");
