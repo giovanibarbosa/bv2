@@ -69,7 +69,7 @@ public class BuscarActivity extends MapActivity implements LocationListener{
 	private long endTime=0;
 	private Intent telaConsultar;
 	private EditText paramBusca;
-	private HTTPModuleFacade service = HTTPModuleFacade.getInstance();
+	private HTTPModuleFacade service = HTTPModuleFacade.getInstance("1", "0", "0");
 	private RotaDataSource rotaDataSource;
 	private ArrayList<RouteListView> rotas;
 	private AdapterRouteListView adapterListView;

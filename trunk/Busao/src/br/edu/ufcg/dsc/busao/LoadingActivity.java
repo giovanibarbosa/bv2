@@ -76,14 +76,14 @@ public class LoadingActivity extends Activity {
 
 				double latitude = loc.getLatitude();
 				double longitude = loc.getLongitude();
+				Log.i("Localização mudou", latitude +","+longitude);
 				
-				
-				service.getUser().setLatitude(""+latitude);
-				service.getUser().setLongitude(""+longitude);
-				service.updateUserAddress();
-				Log.i("Localização atualizada", latitude +","+longitude);
-				if(mlocManager != null)
-					mlocManager.removeUpdates(this);
+				if(service != null && service.getUser().getLatitude().equals("0") && service.getUser().getLongitude().equals("0")){
+					service.getUser().setLatitude(""+latitude);
+					service.getUser().setLongitude(""+longitude);
+					service.updateUserAddress();
+					Log.i("Localização atualizada", latitude +","+longitude);				
+				}
 			}
 
 			@Override
