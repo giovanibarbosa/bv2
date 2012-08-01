@@ -77,6 +77,7 @@ public class LoadingActivity extends Activity {
 				double latitude = loc.getLatitude();
 				double longitude = loc.getLongitude();
 				
+				
 				service.getUser().setLatitude(""+latitude);
 				service.getUser().setLongitude(""+longitude);
 				service.updateUserAddress();
