@@ -52,7 +52,7 @@ public class LoadingActivity extends Activity {
 				String bestProvider = mlocManager.getBestProvider(new Criteria(),false);
 				Log.i("best", ""+bestProvider);
 				if(bestProvider != null)
-					mlocManager.requestLocationUpdates(bestProvider, 0, 0,
+					mlocManager.requestLocationUpdates("gps", 0, 0,
 						mlocListener);
 				service = HTTPModuleFacade.getInstance("1", latitude+"", longitude+"");
 				// checa as atualizações necessárias,
@@ -66,7 +66,7 @@ public class LoadingActivity extends Activity {
 		};
 		
 		/* Class My Location Listener */
-
+//best
 		public class MyLocationListener implements LocationListener
 
 		{
@@ -77,8 +77,8 @@ public class LoadingActivity extends Activity {
 				double latitude = loc.getLatitude();
 				double longitude = loc.getLongitude();
 				Log.i("Localização mudou", latitude +","+longitude);
-				
-				if(service != null && service.getUser().getLatitude().equals("0") && service.getUser().getLongitude().equals("0")){
+				Log.i("user", service.getUser().getLatitude() +","+service.getUser().getLongitude());
+				if(service != null && service.getUser().getLatitude().equals("0.0") && service.getUser().getLongitude().equals("0.0")){
 					service.getUser().setLatitude(""+latitude);
 					service.getUser().setLongitude(""+longitude);
 					service.updateUserAddress();
