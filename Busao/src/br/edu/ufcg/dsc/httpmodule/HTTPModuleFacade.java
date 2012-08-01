@@ -26,7 +26,7 @@ public class HTTPModuleFacade {
 	}
 	
 	public static HTTPModuleFacade getInstance(){
-		return instance;
+		return getInstance("1","0","0");
 	}
 	
 	/**
