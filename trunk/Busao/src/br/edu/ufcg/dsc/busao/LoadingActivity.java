@@ -52,7 +52,7 @@ public class LoadingActivity extends Activity {
 				String bestProvider = mlocManager.getBestProvider(new Criteria(),false);
 				Log.i("best", ""+bestProvider);
 				if(bestProvider != null)
-					mlocManager.requestLocationUpdates("gps", 0, 0,
+					mlocManager.requestLocationUpdates(bestProvider, 0, 0,
 						mlocListener);
 				service = HTTPModuleFacade.getInstance("1", latitude+"", longitude+"");
 				// checa as atualizações necessárias,
