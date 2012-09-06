@@ -50,6 +50,22 @@ public class TurismoActivity extends Activity {
 				imagem = R.drawable.pt_cg_acudevelho;
 			} else if (map.get("nome").equalsIgnoreCase("Jackson do Pandeiro")){
 				imagem = R.drawable.pt_cg_jackson;
+			} else if (map.get("nome").equalsIgnoreCase("Centro Historico")){
+				imagem = R.drawable.pt_jp_centrohistorico;
+			} else if (map.get("nome").equalsIgnoreCase("Farol do Cabo Branco")){
+				imagem = R.drawable.pt_jp_farol;
+			} else if (map.get("nome").equalsIgnoreCase("Estacao Cabo Branco")){
+				imagem = R.drawable.pt_jp_estacaocb;
+			} else if (map.get("nome").equalsIgnoreCase("Lagoa")){
+				imagem = R.drawable.pt_jp_lagoa;
+			} else if (map.get("nome").equalsIgnoreCase("Bica")){
+				imagem = R.drawable.pt_jp_bica;
+			} else if (map.get("nome").equalsIgnoreCase("Fortaleza de Santa Catarina")){
+				imagem = R.drawable.pt_jp_santacatarina;
+			} else if (map.get("nome").equalsIgnoreCase("Por do Sol praia do Jacare")){
+				imagem = R.drawable.pt_jp_porsol;
+			} else if (map.get("nome").equalsIgnoreCase("Praia de Coqueirinho")){
+				imagem = R.drawable.pt_jp_coqueirinho;
 			} else { //imagem default
 				imagem = R.drawable.pt_default;
 			}
